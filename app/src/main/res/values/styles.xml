@@ -22,5 +22,19 @@
         <item name="android:textOff">OFF</item>
         <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
     </style>
+    <!-- Bluetooth -->
+    <style name="Widget.Button.Toggle2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_toggle_bluetooth</item>
+        <item name="android:textOn">ON</item>
+        <item name="android:textOff">OFF</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- Dnd -->
+    <style name="Widget.Button.Toggle3" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_toggle_dnd</item>
+        <item name="android:textOn">ON</item>
+        <item name="android:textOff">OFF</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
 
 </resources>

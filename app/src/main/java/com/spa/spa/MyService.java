@@ -47,10 +47,12 @@ public class MyService extends Service {
     private View overlayBackground;
     ToggleButton toggleButton;
     ToggleButton toggleButton1;
+    ToggleButton toggleButton2;
     WifiManager wifiManager;
+    NotificationManager mNotificationManager;
     Wifiset wifiset;
     Airplane airplane;
-    Root root = new Root();
+    Dnd dnd;
     TextView textView;
 
     // События обрабатываемые при старте сервиса
@@ -203,8 +205,10 @@ public class MyService extends Service {
                             RelativeLayout rl = view.findViewById(R.id.rl);
                             rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             toggleButton = (ToggleButton) overlayView.findViewById(R.id.toggleButton);
+                            toggleButton2 = (ToggleButton) overlayView.findViewById(R.id.toggleButton2);
                             wifiset = new Wifiset();
                             wifiset.WifiRe(toggleButton, wifiManager);
+                            Bluetooth.setBluetooth(toggleButton2);
                         }
                     }
                 }
@@ -285,6 +289,30 @@ public class MyService extends Service {
             toggleButton1.setEnabled(false);
         } else {
             toggleButton1.setEnabled(true);
+        }
+    }
+
+    // Действие при нажатии кнопки включения Bluetooth
+    public void onToggleClicked2(View view){
+        boolean on = ((ToggleButton) view).isChecked();
+
+        //Включает Bluetooth
+        if (on) {
+            Bluetooth.onBluetooth();
+        } else {
+            Bluetooth.offBluetooth();
+        }
+    }
+
+    // Действие при нажатии кнопки включения Dnd
+    public void onToggleClicked3(View view){
+        boolean on = ((ToggleButton) view).isChecked();
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //Включает Bluetooth
+        if (on) {
+            dnd.onDnd(mNotificationManager);
+        } else {
+            dnd.offDnd(mNotificationManager);
         }
     }
 
