@@ -1,12 +1,17 @@
 package com.spa.spa;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Settings;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
-public class Dnd extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class Dnd extends AppCompatActivity {
+
     //включаем режим не беспокоить после проверки есть ли на это доступ если нет то выводит окно
     //настроек чтобы включить.
         /*Режимы 0 – Если DnD выключен - INTERRUPTION_FILTER_NONE
@@ -14,30 +19,24 @@ public class Dnd extends Activity {
                 2 – Если DnD включен – Общее молчание - INTERRUPTION_FILTER_ALL
                 3 – Если включен режим DnD – Только сигналы тревоги - INTERRUPTION_FILTER_ALARMS*/
 
-//    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//    public void DndState() {
-//        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
-//            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-//            startActivity(intent);
-//        }else {
-//        }
-//    }
-
-    public void reDnd() {
-
-    }
-
-    public void onDnd(NotificationManager mNotificationManager) {
-        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
-            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-            startActivity(intent);
-        }else {
-            mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
+    //Проверяем включен ли режим "Не беспокоить" в зависимости от состояния меняем состояние кнопки
+    public static void reDnd(NotificationManager mNotificationManager, ToggleButton toggleButton3) {
+        int currentState = mNotificationManager.getCurrentInterruptionFilter();
+        if (currentState == 2) {
+            toggleButton3.setChecked(true);
+        } else {
+            toggleButton3.setChecked(false);
         }
+
     }
 
-    public void offDnd(NotificationManager mNotificationManager) {
-        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE);
+    //Включаем режим "Не беспокоить"
+    public static void onDnd(NotificationManager mNotificationManager) {
+        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
+    }
+
+    //Выключаем режим " Не беспокоить"
+    public static void offDnd(NotificationManager mNotificationManager) {
+        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
     }
 }

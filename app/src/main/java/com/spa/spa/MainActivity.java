@@ -3,7 +3,9 @@ package com.spa.spa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.app.admin.DevicePolicyManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -18,12 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
     private Activity mActivity;
     Button startService, stopService;
+    NotificationManager mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        DndState(mNotificationManager);
         mActivity = this;
 
         startService = (Button) findViewById(R.id.startService);
@@ -86,5 +91,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void DndState(NotificationManager mNotificationManager) {
+        //NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            startActivity(intent);
+        } else {
+        }
     }
 }

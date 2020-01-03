@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
@@ -48,11 +49,12 @@ public class MyService extends Service {
     ToggleButton toggleButton;
     ToggleButton toggleButton1;
     ToggleButton toggleButton2;
+    ToggleButton toggleButton3;
     WifiManager wifiManager;
-    NotificationManager mNotificationManager;
     Wifiset wifiset;
     Airplane airplane;
     Dnd dnd;
+    NotificationManager mNotificationManager;
     TextView textView;
 
     // События обрабатываемые при старте сервиса
@@ -62,6 +64,7 @@ public class MyService extends Service {
         mcontext = this;
         initAnimations();
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     // Класс отвечает за команды перед обработкой команд управления панелью
@@ -112,7 +115,7 @@ public class MyService extends Service {
 
         overlayView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view, null);
 
-        //Phần dưới màn hình
+        //Phần dưới màn hình Нижняя часть экрана
         bottomParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -122,7 +125,7 @@ public class MyService extends Service {
         bottomParams.gravity = Gravity.BOTTOM;
         overlayBottom = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view2, null);
 
-        //Cho phần backgound
+        //Cho phần backgound Для фона
         backgroundParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -187,6 +190,7 @@ public class MyService extends Service {
 
             private float starty;
 
+            @SuppressLint("CutPasteId")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
@@ -204,11 +208,25 @@ public class MyService extends Service {
                             //Включение тактильной вибрации при открытии панели
                             RelativeLayout rl = view.findViewById(R.id.rl);
                             rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                            //Инициализация кнопки Wifi
                             toggleButton = (ToggleButton) overlayView.findViewById(R.id.toggleButton);
+                            //Инициализация кнопки Bluetoth
                             toggleButton2 = (ToggleButton) overlayView.findViewById(R.id.toggleButton2);
+                            //Инициализация кнопки "Не беспокоить"
+                            toggleButton3 = (ToggleButton) overlayView.findViewById(R.id.toggleButton3);
+                            //Создаем экземпляр класса Wifiset
                             wifiset = new Wifiset();
+                            //Обновляем состояние кнопки "Не беспокоить"
+                            Dnd.reDnd(mNotificationManager, toggleButton3);
+                            //Обновляем состояние кнопки Wifi
                             wifiset.WifiRe(toggleButton, wifiManager);
+                            //Обновляем состояние кнопки Bluetooth
                             Bluetooth.setBluetooth(toggleButton2);
+
+                            int currentState = mNotificationManager.getCurrentInterruptionFilter();
+                            String rt = String.valueOf(currentState);
+                            TextView textView = (TextView) overlayView.findViewById(R.id.text);
+                            textView.setText(rt);
                         }
                     }
                 }
@@ -281,9 +299,6 @@ public class MyService extends Service {
     // Проверяет есть ли root на устройстве: если есть кнопка airplane доступна, если нет - недоступна
     public void onRoot() {
         boolean rooted = Root.RootUtil.isDeviceRooted();
-        String rt = String.valueOf(rooted);
-        textView = (TextView) overlayView.findViewById(R.id.text);
-        textView.setText(rt);
         toggleButton1 = (ToggleButton) overlayView.findViewById(R.id.toggleButton1);
         if (!rooted) {
             toggleButton1.setEnabled(false);
@@ -293,7 +308,7 @@ public class MyService extends Service {
     }
 
     // Действие при нажатии кнопки включения Bluetooth
-    public void onToggleClicked2(View view){
+    public void onToggleClicked2(View view) {
         boolean on = ((ToggleButton) view).isChecked();
 
         //Включает Bluetooth
@@ -304,15 +319,14 @@ public class MyService extends Service {
         }
     }
 
-    // Действие при нажатии кнопки включения Dnd
-    public void onToggleClicked3(View view){
+    // Действие при нажатии кнопки включения Dnd(Не беспокоить)
+    public void onToggleClicked3(View view) {
         boolean on = ((ToggleButton) view).isChecked();
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //Включает Bluetooth
+        //Включает режим Не беспокоить
         if (on) {
-            dnd.onDnd(mNotificationManager);
+            Dnd.onDnd(mNotificationManager);
         } else {
-            dnd.offDnd(mNotificationManager);
+            Dnd.offDnd(mNotificationManager);
         }
     }
 
