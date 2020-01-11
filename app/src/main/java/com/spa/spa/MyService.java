@@ -12,6 +12,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -52,10 +53,7 @@ public class MyService extends Service {
     ToggleButton toggleButton3;
     WifiManager wifiManager;
     Wifiset wifiset;
-    Airplane airplane;
-    Dnd dnd;
     NotificationManager mNotificationManager;
-    TextView textView;
 
     // События обрабатываемые при старте сервиса
     @Override
@@ -73,7 +71,6 @@ public class MyService extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         addOverlayView();
         startForeground();
-        onRoot();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -210,6 +207,7 @@ public class MyService extends Service {
                             rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             //Инициализация кнопки Wifi
                             toggleButton = (ToggleButton) overlayView.findViewById(R.id.toggleButton);
+                            toggleButton1 = (ToggleButton) overlayView.findViewById(R.id.toggleButton1);
                             //Инициализация кнопки Bluetoth
                             toggleButton2 = (ToggleButton) overlayView.findViewById(R.id.toggleButton2);
                             //Инициализация кнопки "Не беспокоить"
@@ -222,9 +220,11 @@ public class MyService extends Service {
                             wifiset.WifiRe(toggleButton, wifiManager);
                             //Обновляем состояние кнопки Bluetooth
                             Bluetooth.setBluetooth(toggleButton2);
+                            Airplane.AirRe(toggleButton1, mcontext);
 
+                            boolean air = Airplane.isAirplaneModeOn(mcontext);
                             int currentState = mNotificationManager.getCurrentInterruptionFilter();
-                            String rt = String.valueOf(currentState);
+                            String rt = String.valueOf(air);
                             TextView textView = (TextView) overlayView.findViewById(R.id.text);
                             textView.setText(rt);
                         }
@@ -287,25 +287,24 @@ public class MyService extends Service {
     // Действия при нажатии кнопки включения Airplane
     public void onToggleClicked1(View view) throws IOException {
         boolean on = ((ToggleButton) view).isChecked();
-
         //Включает режим полета
         if (on) {
-            airplane.onAirplay();
+            boolean rooted = Root.RootUtil.isDeviceRooted();
+            if (rooted) {
+                Airplane.onAirplayRoot();
+            } else {
+                Airplane.onAirplayNotRoot(mcontext.getApplicationContext());
+            }
         } else {
-            airplane.offAirplay();
+            boolean rooted = Root.RootUtil.isDeviceRooted();
+            if (!rooted) {
+                Airplane.offAirplayNotRoot(mcontext.getApplicationContext());
+            } else {
+                Airplane.offAirplayRoot();
+            }
         }
     }
 
-    // Проверяет есть ли root на устройстве: если есть кнопка airplane доступна, если нет - недоступна
-    public void onRoot() {
-        boolean rooted = Root.RootUtil.isDeviceRooted();
-        toggleButton1 = (ToggleButton) overlayView.findViewById(R.id.toggleButton1);
-        if (!rooted) {
-            toggleButton1.setEnabled(false);
-        } else {
-            toggleButton1.setEnabled(true);
-        }
-    }
 
     // Действие при нажатии кнопки включения Bluetooth
     public void onToggleClicked2(View view) {

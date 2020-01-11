@@ -7,18 +7,25 @@ import android.app.NotificationManager;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.io.IOException;
+
+import jp.wasabeef.blurry.Blurry;
 
 public class MainActivity extends AppCompatActivity {
 
     private Activity mActivity;
+    private MainActivity mainActivity;
     Button startService, stopService;
     NotificationManager mNotificationManager;
 
@@ -47,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 stopService(new Intent(getApplication(), MyService.class));
             }
         });
+
+
 
     }
 
