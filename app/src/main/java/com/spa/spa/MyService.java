@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -30,6 +33,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by VuDuc on 8/7/2017.
@@ -53,6 +59,7 @@ public class MyService extends Service {
     ToggleButton toggleButton3;
     WifiManager wifiManager;
     Wifiset wifiset;
+    MobileData mobileData;
     NotificationManager mNotificationManager;
 
     // События обрабатываемые при старте сервиса
@@ -326,6 +333,17 @@ public class MyService extends Service {
             Dnd.onDnd(mNotificationManager);
         } else {
             Dnd.offDnd(mNotificationManager);
+        }
+    }
+
+    // Действие при нажатии кнопки включения Mobile Data
+    public void onToggleClicked4(View view) {
+        boolean on = ((ToggleButton) view).isChecked();
+        //Включает Mobile Data
+        if (on) {
+            MobileData.onData(mcontext.getApplicationContext());
+        } else {
+            MobileData.offData(mcontext.getApplicationContext());
         }
     }
 
