@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -185,14 +185,14 @@
             android:background="@drawable/ic_auto_off"
             android:clickable="false">
 
-            <ImageButton
-                android:id="@+id/img_auto_bright_off"
+            <Switch
+                android:id="@+id/img_auto_bright"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:background="@null"
                 android:clickable="true"
-                android:src="@drawable/ic_autorow1" />
+                android:onClick="onSwitchClicked4" />
 
             <ImageButton
                 android:id="@+id/img_auto_bright_on"

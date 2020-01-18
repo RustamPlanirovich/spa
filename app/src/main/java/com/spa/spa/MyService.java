@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -23,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 import androidx.core.app.NotificationCompat;
@@ -101,7 +104,8 @@ public class MyService extends Service {
         int width = (int) (metrics.widthPixels * 0.95f);
         params = new WindowManager.LayoutParams(
                 width,
-                WindowManager.LayoutParams.MATCH_PARENT,
+                //Изменение высоты самой панели
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
@@ -233,7 +237,8 @@ public class MyService extends Service {
                             int Brightnes = 0;
                             //Инициализация ползунка яркости
                             SeekBar seekbar = (SeekBar) overlayView.findViewById(R.id.seebarBrightness);
-                            //Передача в управляющий класс необходимых параметров
+                            Switch img_auto_bright = (Switch) overlayView.findViewById(R.id.img_auto_bright);
+                            //Передача в управляющий класс управления яркостью необходимых параметров
                             Brightness.onBrig(overlayView, seekbar, Brightnes, mcontext);
                         }
                     }
@@ -313,7 +318,6 @@ public class MyService extends Service {
         }
     }
 
-
     // Действие при нажатии кнопки включения Bluetooth
     public void onToggleClicked2(View view) {
         boolean on = ((ToggleButton) view).isChecked();
@@ -345,6 +349,22 @@ public class MyService extends Service {
             MobileData.onData(mcontext.getApplicationContext());
         } else {
             MobileData.offData(mcontext.getApplicationContext());
+        }
+    }
+
+    //Дейтвие при нажатии Switch автояркость
+    public void onSwitchClicked4(View view) {
+        boolean on = ((Switch) view).isChecked();
+        final ContentResolver resolver = getContentResolver();
+        int mode1 = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+        int mode2 = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+
+        if (on) {
+            //Включаем автояркость
+            Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode1);
+        } else {
+            //Выключаем автояркость
+            Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode2);
         }
     }
 
