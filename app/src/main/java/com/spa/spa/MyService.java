@@ -10,12 +10,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
@@ -26,16 +22,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Created by VuDuc on 8/7/2017.
@@ -57,6 +48,7 @@ public class MyService extends Service {
     ToggleButton toggleButton1;
     ToggleButton toggleButton2;
     ToggleButton toggleButton3;
+    ToggleButton toggleButton4;
     WifiManager wifiManager;
     Wifiset wifiset;
     MobileData mobileData;
@@ -214,11 +206,14 @@ public class MyService extends Service {
                             rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                             //Инициализация кнопки Wifi
                             toggleButton = (ToggleButton) overlayView.findViewById(R.id.toggleButton);
+                            //Инициализация кнопки В самолете
                             toggleButton1 = (ToggleButton) overlayView.findViewById(R.id.toggleButton1);
                             //Инициализация кнопки Bluetoth
                             toggleButton2 = (ToggleButton) overlayView.findViewById(R.id.toggleButton2);
                             //Инициализация кнопки "Не беспокоить"
                             toggleButton3 = (ToggleButton) overlayView.findViewById(R.id.toggleButton3);
+                            //Инициализация кнопки мобильных данных
+                            toggleButton4 = (ToggleButton) overlayView.findViewById(R.id.toggleButton4);
                             //Создаем экземпляр класса Wifiset
                             wifiset = new Wifiset();
                             //Обновляем состояние кнопки "Не беспокоить"
@@ -227,13 +222,12 @@ public class MyService extends Service {
                             wifiset.WifiRe(toggleButton, wifiManager);
                             //Обновляем состояние кнопки Bluetooth
                             Bluetooth.setBluetooth(toggleButton2);
+                            //Обновляем кнопку мобильных данных
+                            MobileData.reData(mcontext, toggleButton4);
+                            //Обновляем кнопку режим полета
                             Airplane.AirRe(toggleButton1, mcontext);
-
-                            boolean air = Airplane.isAirplaneModeOn(mcontext);
-                            int currentState = mNotificationManager.getCurrentInterruptionFilter();
-                            String rt = String.valueOf(air);
-                            TextView textView = (TextView) overlayView.findViewById(R.id.text);
-                            textView.setText(rt);
+                            //Выводим имя версии и версию кода
+                            codeVersion.Version(overlayView);
                         }
                     }
                 }

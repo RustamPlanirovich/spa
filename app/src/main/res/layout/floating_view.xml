@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
 
         <ToggleButton
             android:id="@+id/toggleButton4"
-            style="@style/Widget.Button.Toggle3"
+            style="@style/Widget.Button.Toggle4"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="0dp"
