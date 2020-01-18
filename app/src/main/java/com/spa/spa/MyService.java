@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
 import androidx.core.app.NotificationCompat;
@@ -228,6 +229,12 @@ public class MyService extends Service {
                             Airplane.AirRe(toggleButton1, mcontext);
                             //Выводим имя версии и версию кода
                             codeVersion.Version(overlayView);
+                            //Начальное значение ползунка яркости
+                            int Brightnes = 0;
+                            //Инициализация ползунка яркости
+                            SeekBar seekbar = (SeekBar) overlayView.findViewById(R.id.seebarBrightness);
+                            //Передача в управляющий класс необходимых параметров
+                            Brightness.onBrig(overlayView, seekbar, Brightnes, mcontext);
                         }
                     }
                 }
