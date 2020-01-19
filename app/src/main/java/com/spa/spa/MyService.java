@@ -237,9 +237,27 @@ public class MyService extends Service {
                             int Brightnes = 0;
                             //Инициализация ползунка яркости
                             SeekBar seekbar = (SeekBar) overlayView.findViewById(R.id.seebarBrightness);
+                            //Инициализация Switch управления автояркостью
                             Switch img_auto_bright = (Switch) overlayView.findViewById(R.id.img_auto_bright);
                             //Передача в управляющий класс управления яркостью необходимых параметров
                             Brightness.onBrig(overlayView, seekbar, Brightnes, mcontext);
+                            //Инициализируем ползунок громкости звонка
+                            SeekBar seekbar_audio = (SeekBar) overlayView.findViewById(R.id.audio);
+                            //Инициализация Switch управления громкостью
+                            Switch switch1 = (Switch) overlayView.findViewById(R.id.switch1);
+                            //Чтения значения Switch управления громкостью
+                            boolean onn = switch1.isChecked();
+                            if (onn) {
+                                //Значение ползунка после изменения системно
+                                int val = Audio.getSoudValue(mcontext);
+                                //Изменение положения ползунка
+                                seekbar_audio.setProgress(val);
+                            } else {
+                                //Значение ползунка после изменения системно
+                                int val = Audio.getSoudValueRing(mcontext);
+                                //Изменение положения ползунка
+                                seekbar_audio.setProgress(val);
+                            }
                         }
                     }
                 }
@@ -365,6 +383,35 @@ public class MyService extends Service {
         } else {
             //Выключаем автояркость
             Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode2);
+        }
+    }
+
+    //Действия при нажатии Switch управлеия громкостью
+    public void onSwitchClicked5(View view) {
+        boolean on = ((Switch) view).isChecked();
+        //Инициализируем ползунок громкости звонка
+        SeekBar seekbar_audio = (SeekBar) overlayView.findViewById(R.id.audio);
+
+        if (on) {
+            //Значение ползунка после измнения пользователем
+            int value = 0;
+            //Вызываем управляющий класс Audio и передача параметров
+            Audio.onBrig1(mcontext, seekbar_audio, overlayView);
+
+            //Значение ползунка после изменения системно
+            int val = Audio.getSoudValue(mcontext);
+            //Изменение положения ползунка
+            seekbar_audio.setProgress(val);
+        } else {
+            //Значение ползунка после измнения пользователем
+            int value = 0;
+            //Вызываем управляющий класс Audio и передача параметров
+            Audio.onBrig2(mcontext, seekbar_audio, overlayView);
+
+            //Значение ползунка после изменения системно
+            int val = Audio.getSoudValueRing(mcontext);
+            //Изменение положения ползунка
+            seekbar_audio.setProgress(val);
         }
     }
 

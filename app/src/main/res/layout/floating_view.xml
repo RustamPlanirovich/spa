@@ -164,6 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_brightness_on" />
+
     </LinearLayout>
 
     <RelativeLayout
@@ -182,7 +183,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_auto_off"
             android:clickable="false">
 
             <Switch
@@ -194,15 +194,6 @@
                 android:clickable="true"
                 android:onClick="onSwitchClicked4" />
 
-            <ImageButton
-                android:id="@+id/img_auto_bright_on"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:background="@null"
-                android:clickable="true"
-                android:src="@drawable/ic_autorow1"
-                android:visibility="invisible" />
         </FrameLayout>
     </RelativeLayout>
 
@@ -284,60 +275,19 @@
         android:layout_marginBottom="@dimen/size20dp"
         android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/img_camera"
-            android:layout_width="wrap_content"
+        <SeekBar
+            android:id="@+id/audio"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/size10dp"
-            android:layout_marginRight="@dimen/size10dp"
-            android:background="@drawable/ic_frame_oval_unactive"
-            android:clickable="true"
-            android:src="@drawable/ic_camera_unactive" />
+            android:layout_weight="1"
+            android:max="15" />
 
-        <ImageButton
-            android:id="@+id/img_flashlight"
-            android:layout_width="wrap_content"
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/size10dp"
-            android:layout_marginRight="@dimen/size10dp"
-            android:background="@drawable/ic_frame_oval_unactive"
-            android:clickable="true"
-            android:src="@drawable/ic_flashlight_unactive" />
-
-        <ImageButton
-            android:id="@+id/img_calculator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/size10dp"
-            android:layout_marginRight="@dimen/size10dp"
-            android:background="@drawable/ic_frame_oval_unactive"
-            android:clickable="true"
-            android:src="@drawable/ic_calculator_unactive" />
-
-        <ImageButton
-            android:id="@+id/img_clock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/size10dp"
-            android:layout_marginRight="@dimen/size10dp"
-            android:background="@drawable/ic_frame_oval_unactive"
-            android:clickable="true"
-            android:src="@drawable/ic_clock_unactive" />
-
-        <ImageButton
-            android:id="@+id/img_control"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/size10dp"
-            android:layout_marginRight="@dimen/size10dp"
-            android:background="@drawable/ic_frame_oval_unactive"
-            android:clickable="true"
-            android:src="@drawable/ic_control_unactive" />
+            android:layout_weight="2"
+            android:onClick="onSwitchClicked5" />
     </LinearLayout>
 
 

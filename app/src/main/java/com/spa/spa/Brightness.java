@@ -20,8 +20,7 @@ public class Brightness extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 //Изменение яркости при движении панели поиска.
-                Settings.System.putInt(mcontext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, i
-                );
+                Settings.System.putInt(mcontext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, i);
             }
 
             @Override
