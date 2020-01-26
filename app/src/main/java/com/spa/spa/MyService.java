@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -74,6 +75,14 @@ public class MyService extends Service {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         addOverlayView();
         startForeground();
+
+        //Слушатель разблокировки экрана
+        registerReceiver(new PhoneUnlockedReceiver(),
+                new IntentFilter("android.intent.action.USER_PRESENT"));
+
+        registerReceiver(new PhoneUnlockedReceiver(),
+                new IntentFilter("android.intent.action.SCREEN_OFF"));
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -99,7 +108,7 @@ public class MyService extends Service {
     }
 
     // Данный класс, для управления появлением и скрытием панели
-    private void addOverlayView() {
+    public void addOverlayView() {
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
         int width = (int) (metrics.widthPixels * 0.95f);
         params = new WindowManager.LayoutParams(
@@ -149,6 +158,7 @@ public class MyService extends Service {
             private float startY;
 
             private Rect rect;
+
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -232,9 +242,9 @@ public class MyService extends Service {
                             //Обновляем кнопку режим полета
                             Airplane.AirRe(toggleButton1, mcontext);
                             //Выводим имя версии и версию кода
-                            codeVersion.Version(overlayView);
+                            //codeVersion.Version(overlayView);
                             //Начальное значение ползунка яркости
-                            int Brightnes = 0;
+                            int Brightnes = Settings.System.getInt(mcontext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
                             //Инициализация ползунка яркости
                             SeekBar seekbar = (SeekBar) overlayView.findViewById(R.id.seebarBrightness);
                             //Инициализация Switch управления автояркостью
@@ -252,12 +262,16 @@ public class MyService extends Service {
                                 int val = Audio.getSoudValue(mcontext);
                                 //Изменение положения ползунка
                                 seekbar_audio.setProgress(val);
+                                Audio.onBrig1(mcontext, seekbar_audio, overlayView);
+
                             } else {
                                 //Значение ползунка после изменения системно
                                 int val = Audio.getSoudValueRing(mcontext);
                                 //Изменение положения ползунка
                                 seekbar_audio.setProgress(val);
+                                Audio.onBrig2(mcontext, seekbar_audio, overlayView);
                             }
+
                         }
                     }
                 }
@@ -402,6 +416,7 @@ public class MyService extends Service {
             int val = Audio.getSoudValue(mcontext);
             //Изменение положения ползунка
             seekbar_audio.setProgress(val);
+
         } else {
             //Значение ползунка после измнения пользователем
             int value = 0;
@@ -412,6 +427,14 @@ public class MyService extends Service {
             int val = Audio.getSoudValueRing(mcontext);
             //Изменение положения ползунка
             seekbar_audio.setProgress(val);
+
+//            //Установка иконки на SeekBar
+//            int[] foren = {
+//                    R.drawable.ic_notifications_1
+//            };
+//            Drawable z = mcontext.getDrawable(foren[0]);
+//
+//            seekbar_audio.setForeground(z);
         }
     }
 

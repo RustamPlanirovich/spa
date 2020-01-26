@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -35,6 +35,66 @@
 
     </FrameLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <SeekBar
+                android:id="@+id/seebarBrightness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:progressDrawable="@drawable/seekk"
+                android:thumb="@drawable/thumb" />
+
+            <Switch
+                android:id="@+id/img_auto_bright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checked_brig"
+                android:clickable="true"
+                android:onClick="onSwitchClicked4"
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="@+id/seebarBrightness"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/seebarBrightness"
+                app:layout_constraintTop_toTopOf="@+id/seebarBrightness" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <SeekBar
+                android:id="@+id/audio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_vertical|center"
+                android:max="15"
+                android:progressDrawable="@drawable/seekk"
+                android:thumb="@drawable/thumb" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checked_audio"
+                android:onClick="onSwitchClicked5"
+                android:splitTrack="false"
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/audio"
+                app:layout_constraintStart_toStartOf="@+id/audio"
+                app:layout_constraintTop_toTopOf="@+id/audio" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -138,65 +198,6 @@
         android:text="Brightness"
         android:textColor="@color/colorWhite" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size10dp"
-        android:layout_marginRight="@dimen/size10dp"
-        android:orientation="horizontal"
-        android:weightSum="8">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_brightness_off" />
-
-        <SeekBar
-            android:id="@+id/seebarBrightness"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:max="255" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_brightness_on" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Automatic Brightness"
-            android:textColor="@color/colorWhite" />
-
-        <FrameLayout
-            android:id="@+id/frame_auto_bright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:clickable="false">
-
-            <Switch
-                android:id="@+id/img_auto_bright"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:background="@null"
-                android:clickable="true"
-                android:onClick="onSwitchClicked4" />
-
-        </FrameLayout>
-    </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/size1dp"
@@ -266,29 +267,6 @@
         android:layout_height="@dimen/size1dp"
         android:layout_margin="@dimen/size10dp"
         android:background="@color/colorView" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size10dp"
-        android:layout_marginRight="@dimen/size10dp"
-        android:layout_marginBottom="@dimen/size20dp"
-        android:gravity="center">
-
-        <SeekBar
-            android:id="@+id/audio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:max="15" />
-
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:onClick="onSwitchClicked5" />
-    </LinearLayout>
 
 
 </LinearLayout>
