@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -177,6 +177,22 @@
             android:gravity="center"
             android:onClick="onToggleClicked4"
             android:text="ToggleButton4"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton5"
+            style="@style/Widget.Button.Toggle5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onToggleClicked6"
+            android:text="ToggleButton6"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"

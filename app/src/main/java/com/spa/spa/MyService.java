@@ -54,6 +54,7 @@ public class MyService extends Service {
     ToggleButton toggleButton2;
     ToggleButton toggleButton3;
     ToggleButton toggleButton4;
+    ToggleButton toggleButton5;
     WifiManager wifiManager;
     Wifiset wifiset;
     MobileData mobileData;
@@ -125,7 +126,7 @@ public class MyService extends Service {
 
         overlayView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view, null);
 
-        //Phần dưới màn hình Нижняя часть экрана
+        //Нижняя часть экрана
         bottomParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
@@ -229,6 +230,8 @@ public class MyService extends Service {
                             toggleButton3 = (ToggleButton) overlayView.findViewById(R.id.toggleButton3);
                             //Инициализация кнопки мобильных данных
                             toggleButton4 = (ToggleButton) overlayView.findViewById(R.id.toggleButton4);
+                            //Инициализация кнопки автоповорота экрана
+                            toggleButton5 = (ToggleButton) overlayView.findViewById(R.id.toggleButton5);
                             //Создаем экземпляр класса Wifiset
                             wifiset = new Wifiset();
                             //Обновляем состояние кнопки "Не беспокоить"
@@ -271,6 +274,8 @@ public class MyService extends Service {
                                 seekbar_audio.setProgress(val);
                                 Audio.onBrig2(mcontext, seekbar_audio, overlayView);
                             }
+                            //При вызове панели проверяе текущее значение автоповорота
+                            Orientation.reAutoOrientation(mcontext,toggleButton5);
 
                         }
                     }
@@ -435,6 +440,19 @@ public class MyService extends Service {
 //            Drawable z = mcontext.getDrawable(foren[0]);
 //
 //            seekbar_audio.setForeground(z);
+        }
+    }
+
+    //Действия при нажатии кнопки включения автоповорота экрана
+    public void onToggleClicked6(View view) {
+        boolean on = ((ToggleButton) view).isChecked();
+
+        if (on) {
+            //Включение автоповорота
+            Orientation.onAutoOrientation(mcontext);
+        } else {
+            //Выключение автоповорота
+            Orientation.offAutoOrientation(mcontext);
         }
     }
 

@@ -43,5 +43,12 @@
         <item name="android:textOff">OFF</item>
         <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
     </style>
+    <!-- Auto Rotation -->
+    <style name="Widget.Button.Toggle5" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_toggle_autoorient</item>
+        <item name="android:textOn">ON</item>
+        <item name="android:textOff">OFF</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
 
 </resources>
