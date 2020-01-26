@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Assistant</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="togglebutton1">ToggleButton1</string>
+    <string name="togglebutton2">ToggleButton2</string>
+    <string name="togglebutton3">ToggleButton3</string>
+    <string name="togglebutton4">ToggleButton4</string>
+    <string name="togglebutton6">ToggleButton6</string>
+    <string name="brightness">Brightness</string>
+    <string name="screen_timeout">Screen Timeout</string>
+    <string name="sign_data">Sign Data</string>
+    <string name="todo">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="todo">TODO</string>
 </resources>

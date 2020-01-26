@@ -16,28 +16,21 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/size10dp">
 
-        <TextView
-            android:id="@+id/txtwifiOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Wifi: On"
-            android:textColor="@color/colorWhite"
-            android:visibility="invisible" />
-
         <ImageButton
             android:id="@+id/img_scroll_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@null"
-            android:src="@drawable/ic_scroll_down_up" />
+            android:src="@drawable/ic_scroll_down_up"
+            android:contentDescription="@string/todo" />
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -48,9 +41,14 @@
                 android:id="@+id/seebarBrightness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
                 android:max="255"
                 android:progressDrawable="@drawable/seekk"
-                android:thumb="@drawable/thumb" />
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
                 android:id="@+id/img_auto_bright"
@@ -75,10 +73,15 @@
                 android:id="@+id/audio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
                 android:foregroundGravity="center_vertical|center"
                 android:max="15"
                 android:progressDrawable="@drawable/seekk"
-                android:thumb="@drawable/thumb" />
+                android:thumb="@drawable/thumb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
                 android:id="@+id/switch1"
@@ -112,7 +115,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked"
-            android:text="ToggleButton"
+            android:text="@string/togglebutton"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +131,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked1"
-            android:text="ToggleButton1"
+            android:text="@string/togglebutton1"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +147,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked2"
-            android:text="ToggleButton2"
+            android:text="@string/togglebutton2"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +163,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked3"
-            android:text="ToggleButton3"
+            android:text="@string/togglebutton3"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +179,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked4"
-            android:text="ToggleButton4"
+            android:text="@string/togglebutton4"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
@@ -192,11 +195,20 @@
             android:layout_weight="1"
             android:gravity="center"
             android:onClick="onToggleClicked6"
-            android:text="ToggleButton6"
+            android:text="@string/togglebutton6"
             android:textOff=""
             android:textOn=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/sett"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_settings"
+            android:onClick="onToggleClicked7" />
+
 
     </LinearLayout>
 
@@ -211,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size10dp"
-        android:text="Brightness"
+        android:text="@string/brightness"
         android:textColor="@color/colorWhite" />
 
     <View
@@ -227,7 +239,8 @@
         android:layout_marginTop="@dimen/size5dp"
         android:layout_marginRight="@dimen/size10dp"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -242,14 +255,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:src="@drawable/ic_timeout_10s" />
+                android:src="@drawable/ic_timeout_10s"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/size10dp"
-                android:text="Screen Timeout"
+                android:text="@string/screen_timeout"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
 
@@ -266,14 +280,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:src="@drawable/ic_sign_data" />
+                android:src="@drawable/ic_sign_data"
+                android:contentDescription="@string/todo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/size10dp"
-                android:text="Sign Data"
+                android:text="@string/sign_data"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
     </LinearLayout>

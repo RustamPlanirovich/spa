@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.app.UiModeManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -454,6 +455,13 @@ public class MyService extends Service {
             //Выключение автоповорота
             Orientation.offAutoOrientation(mcontext);
         }
+    }
+
+    //Действия при нажатии кнопки ночной режим
+    public void onToggleClicked7(View view) {
+        Intent intent = new Intent(Settings.ACTION_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mcontext.startActivity(intent);
     }
 
     @Override
