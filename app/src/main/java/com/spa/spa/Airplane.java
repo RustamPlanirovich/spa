@@ -17,7 +17,7 @@ public class Airplane extends Activity {
         Runtime.getRuntime().exec(commandToRun);
     }
 
-    //Выключаем режим самолета Root
+    //Выключаем режим самолета Root;
     public static void offAirplayRoot() throws IOException {
         String commandToRun = "adb shell settings put global airplane_mode_on 0&adb shell am broadcast -a android.intent.action.AIRPLANE_MODE";
         Runtime.getRuntime().exec(commandToRun);
