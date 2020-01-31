@@ -5,7 +5,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
-import android.app.UiModeManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -46,10 +45,11 @@ public class MyService extends Service {
     Animation inAnimation;
     Animation outAnimation;
     Context mcontext;
+    PhoneUnlockedReceiver receiver;
     private WindowManager windowManager;
-    private View overlayView;
-    private View overlayBottom;
-    private View overlayBackground;
+    private static View overlayView;
+    private static View overlayBottom;
+    private static View overlayBackground;
     ToggleButton toggleButton;
     ToggleButton toggleButton1;
     ToggleButton toggleButton2;
@@ -60,6 +60,7 @@ public class MyService extends Service {
     Wifiset wifiset;
     MobileData mobileData;
     NotificationManager mNotificationManager;
+
 
     // События обрабатываемые при старте сервиса
     @Override
@@ -75,15 +76,17 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        addOverlayView();
+        addOverlayView(MotionEvent.ACTION_UP);
         startForeground();
+        //Слушатель блокировки - разблокировки экрана
+        receiver = new PhoneUnlockedReceiver();
+        IntentFilter filter = new IntentFilter();
+        //Действие выполняется если экран разблокирован
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        //Действие выполняется если экран заблокирован
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(receiver, filter);
 
-        //Слушатель разблокировки экрана
-        registerReceiver(new PhoneUnlockedReceiver(),
-                new IntentFilter("android.intent.action.USER_PRESENT"));
-
-        registerReceiver(new PhoneUnlockedReceiver(),
-                new IntentFilter("android.intent.action.SCREEN_OFF"));
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -110,7 +113,7 @@ public class MyService extends Service {
     }
 
     // Данный класс, для управления появлением и скрытием панели
-    public void addOverlayView() {
+    public void addOverlayView(int actionUp) {
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
         int width = (int) (metrics.widthPixels * 0.95f);
         params = new WindowManager.LayoutParams(
@@ -159,6 +162,7 @@ public class MyService extends Service {
             private float initialTouchY;
             private float startY;
 
+
             private Rect rect;
 
 
@@ -197,6 +201,7 @@ public class MyService extends Service {
                 windowManager.updateViewLayout(overlayView, params);
                 return false;
             }
+
         });
 
         overlayBottom.setOnTouchListener(new View.OnTouchListener() {
@@ -276,7 +281,7 @@ public class MyService extends Service {
                                 Audio.onBrig2(mcontext, seekbar_audio, overlayView);
                             }
                             //При вызове панели проверяе текущее значение автоповорота
-                            Orientation.reAutoOrientation(mcontext,toggleButton5);
+                            Orientation.reAutoOrientation(mcontext, toggleButton5);
 
                         }
                     }
@@ -284,7 +289,6 @@ public class MyService extends Service {
                 return false;
             }
         });
-
         overlayBackground.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -299,6 +303,14 @@ public class MyService extends Service {
                 return false;
             }
         });
+
+    }
+
+    //Метод сворачивающий панель при блокировке экрана
+    public void onLock() {
+        MyService.overlayView.setVisibility(View.GONE);
+        MyService.overlayBackground.setVisibility(View.GONE);
+        MyService.overlayBottom.setVisibility(View.VISIBLE);
     }
 
     // Данный класс отвечает за действия при остановке сервиса

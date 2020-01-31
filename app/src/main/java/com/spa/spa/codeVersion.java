@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 public class codeVersion {
 
+    //Получаем название версии и версию кода приложения
     public static void Version(View overlayView) {
 
         //Получаем имя версии
