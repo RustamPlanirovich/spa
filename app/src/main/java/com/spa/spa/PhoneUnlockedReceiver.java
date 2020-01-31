@@ -13,6 +13,7 @@ public class PhoneUnlockedReceiver extends BroadcastReceiver {
     public static final String APP_PREFERENCES = "mysettings";
     //Название строки для считывания значения
     public static final String APP_PREFERENCES_NAME = "brig";
+    //Создаем экземпляр MyService
     MyService myService = new MyService();
 
     @Override
@@ -38,6 +39,11 @@ public class PhoneUnlockedReceiver extends BroadcastReceiver {
         } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             //Вызываем метод скрытия панели
             myService.onLock();
+
+            //Фонарик
+//            Flash flash = new Flash();
+//            flash.flashEnable(context);
+//            flash.switchFlashLight(context);
         }
     }
 }
