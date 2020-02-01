@@ -207,7 +207,23 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/ic_settings"
-            android:onClick="onToggleClicked7" />
+            android:onClick="onButtonClicked7" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton6"
+            style="@style/Widget.Button.Toggle6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onToggleClicked7"
+            android:text="@string/togglebutton6"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </LinearLayout>

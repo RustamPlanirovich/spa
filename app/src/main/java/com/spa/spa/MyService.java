@@ -59,6 +59,7 @@ public class MyService extends Service {
     WifiManager wifiManager;
     Wifiset wifiset;
     MobileData mobileData;
+    Flash flash;
     NotificationManager mNotificationManager;
 
 
@@ -470,10 +471,24 @@ public class MyService extends Service {
     }
 
     //Действия при нажатии кнопки ночной режим
-    public void onToggleClicked7(View view) {
+    public void onButtonClicked7(View view) {
         Intent intent = new Intent(Settings.ACTION_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mcontext.startActivity(intent);
+    }
+
+    //Действия при нажатии кнопки включения фонарика
+    public void onToggleClicked7(View view) {
+        boolean on = ((ToggleButton) view).isChecked();
+        flash = new Flash();
+        flash.flashEnable(mcontext);
+        if (on) {
+            //Включение фонарика
+            flash.switchFlashLight(mcontext,on);
+        } else {
+            //Выключение фонарика
+            flash.switchFlashLight(mcontext,on);
+        }
     }
 
     @Override

@@ -22,17 +22,17 @@ public class Flash  {
 
 
 //Проверяет есть ли возможность управляеть фонариком
-    public void flashEnable(Context context ) {
+    public void flashEnable(Context mcontext ) {
 
-        boolean isFlashAvailable = context.getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        boolean isFlashAvailable = mcontext.getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
 
         if(!isFlashAvailable)
         {
             //Если нет вызывает Alert диалог с сообщение об ошибке
-            showNoFlashError(context);
+            showNoFlashError(mcontext);
         }
 //Создаем экземпляр сервиса для работы с фонариком
-        mCameraManager = (CameraManager) context.getSystemService(CAMERA_SERVICE);
+        mCameraManager = (CameraManager) mcontext.getSystemService(CAMERA_SERVICE);
 
         try {
             mCameraId = mCameraManager.getCameraIdList()[0];
@@ -57,11 +57,11 @@ public class Flash  {
 
     //Метод управления фонариком
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void switchFlashLight(Context context)
+    public void switchFlashLight(Context mcontext,boolean on)
     {
-        CameraManager mmCameraManager = (CameraManager) context.getSystemService(CAMERA_SERVICE);
+        CameraManager mmCameraManager = (CameraManager) mcontext.getSystemService(CAMERA_SERVICE);
         try {
-            mmCameraManager.setTorchMode(mCameraId, true);
+            mmCameraManager.setTorchMode(mCameraId, on);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
