@@ -248,66 +248,91 @@
         android:layout_margin="@dimen/size10dp"
         android:background="@color/colorView" />
 
-    <LinearLayout
+    <HorizontalScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size10dp"
-        android:layout_marginTop="@dimen/size5dp"
-        android:layout_marginRight="@dimen/size10dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:baselineAligned="false">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:fadingEdge="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size5dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/img_screen_timeout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@null"
-                android:src="@drawable/ic_timeout_10s"
-                android:contentDescription="@string/todo" />
+            <Button
+                android:id="@+id/notes"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_note" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/size10dp"
-                android:text="@string/screen_timeout"
-                android:textColor="@color/colorWhite" />
+            <Button
+                android:id="@+id/book"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_book" />
+
+            <Button
+                android:id="@+id/date"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_date" />
+
+            <Button
+                android:id="@+id/plans"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_planning" />
+
+            <Button
+                android:id="@+id/voice"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_voice" />
+
+            <Button
+                android:id="@+id/setting"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_settings" />
+
+            <Button
+                android:id="@+id/converter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_currency" />
+
+            <Button
+                android:id="@+id/links"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_link" />
+
+            <Button
+                android:id="@+id/todo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_todo" />
+
+            <Button
+                android:id="@+id/shedule"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_shedule" />
+
+            <Button
+                android:id="@+id/costs"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_costs" />
+
+            <Button
+                android:id="@+id/incom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ic_income" />
+
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size5dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/img_sign_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@null"
-                android:src="@drawable/ic_sign_data"
-                android:contentDescription="@string/todo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/size10dp"
-                android:text="@string/sign_data"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <View
         android:layout_width="match_parent"
