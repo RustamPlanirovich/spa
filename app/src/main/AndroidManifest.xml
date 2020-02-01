@@ -29,14 +29,16 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -46,7 +48,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".Income.Income"></activity>
+        <activity android:name=".Costs.Costs" />
+        <activity android:name=".Shedule.Shedule" />
+        <activity android:name=".Todo_list.Todo_list" />
+        <activity android:name=".Links.Links" />
+        <activity android:name=".Currency_converter.Currency_converter" />
+        <activity android:name=".Settings.Settings" />
+        <activity android:name=".Voice_assistant.Voice_assistant" />
+        <activity android:name=".Plans.Plans" />
+        <activity android:name=".Date.Date" />
+        <activity android:name=".Book.Book" />
+        <activity android:name=".Notes.Notes" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,7 +75,7 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.ACCESS_NOTIFICATION_POLICY"></service>
+            android:permission="android.permission.ACCESS_NOTIFICATION_POLICY" />
     </application>
 
 </manifest>

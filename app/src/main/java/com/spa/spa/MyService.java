@@ -485,6 +485,11 @@ public class MyService extends Service {
         if (on) {
             //Включение фонарика
             flash.switchFlashLight(mcontext,on);
+            //Вызваем активити Notes
+//            Intent intent;
+//            intent = new Intent(MyService.this, Notes.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
         } else {
             //Выключение фонарика
             flash.switchFlashLight(mcontext,on);
