@@ -60,6 +60,7 @@ public class MyService extends Service {
     Wifiset wifiset;
     MobileData mobileData;
     Flash flash;
+    Open open;
     NotificationManager mNotificationManager;
 
 
@@ -284,6 +285,7 @@ public class MyService extends Service {
                             //При вызове панели проверяе текущее значение автоповорота
                             Orientation.reAutoOrientation(mcontext, toggleButton5);
 
+
                         }
                     }
                 }
@@ -484,7 +486,7 @@ public class MyService extends Service {
         flash.flashEnable(mcontext);
         if (on) {
             //Включение фонарика
-            flash.switchFlashLight(mcontext,on);
+            flash.switchFlashLight(mcontext, on);
             //Вызваем активити Notes
 //            Intent intent;
 //            intent = new Intent(MyService.this, Notes.class);
@@ -492,12 +494,35 @@ public class MyService extends Service {
 //            startActivity(intent);
         } else {
             //Выключение фонарика
-            flash.switchFlashLight(mcontext,on);
+            flash.switchFlashLight(mcontext, on);
         }
     }
+
+
+    public void Notes(View view) {
+        Open.Notess(mcontext);
+    }
+
+    public void Book(View view) {
+        Open.Bookk(mcontext);
+    }
+
+    public void Date(View view) {
+        Open.Datee(mcontext);
+    }
+
+    public void Plans(View view) {
+        Open.Planss(mcontext);
+    }
+
+    public void Voice(View view) {
+        Open.Voicee(mcontext);
+    }
+
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
 }
