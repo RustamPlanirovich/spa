@@ -46,20 +46,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:noHistory="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Income.Income"></activity>
-        <activity android:name=".Costs.Costs" />
-        <activity android:name=".Shedule.Shedule" />
-        <activity android:name=".Todo_list.Todo_list" />
-        <activity android:name=".Links.Links" />
-        <activity android:name=".Currency_converter.Currency_converter" />
-        <activity android:name=".Settings.Settings" />
-        <activity android:name=".Voice_assistant.Voice_assistant" />
-        <activity android:name=".Plans.Plans" />
-        <activity android:name=".Date.Date" />
-        <activity android:name=".Book.Book" />
-        <activity android:name=".Notes.Notes" />
+        <activity android:name=".Costs.Costs" android:noHistory="true"/>
+        <activity android:name=".Shedule.Shedule" android:noHistory="true"/>
+        <activity android:name=".Todo_list.Todo_list" android:noHistory="true"/>
+        <activity android:name=".Links.Links" android:noHistory="true"/>
+        <activity android:name=".Currency_converter.Currency_converter" android:noHistory="true"/>
+        <activity android:name=".Settings.Settings" android:noHistory="true"/>
+        <activity android:name=".Voice_assistant.Voice_assistant" android:noHistory="true"/>
+        <activity android:name=".Plans.Plans" android:noHistory="true"/>
+        <activity android:name=".Date.Date" android:noHistory="true"/>
+        <activity android:name=".Book.Book" android:noHistory="true"/>
+        <activity android:name=".Notes.Notes" android:noHistory="true"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

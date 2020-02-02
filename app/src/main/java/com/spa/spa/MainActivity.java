@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,9 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private Activity mActivity;
-    private MainActivity mainActivity;
     Button startService, stopService;
     NotificationManager mNotificationManager;
+
 
 
 
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         DndState(mNotificationManager);
@@ -58,12 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-
-
-
     }
 
     public final static int Overlay_REQUEST_CODE = 251;
+
 
     public void checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT >= 23) {

@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -37,7 +38,7 @@ import java.io.IOException;
  * Created by VuDuc on 8/7/2017.
  */
 
-public class MyService extends Service {
+public class MyService extends Service implements View.OnClickListener {
 
     WindowManager.LayoutParams params;
     WindowManager.LayoutParams bottomParams;
@@ -60,8 +61,19 @@ public class MyService extends Service {
     Wifiset wifiset;
     MobileData mobileData;
     Flash flash;
-    Open open;
     NotificationManager mNotificationManager;
+    Button notes;
+    Button book;
+    Button date;
+    Button plans;
+    Button voice;
+    Button setting;
+    Button converter;
+    Button links;
+    Button todo;
+    Button shedule;
+    Button costs;
+    Button incom;
 
 
     // События обрабатываемые при старте сервиса
@@ -88,7 +100,32 @@ public class MyService extends Service {
         //Действие выполняется если экран заблокирован
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(receiver, filter);
-
+        //Инициализация кнопок управления основной системой
+        notes = (Button) overlayView.findViewById(R.id.notes);
+        book = (Button) overlayView.findViewById(R.id.book);
+        date = (Button) overlayView.findViewById(R.id.date);
+        plans = (Button) overlayView.findViewById(R.id.plans);
+        voice = (Button) overlayView.findViewById(R.id.voice);
+        setting = (Button) overlayView.findViewById(R.id.setting);
+        converter = (Button) overlayView.findViewById(R.id.converter);
+        links = (Button) overlayView.findViewById(R.id.links);
+        todo = (Button) overlayView.findViewById(R.id.todo);
+        shedule = (Button) overlayView.findViewById(R.id.shedule);
+        costs = (Button) overlayView.findViewById(R.id.costs);
+        incom = (Button) overlayView.findViewById(R.id.incom);
+        //Вешаем на все эти кнопки слушателя клика
+        notes.setOnClickListener(this);
+        book.setOnClickListener(this);
+        date.setOnClickListener(this);
+        plans.setOnClickListener(this);
+        voice.setOnClickListener(this);
+        setting.setOnClickListener(this);
+        converter.setOnClickListener(this);
+        links.setOnClickListener(this);
+        todo.setOnClickListener(this);
+        shedule.setOnClickListener(this);
+        costs.setOnClickListener(this);
+        incom.setOnClickListener(this);
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -498,27 +535,47 @@ public class MyService extends Service {
         }
     }
 
-
-    public void Notes(View view) {
-        Open.Notess(mcontext);
+    //Обработчик нажатий для запуска активити основной системы
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.notes:
+                OpenActivity.Notess(mcontext);
+                break;
+            case R.id.book:
+                OpenActivity.Bookk(mcontext);
+                break;
+            case R.id.date:
+                OpenActivity.Datee(mcontext);
+                break;
+            case R.id.plans:
+                OpenActivity.Planss(mcontext);
+                break;
+            case R.id.voice:
+                OpenActivity.Voicee(mcontext);
+                break;
+            case R.id.setting:
+                OpenActivity.Settingg(mcontext);
+                break;
+            case R.id.converter:
+                OpenActivity.Currencyy(mcontext);
+                break;
+            case R.id.links:
+                OpenActivity.Linkss(mcontext);
+                break;
+            case R.id.todo:
+                OpenActivity.Todoo(mcontext);
+                break;
+            case R.id.shedule:
+                OpenActivity.Shedulee(mcontext);
+                break;
+            case R.id.costs:
+                OpenActivity.Costss(mcontext);
+                break;
+            case R.id.incom:
+                OpenActivity.Incomm(mcontext);
+                break;
+        }
     }
-
-    public void Book(View view) {
-        Open.Bookk(mcontext);
-    }
-
-    public void Date(View view) {
-        Open.Datee(mcontext);
-    }
-
-    public void Plans(View view) {
-        Open.Planss(mcontext);
-    }
-
-    public void Voice(View view) {
-        Open.Voicee(mcontext);
-    }
-
 
     @Override
     public IBinder onBind(Intent intent) {

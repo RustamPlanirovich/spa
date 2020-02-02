@@ -258,8 +258,7 @@
                     android:id="@+id/notes"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_note"
-                    android:onClick="Notes" />
+                    android:background="@drawable/ic_note" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -378,7 +377,8 @@
                     android:id="@+id/setting"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_settings" />
+                    android:background="@drawable/ic_settings"
+                    android:onClick="Setting" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -401,7 +401,8 @@
                     android:id="@+id/converter"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_currency" />
+                    android:background="@drawable/ic_currency"
+                    android:onClick="Currency" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -424,7 +425,8 @@
                     android:id="@+id/links"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_link" />
+                    android:background="@drawable/ic_link"
+                    android:onClick="Links" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -447,7 +449,8 @@
                     android:id="@+id/todo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_todo" />
+                    android:background="@drawable/ic_todo"
+                    android:onClick="Todo" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -468,7 +471,8 @@
                     android:id="@+id/shedule"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_shedule" />
+                    android:background="@drawable/ic_shedule"
+                    android:onClick="Shedule" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -489,7 +493,8 @@
                     android:id="@+id/costs"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_costs" />
+                    android:background="@drawable/ic_costs"
+                    android:onClick="Costs" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -512,7 +517,8 @@
                     android:id="@+id/incom"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_income" />
+                    android:background="@drawable/ic_income"
+                    android:onClick="Incom" />
 
                 <TextView
                     android:id="@+id/textView13"

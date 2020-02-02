@@ -15,4 +15,17 @@ public class Notes extends AppCompatActivity {
         //Скрываем ActionBar
         getSupportActionBar().hide();
     }
+    static boolean active = false;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        active = false;
+    }
 }
