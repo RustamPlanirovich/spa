@@ -49,18 +49,18 @@
         android:noHistory="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Income.Income"></activity>
-        <activity android:name=".Costs.Costs" android:noHistory="true"/>
-        <activity android:name=".Shedule.Shedule" android:noHistory="true"/>
-        <activity android:name=".Todo_list.Todo_list" android:noHistory="true"/>
-        <activity android:name=".Links.Links" android:noHistory="true"/>
-        <activity android:name=".Currency_converter.Currency_converter" android:noHistory="true"/>
-        <activity android:name=".Settings.Settings" android:noHistory="true"/>
-        <activity android:name=".Voice_assistant.Voice_assistant" android:noHistory="true"/>
-        <activity android:name=".Plans.Plans" android:noHistory="true"/>
-        <activity android:name=".Date.Date" android:noHistory="true"/>
-        <activity android:name=".Book.Book" android:noHistory="true"/>
-        <activity android:name=".Notes.Notes" android:noHistory="true"/>
+        <activity android:name=".income.Income"></activity>
+        <activity android:name=".costs.Costs" android:noHistory="true"/>
+        <activity android:name=".shedule.Shedule" android:noHistory="true"/>
+        <activity android:name=".todolist.todoList" android:noHistory="true"/>
+        <activity android:name=".links.Links" android:noHistory="true"/>
+        <activity android:name=".currencyconverter.currencyConverter" android:noHistory="true"/>
+        <activity android:name=".settings.Settings" android:noHistory="true"/>
+        <activity android:name=".voiceassistant.VoiceAssistant" android:noHistory="true"/>
+        <activity android:name=".plans.Plans" android:noHistory="true"/>
+        <activity android:name=".date.Date" android:noHistory="true"/>
+        <activity android:name=".book.Book" android:noHistory="true"/>
+        <activity android:name=".notes.Notes" android:noHistory="true"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

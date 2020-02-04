@@ -34,457 +34,523 @@ import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
 
-/**
- * Created by VuDuc on 8/7/2017.
- */
 
 public class MyService extends Service implements View.OnClickListener {
+  /**
+   * Инициализация метода WindowManager.
+   */
+  private WindowManager.LayoutParams params;
+  /**
+   * Инициализация метода WindowManager.
+   */
+  private WindowManager.LayoutParams bottomParams;
+  /**
+   * Инициализация метода WindowManager.
+   */
+  private WindowManager.LayoutParams backgroundParams;
+  /**
+   * Инициализация метода Animation.
+   */
+  private Animation inAnimation;
+  /**
+   * Инициализация метода Animation.
+   */
+  private Animation outAnimation;
+  /**
+   * Инициализация метода Context.
+   */
+  private Context mcontext;
+  /**
+   * Инициализация класса PhoneUnlockedReceiver.
+   */
+  private PhoneUnlockedReceiver receiver;
+  /**
+   * Объявляем WindowManage.
+   */
+  private WindowManager windowManager;
+  /**
+   * Объявляем overlayView.
+   */
+  private static View overlayView;
+  /**
+   * Объявляем overlayBottom.
+   */
+  private static View overlayBottom;
+  /**
+   * Объявляем overlayBackground.
+   */
+  private static View overlayBackground;
+  /**
+   * Объявляем wifiManager.
+   */
+  private WifiManager wifiManager;
+  /**
+   * Объявляем wifiset.
+   */
+  private Wifiset wifiset;
+  /**
+   * Объявляем flash.
+   */
+  private Flash flash;
+  /**
+   * Объявляем notificationManager.
+   */
+  private NotificationManager mnotificationManager;
+  /**
+   * Объявляем notes.
+   */
+  private Button notes;
+  /**
+   * Объявляем book.
+   */
+  private Button book;
+  /**
+   * Объявляем date.
+   */
+  private Button date;
+  /**
+   * Объявляем plans.
+   */
+  private Button plans;
+  /**
+   * Объявляем voice.
+   */
+  private Button voice;
+  /**
+   * Объявляем setting.
+   */
+  private Button settingActivit;
+  /**
+   * Объявляем converter.
+   */
+  private Button converter;
+  /**
+   * Объявляем links.
+   */
+  private Button links;
+  /**
+   * Объявляем todo.
+   */
+  private Button todo;
+  /**
+   * Объявляем shedule.
+   */
+  private Button shedule;
+  /**
+   * Объявляем costs.
+   */
+  private Button costs;
+  /**
+   * Объявляем incom.
+   */
+  private Button incom;
+  /**
+   * Объявляем wifi.
+   */
+  private ToggleButton wifi;
+  /**
+   * Объявляем airPlane.
+   */
+  private ToggleButton airPlane;
+  /**
+   * Объявляем bluetooth.
+   */
+  private ToggleButton bluetooth;
+  /**
+   * Объявляем dnD
+   */
+  private ToggleButton dnD;
+  /**
+   * Объявляем mobileDate.
+   */
+  private ToggleButton mobileData;
+  /**
+   * Объявляем autoOrientation.
+   */
+  private ToggleButton autoOrientation;
+  /**
+   * Объявляем settingActivity.
+   */
+  private Button settActivit;
+  /**
+   * Объявляем flash
+   */
+  private ToggleButton flashh;
 
-    WindowManager.LayoutParams params;
-    WindowManager.LayoutParams bottomParams;
-    WindowManager.LayoutParams backgroundParams;
-    Animation inAnimation;
-    Animation outAnimation;
-    Context mcontext;
-    PhoneUnlockedReceiver receiver;
-    private WindowManager windowManager;
-    private static View overlayView;
-    private static View overlayBottom;
-    private static View overlayBackground;
-    ToggleButton toggleButton;
-    ToggleButton toggleButton1;
-    ToggleButton toggleButton2;
-    ToggleButton toggleButton3;
-    ToggleButton toggleButton4;
-    ToggleButton toggleButton5;
-    WifiManager wifiManager;
-    Wifiset wifiset;
-    MobileData mobileData;
-    Flash flash;
-    NotificationManager mNotificationManager;
-    Button notes;
-    Button book;
-    Button date;
-    Button plans;
-    Button voice;
-    Button setting;
-    Button converter;
-    Button links;
-    Button todo;
-    Button shedule;
-    Button costs;
-    Button incom;
+
+  // События обрабатываемые при старте сервиса
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    mcontext = this;
+    initAnimations();
+    wifiManager = (WifiManager) getApplicationContext()
+        .getSystemService(Context.WIFI_SERVICE);
+    mnotificationManager = (NotificationManager) getSystemService(
+        Context.NOTIFICATION_SERVICE);
+  }
+
+  // Класс отвечает за команды перед обработкой команд управления панелью
+  @Override
+  public int onStartCommand(final Intent intent,
+                            final int flags, final int startId) {
+    windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+    addOverlayView(MotionEvent.ACTION_UP);
+    startForeground();
+    //Слушатель блокировки - разблокировки экрана
+    receiver = new PhoneUnlockedReceiver();
+    IntentFilter filter = new IntentFilter();
+    //Действие выполняется если экран разблокирован
+    filter.addAction(Intent.ACTION_USER_PRESENT);
+    //Действие выполняется если экран заблокирован
+    filter.addAction(Intent.ACTION_SCREEN_OFF);
+    registerReceiver(receiver, filter);
+    //Инициализация кнопок управления основной системой
+    notes = (Button) overlayView.findViewById(R.id.notesActivity);
+    book = (Button) overlayView.findViewById(R.id.bookActivity);
+    date = (Button) overlayView.findViewById(R.id.dateActivity);
+    plans = (Button) overlayView.findViewById(R.id.plansActivity);
+    voice = (Button) overlayView.findViewById(R.id.voiceActivity);
+    settingActivit = (Button) overlayView.findViewById(R.id.settingActivit);
+    converter = (Button) overlayView.findViewById(R.id.converterActivity);
+    links = (Button) overlayView.findViewById(R.id.linksActivity);
+    todo = (Button) overlayView.findViewById(R.id.todoActivity);
+    shedule = (Button) overlayView.findViewById(R.id.sheduleActivity);
+    costs = (Button) overlayView.findViewById(R.id.costsActivity);
+    incom = (Button) overlayView.findViewById(R.id.incomActivity);
+    wifi = (ToggleButton) overlayView.findViewById(R.id.wifi);
+    airPlane = (ToggleButton) overlayView.findViewById(R.id.airPlane);
+    bluetooth = (ToggleButton) overlayView.findViewById(R.id.bluetooth);
+    dnD = (ToggleButton) overlayView.findViewById(R.id.dnD);
+    mobileData = (ToggleButton) overlayView.findViewById(R.id.mobileData);
+    autoOrientation = (ToggleButton) overlayView.findViewById(R.id.autoOrientation);
+    settActivit = (Button) overlayView.findViewById(R.id.settActivit);
+    flashh = (ToggleButton) overlayView.findViewById(R.id.flashh);
+    //Вешаем на все эти кнопки слушателя клика
+    notes.setOnClickListener(this);
+    book.setOnClickListener(this);
+    date.setOnClickListener(this);
+    plans.setOnClickListener(this);
+    voice.setOnClickListener(this);
+    settingActivit.setOnClickListener(this);
+    converter.setOnClickListener(this);
+    links.setOnClickListener(this);
+    todo.setOnClickListener(this);
+    shedule.setOnClickListener(this);
+    costs.setOnClickListener(this);
+    incom.setOnClickListener(this);
+    wifi.setOnClickListener(this);
+    airPlane.setOnClickListener(this);
+    bluetooth.setOnClickListener(this);
+    dnD.setOnClickListener(this);
+    mobileData.setOnClickListener(this);
+    autoOrientation.setOnClickListener(this);
+    settActivit.setOnClickListener(this);
+    flashh.setOnClickListener(this);
+
+    return super.onStartCommand(intent, flags, startId);
+  }
+
+  /**
+   * Данный класс, чтобы сервис не умирал, когда закрываем основное окно программы.
+   */
+  private void startForeground() {
+    String notifId = "1";
+    String notifChannelId = "1234";
+    NotificationChannel chan = new NotificationChannel(
+        notifChannelId, notifId,
+        NotificationManager.IMPORTANCE_NONE);
+    chan.setLightColor(Color.BLUE);
+    chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+    NotificationManager manager = (NotificationManager)
+        getSystemService(Context.NOTIFICATION_SERVICE);
+    assert manager != null;
+    manager.createNotificationChannel(chan);
+
+    NotificationCompat.Builder notificationBuilder = new NotificationCompat
+        .Builder(this, notifChannelId);
+    Notification notification = notificationBuilder.setOngoing(true)
+        .setSmallIcon(R.mipmap.ic_launcher)
+        .setContentTitle("Сервис запущен.")
+        .setPriority(NotificationManager.IMPORTANCE_MIN)
+        .setCategory(Notification.CATEGORY_SERVICE)
+        .build();
+    startForeground(2, notification);
+  }
+
+  /**
+   * Данный класс, для управления появлением и скрытием панели.
+   *
+   * @param actionUp действие нажатия.
+   */
+  public void addOverlayView(final int actionUp) {
+    DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+    final float nine = 0.95f;
+    int width = (int) (metrics.widthPixels * nine);
+    params = new WindowManager.LayoutParams(
+        width,
+        //Изменение высоты самой панели
+        WindowManager.LayoutParams.WRAP_CONTENT,
+        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        PixelFormat.TRANSLUCENT);
+
+    params.gravity = Gravity.CENTER | Gravity.BOTTOM;
+    final int para = 0;
+    final int par = 0;
+    params.x = para;
+    params.y = par;
+
+    overlayView = ((LayoutInflater) getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view, null);
+
+    //Нижняя часть экрана
+    bottomParams = new WindowManager.LayoutParams(
+        WindowManager.LayoutParams.WRAP_CONTENT,
+        WindowManager.LayoutParams.WRAP_CONTENT,
+        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        PixelFormat.TRANSLUCENT);
+    bottomParams.gravity = Gravity.BOTTOM;
+    overlayBottom = ((LayoutInflater) getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE)).inflate(
+        R.layout.floating_view2, null);
+
+    //Cho phần backgound Для фона
+    backgroundParams = new WindowManager.LayoutParams(
+        WindowManager.LayoutParams.MATCH_PARENT,
+        WindowManager.LayoutParams.MATCH_PARENT,
+        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+        PixelFormat.TRANSLUCENT);
+    backgroundParams.gravity = Gravity.CENTER;
+    overlayBackground = ((LayoutInflater) getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE)).inflate(
+        R.layout.floating_view3, null);
+
+    windowManager.addView(overlayBackground, backgroundParams);
+    windowManager.addView(overlayBottom, bottomParams);
+    windowManager.addView(overlayView, params);
+
+    overlayView.setOnTouchListener(new View.OnTouchListener() {
+      private long startTime = System.currentTimeMillis();
+      private int initialX;
+      private int initialY;
+      private float initialTouchX;
+      private float initialTouchY;
+      private float startY;
 
 
-    // События обрабатываемые при старте сервиса
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mcontext = this;
-        initAnimations();
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-    }
+      private Rect rect;
 
-    // Класс отвечает за команды перед обработкой команд управления панелью
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        addOverlayView(MotionEvent.ACTION_UP);
-        startForeground();
-        //Слушатель блокировки - разблокировки экрана
-        receiver = new PhoneUnlockedReceiver();
-        IntentFilter filter = new IntentFilter();
-        //Действие выполняется если экран разблокирован
-        filter.addAction(Intent.ACTION_USER_PRESENT);
-        //Действие выполняется если экран заблокирован
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(receiver, filter);
-        //Инициализация кнопок управления основной системой
-        notes = (Button) overlayView.findViewById(R.id.notes);
-        book = (Button) overlayView.findViewById(R.id.book);
-        date = (Button) overlayView.findViewById(R.id.date);
-        plans = (Button) overlayView.findViewById(R.id.plans);
-        voice = (Button) overlayView.findViewById(R.id.voice);
-        setting = (Button) overlayView.findViewById(R.id.setting);
-        converter = (Button) overlayView.findViewById(R.id.converter);
-        links = (Button) overlayView.findViewById(R.id.links);
-        todo = (Button) overlayView.findViewById(R.id.todo);
-        shedule = (Button) overlayView.findViewById(R.id.shedule);
-        costs = (Button) overlayView.findViewById(R.id.costs);
-        incom = (Button) overlayView.findViewById(R.id.incom);
-        //Вешаем на все эти кнопки слушателя клика
-        notes.setOnClickListener(this);
-        book.setOnClickListener(this);
-        date.setOnClickListener(this);
-        plans.setOnClickListener(this);
-        voice.setOnClickListener(this);
-        setting.setOnClickListener(this);
-        converter.setOnClickListener(this);
-        links.setOnClickListener(this);
-        todo.setOnClickListener(this);
-        shedule.setOnClickListener(this);
-        costs.setOnClickListener(this);
-        incom.setOnClickListener(this);
 
-        return super.onStartCommand(intent, flags, startId);
-    }
+      @Override
+      public boolean onTouch(final View view, final MotionEvent motionEvent) {
 
-    // Данный класс, чтобы сервис не умирал, когда закрываем основное окно программы
-    private void startForeground() {
-        String NOTIF_ID = "1";
-        String NOTIF_CHANNEL_ID = "1234";
-        NotificationChannel chan = new NotificationChannel(NOTIF_CHANNEL_ID, NOTIF_ID, NotificationManager.IMPORTANCE_NONE);
-        chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        assert manager != null;
-        manager.createNotificationChannel(chan);
+        switch (motionEvent.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            initialX = params.x;
+            initialY = params.y;
+            initialTouchX = motionEvent.getRawX();
+            initialTouchY = motionEvent.getRawY();
+            startY = motionEvent.getY();
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIF_CHANNEL_ID);
-        Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Сервис запущен.")
-                .setPriority(NotificationManager.IMPORTANCE_MIN)
-                .setCategory(Notification.CATEGORY_SERVICE)
-                .build();
-        startForeground(2, notification);
-    }
-
-    // Данный класс, для управления появлением и скрытием панели
-    public void addOverlayView(int actionUp) {
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-        int width = (int) (metrics.widthPixels * 0.95f);
-        params = new WindowManager.LayoutParams(
-                width,
-                //Изменение высоты самой панели
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
-
-        params.gravity = Gravity.CENTER | Gravity.BOTTOM;
+            break;
+          case MotionEvent.ACTION_UP:
+            float endY = motionEvent.getY();
+            if (endY > startY && endY - startY > 150) {
+              //Move down
+              overlayView.startAnimation(outAnimation);
+              overlayView.setVisibility(View.GONE);
+              overlayBackground.setVisibility(View.GONE);
+              overlayBottom.setVisibility(View.VISIBLE);
+            }
+            params.y = 20;
+            windowManager.updateViewLayout(overlayView, params);
+            break;
+          case MotionEvent.ACTION_MOVE:
+            params.x = initialX - (int) (motionEvent.getRawX() - initialTouchX);
+            params.y = initialY - (int) (motionEvent.getRawY() - initialTouchY);
+            windowManager.updateViewLayout(overlayView, params);
+            break;
+          default:
+            throw new IllegalStateException(
+                "Unexpected value: " + motionEvent.getAction());
+        }
         params.x = 0;
-        params.y = 20;
+        windowManager.updateViewLayout(overlayView, params);
+        return false;
+      }
 
-        overlayView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view, null);
+    });
 
-        //Нижняя часть экрана
-        bottomParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
-        bottomParams.gravity = Gravity.BOTTOM;
-        overlayBottom = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view2, null);
+    overlayBottom.setOnTouchListener(new View.OnTouchListener() {
 
-        //Cho phần backgound Для фона
-        backgroundParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT);
-        backgroundParams.gravity = Gravity.CENTER;
-        overlayBackground = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view3, null);
+      private float starty;
 
-        windowManager.addView(overlayBackground, backgroundParams);
-        windowManager.addView(overlayBottom, bottomParams);
-        windowManager.addView(overlayView, params);
+      @SuppressLint("CutPasteId")
+      @Override
+      public boolean onTouch(final View view, final MotionEvent motionEvent) {
+        switch (motionEvent.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            starty = motionEvent.getY();
+            break;
+          case MotionEvent.ACTION_UP: {
+            float endY = motionEvent.getY();
+            if (endY < starty) {
+              //Move up
+              overlayView.startAnimation(inAnimation);
+              overlayView.setVisibility(View.VISIBLE);
+              overlayBackground.setVisibility(View.VISIBLE);
+              overlayBottom.setVisibility(View.GONE);
+              //Включение тактильной вибрации при открытии панели
+              RelativeLayout rl = view.findViewById(R.id.rl);
+              rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+              //Начальное значение ползунка яркости
+              int brightnes = Settings.System.getInt(
+                  mcontext.getContentResolver(),
+                  Settings.System.SCREEN_BRIGHTNESS, 0);
+              //Инициализация ползунка яркости
+              SeekBar seekbar = (SeekBar)
+                  overlayView.findViewById(R.id.seebarBrightness);
+              //Инициализация Switch управления автояркостью
+              Switch imgAutoBright = (Switch)
+                  overlayView.findViewById(R.id.imgAutoBright);
+              // Передача в управляющий класс.
+              // управления яркостью необходимых параметров.
+              Brightness.onBrig(overlayView, seekbar, brightnes, mcontext);
+              //Инициализируем ползунок громкости звонка
+              SeekBar seekbarAudio = (SeekBar)
+                  overlayView.findViewById(R.id.audioSeekBar);
+              //Инициализация Switch управления громкостью
+              Switch switch1 = (Switch) overlayView.findViewById(R.id.notificationSwitch);
+              //Чтения значения Switch управления громкостью
+              boolean onn = switch1.isChecked();
+              if (onn) {
+                //Значение ползунка после изменения системно
+                int val = Audio.getSoudValue(mcontext);
+                //Изменение положения ползунка
+                seekbarAudio.setProgress(val);
+                Audio.onBrig1(mcontext, seekbarAudio, overlayView);
 
-        overlayView.setOnTouchListener(new View.OnTouchListener() {
-            long startTime = System.currentTimeMillis();
-            private int initialX;
-            private int initialY;
-            private float initialTouchX;
-            private float initialTouchY;
-            private float startY;
-
-
-            private Rect rect;
-
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        initialX = params.x;
-                        initialY = params.y;
-                        initialTouchX = motionEvent.getRawX();
-                        initialTouchY = motionEvent.getRawY();
-                        startY = motionEvent.getY();
-
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        float endY = motionEvent.getY();
-                        if (endY > startY && endY - startY > 150) {
-                            //Move down
-                            overlayView.startAnimation(outAnimation);
-                            overlayView.setVisibility(View.GONE);
-                            overlayBackground.setVisibility(View.GONE);
-                            overlayBottom.setVisibility(View.VISIBLE);
-                        }
-
-                        params.y = 20;
-                        windowManager.updateViewLayout(overlayView, params);
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        params.x = initialX - (int) (motionEvent.getRawX() - initialTouchX);
-                        params.y = initialY - (int) (motionEvent.getRawY() - initialTouchY);
-                        windowManager.updateViewLayout(overlayView, params);
-                        break;
-                }
-                params.x = 0;
-                windowManager.updateViewLayout(overlayView, params);
-                return false;
+              } else {
+                //Значение ползунка после изменения системно
+                int val = Audio.getSoudValueRing(mcontext);
+                //Изменение положения ползунка
+                seekbarAudio.setProgress(val);
+                Audio.onBrig2(mcontext, seekbarAudio, overlayView);
+              }
+              //При вызове панели проверяе текущее значение автоповорота
+              Orientation.reAutoOrientation(mcontext, autoOrientation);
+              wifiset.wifiRe(wifi,wifiManager);
             }
-
-        });
-
-        overlayBottom.setOnTouchListener(new View.OnTouchListener() {
-
-            private float starty;
-
-            @SuppressLint("CutPasteId")
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        starty = motionEvent.getY();
-                        break;
-                    case MotionEvent.ACTION_UP: {
-                        float endY = motionEvent.getY();
-                        if (endY < starty) {
-                            //Move up
-                            overlayView.startAnimation(inAnimation);
-                            overlayView.setVisibility(View.VISIBLE);
-                            overlayBackground.setVisibility(View.VISIBLE);
-                            overlayBottom.setVisibility(View.GONE);
-                            //Включение тактильной вибрации при открытии панели
-                            RelativeLayout rl = view.findViewById(R.id.rl);
-                            rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                            //Инициализация кнопки Wifi
-                            toggleButton = (ToggleButton) overlayView.findViewById(R.id.toggleButton);
-                            //Инициализация кнопки В самолете
-                            toggleButton1 = (ToggleButton) overlayView.findViewById(R.id.toggleButton1);
-                            //Инициализация кнопки Bluetoth
-                            toggleButton2 = (ToggleButton) overlayView.findViewById(R.id.toggleButton2);
-                            //Инициализация кнопки "Не беспокоить"
-                            toggleButton3 = (ToggleButton) overlayView.findViewById(R.id.toggleButton3);
-                            //Инициализация кнопки мобильных данных
-                            toggleButton4 = (ToggleButton) overlayView.findViewById(R.id.toggleButton4);
-                            //Инициализация кнопки автоповорота экрана
-                            toggleButton5 = (ToggleButton) overlayView.findViewById(R.id.toggleButton5);
-                            //Создаем экземпляр класса Wifiset
-                            wifiset = new Wifiset();
-                            //Обновляем состояние кнопки "Не беспокоить"
-                            Dnd.reDnd(mNotificationManager, toggleButton3);
-                            //Обновляем состояние кнопки Wifi
-                            wifiset.WifiRe(toggleButton, wifiManager);
-                            //Обновляем состояние кнопки Bluetooth
-                            Bluetooth.setBluetooth(toggleButton2);
-                            //Обновляем кнопку мобильных данных
-                            MobileData.reData(mcontext, toggleButton4);
-                            //Обновляем кнопку режим полета
-                            Airplane.AirRe(toggleButton1, mcontext);
-                            //Выводим имя версии и версию кода
-                            //codeVersion.Version(overlayView);
-                            //Начальное значение ползунка яркости
-                            int Brightnes = Settings.System.getInt(mcontext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, 0);
-                            //Инициализация ползунка яркости
-                            SeekBar seekbar = (SeekBar) overlayView.findViewById(R.id.seebarBrightness);
-                            //Инициализация Switch управления автояркостью
-                            Switch img_auto_bright = (Switch) overlayView.findViewById(R.id.img_auto_bright);
-                            //Передача в управляющий класс управления яркостью необходимых параметров
-                            Brightness.onBrig(overlayView, seekbar, Brightnes, mcontext);
-                            //Инициализируем ползунок громкости звонка
-                            SeekBar seekbar_audio = (SeekBar) overlayView.findViewById(R.id.audio);
-                            //Инициализация Switch управления громкостью
-                            Switch switch1 = (Switch) overlayView.findViewById(R.id.switch1);
-                            //Чтения значения Switch управления громкостью
-                            boolean onn = switch1.isChecked();
-                            if (onn) {
-                                //Значение ползунка после изменения системно
-                                int val = Audio.getSoudValue(mcontext);
-                                //Изменение положения ползунка
-                                seekbar_audio.setProgress(val);
-                                Audio.onBrig1(mcontext, seekbar_audio, overlayView);
-
-                            } else {
-                                //Значение ползунка после изменения системно
-                                int val = Audio.getSoudValueRing(mcontext);
-                                //Изменение положения ползунка
-                                seekbar_audio.setProgress(val);
-                                Audio.onBrig2(mcontext, seekbar_audio, overlayView);
-                            }
-                            //При вызове панели проверяе текущее значение автоповорота
-                            Orientation.reAutoOrientation(mcontext, toggleButton5);
-
-
-                        }
-                    }
-                }
-                return false;
-            }
-        });
-        overlayBackground.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        overlayView.startAnimation(outAnimation);
-                        overlayView.setVisibility(View.GONE);
-                        overlayBackground.setVisibility(View.GONE);
-                        overlayBottom.setVisibility(View.VISIBLE);
-                        break;
-                }
-                return false;
-            }
-        });
-
-    }
-
-    //Метод сворачивающий панель при блокировке экрана
-    public void onLock() {
-        MyService.overlayView.setVisibility(View.GONE);
-        MyService.overlayBackground.setVisibility(View.GONE);
-        MyService.overlayBottom.setVisibility(View.VISIBLE);
-    }
-
-    // Данный класс отвечает за действия при остановке сервиса
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (overlayView != null) {
-            WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-            wm.removeView(overlayBackground);
-            wm.removeView(overlayView);
-            wm.removeView(overlayBottom);
+          }
+          break;
         }
-    }
-
-    // Данный класс отвечает за анимацию появления/скрытия нижней панели
-    private void initAnimations() {
-        inAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.in_animation);
-        outAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.out_animation);
-    }
-
-    // Действия при нажатии кнопки включения Wifi
-    @SuppressLint("ClickableViewAccessibility")
-    public void onToggleClicked(View view) {
-        // включена ли кнопка
-        boolean on = ((ToggleButton) view).isChecked();
-        //Создаем WifiManager
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        //Включает Wifi
-        if (on) {
-            // действия если включена - параметром передаем экземпляр WifiManager
-            wifiset.Wifienable(wifiManager);
-        } else { //Выключает Wifi - - параметром передаем экземпляр WifiManager
-            wifiset.Wifidisable(wifiManager);
+        return false;
+      }
+    });
+    overlayBackground.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(final View view, final MotionEvent motionEvent) {
+        switch (motionEvent.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            overlayView.startAnimation(outAnimation);
+            overlayView.setVisibility(View.GONE);
+            overlayBackground.setVisibility(View.GONE);
+            overlayBottom.setVisibility(View.VISIBLE);
+            break;
         }
+        return false;
+      }
+    });
+
+  }
+
+  /**
+   * Метод сворачивающий панель при блокировке экрана.
+   */
+  public void onLock() {
+    MyService.overlayView.setVisibility(View.GONE);
+    MyService.overlayBackground.setVisibility(View.GONE);
+    MyService.overlayBottom.setVisibility(View.VISIBLE);
+  }
+
+  // Данный класс отвечает за действия при остановке сервиса
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (overlayView != null) {
+      WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+      wm.removeView(overlayBackground);
+      wm.removeView(overlayView);
+      wm.removeView(overlayBottom);
     }
+  }
 
-    // Действия при нажатии кнопки включения Airplane
-    public void onToggleClicked1(View view) throws IOException {
-        boolean on = ((ToggleButton) view).isChecked();
-        //Включает режим полета
-        if (on) {
-            boolean rooted = Root.RootUtil.isDeviceRooted();
-            if (rooted) {
-                Airplane.onAirplayRoot();
-            } else {
-                Airplane.onAirplayNotRoot(mcontext.getApplicationContext());
-            }
-        } else {
-            boolean rooted = Root.RootUtil.isDeviceRooted();
-            if (!rooted) {
-                Airplane.offAirplayNotRoot(mcontext.getApplicationContext());
-            } else {
-                Airplane.offAirplayRoot();
-            }
-        }
+  /**
+   * Данный класс отвечает за анимацию появления/скрытия нижней панели.
+   */
+  private void initAnimations() {
+    inAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.in_animation);
+    outAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.out_animation);
+  }
+
+
+
+  /**
+   * Дейтвие при нажатии Switch автояркость.
+   *
+   * @param view v.
+   */
+  public void onSwitchClicked4(final View view) {
+    boolean on = ((Switch) view).isChecked();
+    final ContentResolver resolver = getContentResolver();
+    int mode1 = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+    int mode2 = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+
+    if (on) {
+      //Включаем автояркость
+      Settings.System.putInt(resolver,
+          Settings.System.SCREEN_BRIGHTNESS_MODE, mode1);
+    } else {
+      //Выключаем автояркость
+      Settings.System.putInt(resolver,
+          Settings.System.SCREEN_BRIGHTNESS_MODE, mode2);
     }
+  }
 
-    // Действие при нажатии кнопки включения Bluetooth
-    public void onToggleClicked2(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
+  /**
+   * Действия при нажатии Switch управлеия громкостью.
+   *
+   * @param view v.
+   */
+  public void onSwitchClicked5(final View view) {
+    boolean on = ((Switch) view).isChecked();
+    //Инициализируем ползунок громкости звонка
+    SeekBar seekbarAudio = (SeekBar) overlayView.findViewById(R.id.audioSeekBar);
 
-        //Включает Bluetooth
-        if (on) {
-            Bluetooth.onBluetooth();
-        } else {
-            Bluetooth.offBluetooth();
-        }
-    }
+    if (on) {
+      //Значение ползунка после измнения пользователем
+      int value = 0;
+      //Вызываем управляющий класс Audio и передача параметров
+      Audio.onBrig1(mcontext, seekbarAudio, overlayView);
 
-    // Действие при нажатии кнопки включения Dnd(Не беспокоить)
-    public void onToggleClicked3(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
-        //Включает режим Не беспокоить
-        if (on) {
-            Dnd.onDnd(mNotificationManager);
-        } else {
-            Dnd.offDnd(mNotificationManager);
-        }
-    }
+      //Значение ползунка после изменения системно
+      int val = Audio.getSoudValue(mcontext);
+      //Изменение положения ползунка
+      seekbarAudio.setProgress(val);
 
-    // Действие при нажатии кнопки включения Mobile Data
-    public void onToggleClicked4(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
-        //Включает Mobile Data
-        if (on) {
-            MobileData.onData(mcontext.getApplicationContext());
-        } else {
-            MobileData.offData(mcontext.getApplicationContext());
-        }
-    }
+    } else {
+      //Значение ползунка после измнения пользователем
+      int value = 0;
+      //Вызываем управляющий класс Audio и передача параметров
+      Audio.onBrig2(mcontext, seekbarAudio, overlayView);
 
-    //Дейтвие при нажатии Switch автояркость
-    public void onSwitchClicked4(View view) {
-        boolean on = ((Switch) view).isChecked();
-        final ContentResolver resolver = getContentResolver();
-        int mode1 = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
-        int mode2 = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
-
-        if (on) {
-            //Включаем автояркость
-            Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode1);
-        } else {
-            //Выключаем автояркость
-            Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, mode2);
-        }
-    }
-
-    //Действия при нажатии Switch управлеия громкостью
-    public void onSwitchClicked5(View view) {
-        boolean on = ((Switch) view).isChecked();
-        //Инициализируем ползунок громкости звонка
-        SeekBar seekbar_audio = (SeekBar) overlayView.findViewById(R.id.audio);
-
-        if (on) {
-            //Значение ползунка после измнения пользователем
-            int value = 0;
-            //Вызываем управляющий класс Audio и передача параметров
-            Audio.onBrig1(mcontext, seekbar_audio, overlayView);
-
-            //Значение ползунка после изменения системно
-            int val = Audio.getSoudValue(mcontext);
-            //Изменение положения ползунка
-            seekbar_audio.setProgress(val);
-
-        } else {
-            //Значение ползунка после измнения пользователем
-            int value = 0;
-            //Вызываем управляющий класс Audio и передача параметров
-            Audio.onBrig2(mcontext, seekbar_audio, overlayView);
-
-            //Значение ползунка после изменения системно
-            int val = Audio.getSoudValueRing(mcontext);
-            //Изменение положения ползунка
-            seekbar_audio.setProgress(val);
+      //Значение ползунка после изменения системно
+      int val = Audio.getSoudValueRing(mcontext);
+      //Изменение положения ползунка
+      seekbarAudio.setProgress(val);
 
 //            //Установка иконки на SeekBar
 //            int[] foren = {
@@ -492,94 +558,153 @@ public class MyService extends Service implements View.OnClickListener {
 //            };
 //            Drawable z = mcontext.getDrawable(foren[0]);
 //
-//            seekbar_audio.setForeground(z);
-        }
+//            seekbarAudio.setForeground(z);
     }
+  }
 
-    //Действия при нажатии кнопки включения автоповорота экрана
-    public void onToggleClicked6(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
-
-        if (on) {
-            //Включение автоповорота
-            Orientation.onAutoOrientation(mcontext);
+  /**
+   * Обработчик нажатий для запуска активити основной системы.
+   *
+   * @param v v.
+   */
+  public void onClick(final View v) {
+    switch (v.getId()) {
+      case R.id.notesActivity:
+        OpenActivity.notess(mcontext);
+        break;
+      case R.id.bookActivity:
+        OpenActivity.bookk(mcontext);
+        break;
+      case R.id.dateActivity:
+        OpenActivity.datee(mcontext);
+        break;
+      case R.id.plansActivity:
+        OpenActivity.planss(mcontext);
+        break;
+      case R.id.voiceActivity:
+        OpenActivity.voicee(mcontext);
+        break;
+      case R.id.settingActivit:
+        OpenActivity.settingg(mcontext);
+        break;
+      case R.id.converterActivity:
+        OpenActivity.currencyy(mcontext);
+        break;
+      case R.id.linksActivity:
+        OpenActivity.linkss(mcontext);
+        break;
+      case R.id.todoActivity:
+        OpenActivity.todoo(mcontext);
+        break;
+      case R.id.sheduleActivity:
+        OpenActivity.shedulee(mcontext);
+        break;
+      case R.id.costsActivity:
+        OpenActivity.costss(mcontext);
+        break;
+      case R.id.incomActivity:
+        OpenActivity.incomm(mcontext);
+        break;
+      case R.id.wifi:
+        boolean onWifi = ((wifi).isChecked());
+        //Создаем WifiManager
+        wifiManager = (WifiManager) getApplicationContext()
+            .getSystemService(Context.WIFI_SERVICE);
+        //Включает Wifi
+        if (onWifi) {
+          // действия если включена - параметром передаем экземпляр WifiManager
+          wifiset.wifienable(wifiManager);
+        } else { //Выключает Wifi - - параметром передаем экземпляр WifiManager
+          wifiset.wifidisable(wifiManager);
+        }
+        break;
+      case R.id.airPlane:
+        boolean onAirPlane = ((airPlane).isChecked());
+        //Включает режим полета
+        if (onAirPlane) {
+          boolean rooted = Root.RootUtil.isDeviceRooted();
+          if (rooted) {
+            try {
+              Airplane.onAirplayRoot();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          } else {
+            Airplane.onAirplayNotRoot(mcontext.getApplicationContext());
+          }
         } else {
-            //Выключение автоповорота
-            Orientation.offAutoOrientation(mcontext);
+          boolean rooted = Root.RootUtil.isDeviceRooted();
+          if (!rooted) {
+            Airplane.offAirplayNotRoot(mcontext.getApplicationContext());
+          } else {
+            try {
+              Airplane.offAirplayRoot();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
         }
-    }
-
-    //Действия при нажатии кнопки ночной режим
-    public void onButtonClicked7(View view) {
+        break;
+      case R.id.bluetooth:
+        boolean onBluetooth = ((bluetooth).isChecked());
+        //Включает Bluetooth.
+        if (onBluetooth) {
+          Bluetooth.onBluetooth();
+        } else {
+          Bluetooth.offBluetooth();
+        }
+        break;
+      case R.id.dnD:
+        boolean onDnd = ((dnD).isChecked());
+        //Включает режим Не беспокоить
+        if (onDnd) {
+          Dnd.onDnd(mnotificationManager);
+        } else {
+          Dnd.offDnd(mnotificationManager);
+        }
+        break;
+      case R.id.mobileData:
+        boolean onMobileData = ((mobileData).isChecked());
+        //Включает Mobile Data
+        if (onMobileData) {
+          mobileDate.onData(mcontext.getApplicationContext());
+        } else {
+          mobileDate.offData(mcontext.getApplicationContext());
+        }
+      break;
+      case R.id.autoOrientation:
+        boolean onAutoOrientation = ((autoOrientation).isChecked());
+        if (onAutoOrientation) {
+          //Включение автоповорота
+          Orientation.onAutoOrientation(mcontext);
+        } else {
+          //Выключение автоповорота
+          Orientation.offAutoOrientation(mcontext);
+        }
+        break;
+      case R.id.settActivit:
         Intent intent = new Intent(Settings.ACTION_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mcontext.startActivity(intent);
-    }
-
-    //Действия при нажатии кнопки включения фонарика
-    public void onToggleClicked7(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
+        break;
+      case R.id.flashh:
+        boolean onFlashh = ((flashh).isChecked());
         flash = new Flash();
         flash.flashEnable(mcontext);
-        if (on) {
-            //Включение фонарика
-            flash.switchFlashLight(mcontext, on);
-            //Вызваем активити Notes
-//            Intent intent;
-//            intent = new Intent(MyService.this, Notes.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            startActivity(intent);
+        if (onFlashh) {
+          //Включение фонарика
+          flash.switchFlashLight(mcontext, onFlashh);
         } else {
-            //Выключение фонарика
-            flash.switchFlashLight(mcontext, on);
+          //Выключение фонарика
+          flash.switchFlashLight(mcontext, onFlashh);
         }
+        break;
     }
+  }
 
-    //Обработчик нажатий для запуска активити основной системы
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.notes:
-                OpenActivity.Notess(mcontext);
-                break;
-            case R.id.book:
-                OpenActivity.Bookk(mcontext);
-                break;
-            case R.id.date:
-                OpenActivity.Datee(mcontext);
-                break;
-            case R.id.plans:
-                OpenActivity.Planss(mcontext);
-                break;
-            case R.id.voice:
-                OpenActivity.Voicee(mcontext);
-                break;
-            case R.id.setting:
-                OpenActivity.Settingg(mcontext);
-                break;
-            case R.id.converter:
-                OpenActivity.Currencyy(mcontext);
-                break;
-            case R.id.links:
-                OpenActivity.Linkss(mcontext);
-                break;
-            case R.id.todo:
-                OpenActivity.Todoo(mcontext);
-                break;
-            case R.id.shedule:
-                OpenActivity.Shedulee(mcontext);
-                break;
-            case R.id.costs:
-                OpenActivity.Costss(mcontext);
-                break;
-            case R.id.incom:
-                OpenActivity.Incomm(mcontext);
-                break;
-        }
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+  @Override
+  public IBinder onBind(final Intent intent) {
+    return null;
+  }
 
 }

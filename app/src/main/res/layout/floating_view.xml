@@ -17,7 +17,7 @@
         android:layout_margin="@dimen/size10dp">
 
         <ImageButton
-            android:id="@+id/img_scroll_main"
+            android:id="@+id/imgScrollMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
-                android:id="@+id/img_auto_bright"
+                android:id="@+id/imgAutoBright"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/checked_brig"
@@ -70,7 +70,7 @@
             android:layout_weight="1">
 
             <SeekBar
-                android:id="@+id/audio"
+                android:id="@+id/audioSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/notificationSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/checked_audio"
@@ -92,9 +92,9 @@
                 android:splitTrack="false"
                 android:thumb="@drawable/thumb"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/audio"
-                app:layout_constraintStart_toStartOf="@+id/audio"
-                app:layout_constraintTop_toTopOf="@+id/audio" />
+                app:layout_constraintEnd_toEndOf="@+id/audioSeekBar"
+                app:layout_constraintStart_toStartOf="@+id/audioSeekBar"
+                app:layout_constraintTop_toTopOf="@+id/audioSeekBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -106,7 +106,7 @@
         android:gravity="center">
 
         <ToggleButton
-            android:id="@+id/toggleButton"
+            android:id="@+id/wifi"
             style="@style/Widget.Button.Toggle"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -114,7 +114,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked"
             android:text="@string/togglebutton"
             android:textOff=""
             android:textOn=""
@@ -122,7 +121,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
-            android:id="@+id/toggleButton1"
+            android:id="@+id/airPlane"
             style="@style/Widget.Button.Toggle1"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -130,7 +129,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked1"
             android:text="@string/togglebutton1"
             android:textOff=""
             android:textOn=""
@@ -138,7 +136,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
-            android:id="@+id/toggleButton2"
+            android:id="@+id/bluetooth"
             style="@style/Widget.Button.Toggle2"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -146,7 +144,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked2"
             android:text="@string/togglebutton2"
             android:textOff=""
             android:textOn=""
@@ -154,7 +151,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
-            android:id="@+id/toggleButton3"
+            android:id="@+id/dnD"
             style="@style/Widget.Button.Toggle3"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -162,7 +159,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked3"
             android:text="@string/togglebutton3"
             android:textOff=""
             android:textOn=""
@@ -170,7 +166,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
-            android:id="@+id/toggleButton4"
+            android:id="@+id/mobileData"
             style="@style/Widget.Button.Toggle4"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -178,7 +174,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked4"
             android:text="@string/togglebutton4"
             android:textOff=""
             android:textOn=""
@@ -186,7 +181,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ToggleButton
-            android:id="@+id/toggleButton5"
+            android:id="@+id/autoOrientation"
             style="@style/Widget.Button.Toggle5"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -194,7 +189,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked6"
             android:text="@string/togglebutton6"
             android:textOff=""
             android:textOn=""
@@ -202,15 +196,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/sett"
+            android:id="@+id/settActivit"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_settings"
-            android:onClick="onButtonClicked7" />
+            android:background="@drawable/ic_settings" />
 
         <ToggleButton
-            android:id="@+id/toggleButton6"
+            android:id="@+id/flashh"
             style="@style/Widget.Button.Toggle6"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -218,7 +211,6 @@
             android:layout_marginTop="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:onClick="onToggleClicked7"
             android:text="@string/togglebutton6"
             android:textOff=""
             android:textOn=""
@@ -255,13 +247,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/notes"
+                    android:id="@+id/notesActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/ic_note" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/notesText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -279,14 +271,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/book"
+                    android:id="@+id/bookActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_book"
-                    android:onClick="Book" />
+                    android:background="@drawable/ic_book" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/bookText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -302,14 +293,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/date"
+                    android:id="@+id/dateActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_date"
-                    android:onClick="Date" />
+                    android:background="@drawable/ic_date" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/dateText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -325,14 +315,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/plans"
+                    android:id="@+id/plansActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_planning"
-                    android:onClick="Plans" />
+                    android:background="@drawable/ic_planning" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/plansText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -349,14 +338,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/voice"
+                    android:id="@+id/voiceActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_voice"
-                    android:onClick="Voice" />
+                    android:background="@drawable/ic_voice" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/voiceText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -374,14 +362,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/setting"
+                    android:id="@+id/settingActivit"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_settings"
-                    android:onClick="Setting" />
+                    android:background="@drawable/ic_settings" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/settingText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -398,14 +385,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/converter"
+                    android:id="@+id/converterActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_currency"
-                    android:onClick="Currency" />
+                    android:background="@drawable/ic_currency" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/converterText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -422,14 +408,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/links"
+                    android:id="@+id/linksActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_link"
-                    android:onClick="Links" />
+                    android:background="@drawable/ic_link" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/linksText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -446,14 +431,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/todo"
+                    android:id="@+id/todoActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_todo"
-                    android:onClick="Todo" />
+                    android:background="@drawable/ic_todo" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/todoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Дела" />
@@ -468,14 +452,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/shedule"
+                    android:id="@+id/sheduleActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_shedule"
-                    android:onClick="Shedule" />
+                    android:background="@drawable/ic_shedule" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/sheduleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="График" />
@@ -490,14 +473,13 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/costs"
+                    android:id="@+id/costsActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_costs"
-                    android:onClick="Costs" />
+                    android:background="@drawable/ic_costs" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/costsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -514,14 +496,14 @@
                 android:paddingHorizontal="10dp">
 
                 <Button
-                    android:id="@+id/incom"
+                    android:id="@+id/incomActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/ic_income"
                     android:onClick="Incom" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/incomText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
