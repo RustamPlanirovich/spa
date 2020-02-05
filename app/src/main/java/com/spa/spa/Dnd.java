@@ -17,16 +17,16 @@ public class Dnd extends AppCompatActivity {
   /**
    * Проверяем включен ли режим "Не беспокоить"
    * в зависимости от состояния меняем состояние кнопки.
-   * @param notificationManager notificationManager.
-   * @param toggleButton3 toggleButton3.
+   * @param mnotificationManager mnotificationManager.
+   * @param dnD dnD.
    */
-  public static void reDnd(final NotificationManager notificationManager,
-                           final ToggleButton toggleButton3) {
-    int currentState = notificationManager.getCurrentInterruptionFilter();
+  public void reDnd(final NotificationManager mnotificationManager,
+                           final ToggleButton dnD) {
+    int currentState = mnotificationManager.getCurrentInterruptionFilter();
     if (currentState == 2) {
-      toggleButton3.setChecked(true);
+      dnD.setChecked(true);
     } else {
-      toggleButton3.setChecked(false);
+      dnD.setChecked(false);
     }
 
   }

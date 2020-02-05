@@ -34,18 +34,18 @@ public class mobileDate {
   /**
    * Проверка включен ли мобильный интернет.
    * @param mcontext mcontext.
-   * @param toggleButton4 toggleButton4.
+   * @param mobileData mobileData.
    */
-  public static void reData(final Context mcontext,
-                            final ToggleButton toggleButton4) {
+  public void reData(final Context mcontext,
+                            final ToggleButton mobileData) {
     ConnectivityManager cm =
         (ConnectivityManager) mcontext.getSystemService(
             Context.CONNECTIVITY_SERVICE);
     NetworkInfo netInfo = cm.getActiveNetworkInfo();
     if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-      toggleButton4.setChecked(true);
+      mobileData.setChecked(true);
     } else {
-      toggleButton4.setChecked(false);
+      mobileData.setChecked(false);
     }
   }
 }

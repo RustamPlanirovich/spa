@@ -2,7 +2,6 @@ package com.spa.spa;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.view.View;
 import android.widget.ToggleButton;
@@ -42,7 +41,7 @@ public class Wifiset extends Activity {
     if (wifiManager.isWifiEnabled()) {
       // Адаптер Wi-Fi включен
       wifi.setChecked(true);
-      WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+      //WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
       /*if( wifiInfo.getNetworkId() == -1 ){
       return false; // Не подключен к точке доступа

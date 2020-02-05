@@ -14,15 +14,15 @@ class Bluetooth {
 
   /**
    * Проверяем состояние при открытии шторки и меняем состояние кнопки.
-   * @param toggleButton toggleButton.
+   * @param bluetooth bluetooth.
    */
-  static void setBluetooth(final ToggleButton toggleButton) {
+  public void setBluetooth(final ToggleButton bluetooth) {
     boolean isEnabled = bluetoothAdapter.isEnabled();
     if (isEnabled == true) {
-      toggleButton.setChecked(true);
+      bluetooth.setChecked(true);
       //bluetoothAdapter.enable();
     } else {
-      toggleButton.setChecked(false);
+      bluetooth.setChecked(false);
       //bluetoothAdapter.disable();
     }
     // No need to change bluetooth state

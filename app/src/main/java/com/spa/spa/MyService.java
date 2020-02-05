@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.hardware.camera2.CameraManager;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -28,8 +29,10 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
@@ -88,6 +91,18 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем wifiset.
    */
   private Wifiset wifiset;
+  /**
+   * Объявляем dnd.
+   */
+  private Dnd dnd;
+  /**
+   * Объявляем bluetooth.
+   */
+  private Bluetooth bluetoothClass;
+  /**
+   * Объявляем mobileDate.
+   */
+  private mobileDate mobileDate;
   /**
    * Объявляем flash.
    */
@@ -176,6 +191,8 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем flash
    */
   private ToggleButton flashh;
+  CameraManager mmCameraManager;
+  TextView textView;
 
 
   // События обрабатываемые при старте сервиса
@@ -188,6 +205,8 @@ public class MyService extends Service implements View.OnClickListener {
         .getSystemService(Context.WIFI_SERVICE);
     mnotificationManager = (NotificationManager) getSystemService(
         Context.NOTIFICATION_SERVICE);
+    mmCameraManager = (CameraManager) mcontext
+        .getSystemService(CAMERA_SERVICE);
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -205,6 +224,11 @@ public class MyService extends Service implements View.OnClickListener {
     //Действие выполняется если экран заблокирован
     filter.addAction(Intent.ACTION_SCREEN_OFF);
     registerReceiver(receiver, filter);
+    wifiset = new Wifiset();
+    dnd = new Dnd();
+    bluetoothClass = new Bluetooth();
+    mobileDate = new mobileDate();
+    flash = new Flash();
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -283,6 +307,7 @@ public class MyService extends Service implements View.OnClickListener {
    *
    * @param actionUp действие нажатия.
    */
+  @SuppressLint("ClickableViewAccessibility")
   public void addOverlayView(final int actionUp) {
     DisplayMetrics metrics = this.getResources().getDisplayMetrics();
     final float nine = 0.95f;
@@ -403,6 +428,15 @@ public class MyService extends Service implements View.OnClickListener {
               overlayView.setVisibility(View.VISIBLE);
               overlayBackground.setVisibility(View.VISIBLE);
               overlayBottom.setVisibility(View.GONE);
+              //Обновление состояния wifi
+              wifiset.wifiRe(wifi, wifiManager);
+              //Обновление состояния DND
+              dnd.reDnd(mnotificationManager, dnD);
+              //Обновление состояния bluetooth
+              bluetoothClass.setBluetooth(bluetooth);
+              //Обновление состояния mobileData
+              mobileDate.reData(mcontext, mobileData);
+              turnOnFlashLight();
               //Включение тактильной вибрации при открытии панели
               RelativeLayout rl = view.findViewById(R.id.rl);
               rl.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -442,7 +476,6 @@ public class MyService extends Service implements View.OnClickListener {
               }
               //При вызове панели проверяе текущее значение автоповорота
               Orientation.reAutoOrientation(mcontext, autoOrientation);
-              wifiset.wifiRe(wifi,wifiManager);
             }
           }
           break;
@@ -450,19 +483,16 @@ public class MyService extends Service implements View.OnClickListener {
         return false;
       }
     });
-    overlayBackground.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(final View view, final MotionEvent motionEvent) {
-        switch (motionEvent.getAction()) {
-          case MotionEvent.ACTION_DOWN:
-            overlayView.startAnimation(outAnimation);
-            overlayView.setVisibility(View.GONE);
-            overlayBackground.setVisibility(View.GONE);
-            overlayBottom.setVisibility(View.VISIBLE);
-            break;
-        }
-        return false;
+    overlayBackground.setOnTouchListener((view, motionEvent) -> {
+      switch (motionEvent.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+          overlayView.startAnimation(outAnimation);
+          overlayView.setVisibility(View.GONE);
+          overlayBackground.setVisibility(View.GONE);
+          overlayBottom.setVisibility(View.VISIBLE);
+          break;
       }
+      return false;
     });
 
   }
@@ -495,7 +525,6 @@ public class MyService extends Service implements View.OnClickListener {
     inAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.in_animation);
     outAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.out_animation);
   }
-
 
 
   /**
@@ -671,7 +700,7 @@ public class MyService extends Service implements View.OnClickListener {
         } else {
           mobileDate.offData(mcontext.getApplicationContext());
         }
-      break;
+        break;
       case R.id.autoOrientation:
         boolean onAutoOrientation = ((autoOrientation).isChecked());
         if (onAutoOrientation) {
@@ -705,6 +734,38 @@ public class MyService extends Service implements View.OnClickListener {
   @Override
   public IBinder onBind(final Intent intent) {
     return null;
+  }
+
+  /**
+   * Проверяем состояние фонарика и исходя из этого переключаем кнопку
+   */
+  private final CameraManager.TorchCallback enableTorchCallback = new CameraManager.TorchCallback() {
+    @Override
+    public void onTorchModeChanged(@NonNull String cameraId, boolean enabled) {
+      super.onTorchModeChanged(cameraId, enabled);
+      boolean b = enabled;
+      if (b) {
+        flashh.setChecked(true);
+      } else {
+        flashh.setChecked(false);
+      }
+    }
+  };
+
+  /**
+   * Регистрируем колбек для проверки состояния фонарика
+   * @param torchCallback
+   */
+  private void fireOnTorchModeChanged(CameraManager.TorchCallback torchCallback) {
+    mmCameraManager.registerTorchCallback(torchCallback,null);
+    //mCameraManager.unregisterTorchCallback(torchCallback);
+  }
+
+  /**
+   * Вызываем класс регистрации коллбека для проверки состояния камеры
+   */
+  private void turnOnFlashLight() {
+    fireOnTorchModeChanged(enableTorchCallback);
   }
 
 }
