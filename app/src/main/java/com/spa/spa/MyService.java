@@ -193,6 +193,8 @@ public class MyService extends Service implements View.OnClickListener {
   private ToggleButton flashh;
   CameraManager mmCameraManager;
   TextView textView;
+  private BlackCurtainView blackCurtain;
+  private SeekBar black_curtrain_seekbar;
 
 
   // События обрабатываемые при старте сервиса
@@ -229,6 +231,7 @@ public class MyService extends Service implements View.OnClickListener {
     bluetoothClass = new Bluetooth();
     mobileDate = new mobileDate();
     flash = new Flash();
+    blackCurtain = new BlackCurtainView();
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -476,6 +479,8 @@ public class MyService extends Service implements View.OnClickListener {
               }
               //При вызове панели проверяе текущее значение автоповорота
               Orientation.reAutoOrientation(mcontext, autoOrientation);
+              black_curtrain_seekbar = (SeekBar) overlayView.findViewById(R.id.black_curtrain_seekbar);
+              blackCurtain.onBrig3( black_curtrain_seekbar);
             }
           }
           break;
@@ -599,7 +604,9 @@ public class MyService extends Service implements View.OnClickListener {
   public void onClick(final View v) {
     switch (v.getId()) {
       case R.id.notesActivity:
-        OpenActivity.notess(mcontext);
+        //OpenActivity.notess(mcontext);
+
+        blackCurtain.onCurtain(mcontext);
         break;
       case R.id.bookActivity:
         OpenActivity.bookk(mcontext);
@@ -767,5 +774,4 @@ public class MyService extends Service implements View.OnClickListener {
   private void turnOnFlashLight() {
     fireOnTorchModeChanged(enableTorchCallback);
   }
-
 }
