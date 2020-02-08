@@ -605,41 +605,53 @@ public class MyService extends Service implements View.OnClickListener {
     switch (v.getId()) {
       case R.id.notesActivity:
         //OpenActivity.notess(mcontext);
+        //onLock();
 
         blackCurtain.onCurtain(mcontext);
         break;
       case R.id.bookActivity:
         OpenActivity.bookk(mcontext);
+        onLock();
         break;
       case R.id.dateActivity:
         OpenActivity.datee(mcontext);
+        onLock();
         break;
       case R.id.plansActivity:
         OpenActivity.planss(mcontext);
+        onLock();
         break;
       case R.id.voiceActivity:
         OpenActivity.voicee(mcontext);
+        onLock();
         break;
       case R.id.settingActivit:
         OpenActivity.settingg(mcontext);
+        onLock();
         break;
       case R.id.converterActivity:
         OpenActivity.currencyy(mcontext);
+        onLock();
         break;
       case R.id.linksActivity:
         OpenActivity.linkss(mcontext);
+        onLock();
         break;
       case R.id.todoActivity:
         OpenActivity.todoo(mcontext);
+        onLock();
         break;
       case R.id.sheduleActivity:
         OpenActivity.shedulee(mcontext);
+        onLock();
         break;
       case R.id.costsActivity:
         OpenActivity.costss(mcontext);
+        onLock();
         break;
       case R.id.incomActivity:
         OpenActivity.incomm(mcontext);
+        onLock();
         break;
       case R.id.wifi:
         boolean onWifi = ((wifi).isChecked());
@@ -722,6 +734,7 @@ public class MyService extends Service implements View.OnClickListener {
         Intent intent = new Intent(Settings.ACTION_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mcontext.startActivity(intent);
+        onLock();
         break;
       case R.id.flashh:
         boolean onFlashh = ((flashh).isChecked());
