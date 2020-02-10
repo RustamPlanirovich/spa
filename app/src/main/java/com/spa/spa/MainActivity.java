@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
    * notificationManager.
    */
   NotificationManager notificationManager;
+  BlackCurtainView blackCurtainView;
 
 
   @Override
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(final View view) {
         stopService(new Intent(getApplication(), MyService.class));
+        blackCurtainView.offCurtain();
       }
     });
 

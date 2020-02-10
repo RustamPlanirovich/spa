@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,8 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.camera2.CameraManager;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
+import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -188,16 +191,30 @@ public class MyService extends Service implements View.OnClickListener {
    */
   private Button settActivit;
   /**
-   * Объявляем flash
+   * Объявляем flash.
    */
   private ToggleButton flashh;
+  /**
+   * Объявляем CameraManager.
+   */
   CameraManager mmCameraManager;
-  TextView textView;
+  /**
+   * Объявляем BlackCurtainView.
+   */
   private BlackCurtainView blackCurtain;
+  /**
+   * Объявляем SeekBar.
+   */
   private SeekBar black_curtrain_seekbar;
+  /**
+   * Объявляем ToggleButton.
+   */
+  private ToggleButton blackMode;
+  private TextView textView;
 
 
   // События обрабатываемые при старте сервиса
+  @SuppressLint("InvalidWakeLockTag") // Тег от №1
   @Override
   public void onCreate() {
     super.onCreate();
@@ -209,6 +226,7 @@ public class MyService extends Service implements View.OnClickListener {
         Context.NOTIFICATION_SERVICE);
     mmCameraManager = (CameraManager) mcontext
         .getSystemService(CAMERA_SERVICE);
+    this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -232,6 +250,7 @@ public class MyService extends Service implements View.OnClickListener {
     mobileDate = new mobileDate();
     flash = new Flash();
     blackCurtain = new BlackCurtainView();
+    textView = (TextView) overlayView.findViewById(R.id.textView2);
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -253,6 +272,7 @@ public class MyService extends Service implements View.OnClickListener {
     autoOrientation = (ToggleButton) overlayView.findViewById(R.id.autoOrientation);
     settActivit = (Button) overlayView.findViewById(R.id.settActivit);
     flashh = (ToggleButton) overlayView.findViewById(R.id.flashh);
+    blackMode = (ToggleButton) overlayView.findViewById(R.id.blackMode);
     //Вешаем на все эти кнопки слушателя клика
     notes.setOnClickListener(this);
     book.setOnClickListener(this);
@@ -274,6 +294,7 @@ public class MyService extends Service implements View.OnClickListener {
     autoOrientation.setOnClickListener(this);
     settActivit.setOnClickListener(this);
     flashh.setOnClickListener(this);
+    blackMode.setOnClickListener(this);
 
     return super.onStartCommand(intent, flags, startId);
   }
@@ -357,7 +378,8 @@ public class MyService extends Service implements View.OnClickListener {
         R.layout.floating_view3, null);
 
     windowManager.addView(overlayBackground, backgroundParams);
-    windowManager.addView(overlayBottom, bottomParams);
+    Handler handler = new Handler();
+    handler.postDelayed(() -> windowManager.addView(overlayBottom, bottomParams), 300);
     windowManager.addView(overlayView, params);
 
     overlayView.setOnTouchListener(new View.OnTouchListener() {
@@ -479,8 +501,19 @@ public class MyService extends Service implements View.OnClickListener {
               }
               //При вызове панели проверяе текущее значение автоповорота
               Orientation.reAutoOrientation(mcontext, autoOrientation);
+              //Создаем экземпляр black_curtrain_seekbar
               black_curtrain_seekbar = (SeekBar) overlayView.findViewById(R.id.black_curtrain_seekbar);
-              blackCurtain.onBrig3( black_curtrain_seekbar);
+              //Вызваем класс включения затемнения и передаем ему экземпляр black_curtrain_seekbar
+              blackCurtain.onBrig3(black_curtrain_seekbar);
+            }
+            //Проверяем включенность кнопки
+            boolean onBlack = ((blackMode).isChecked());
+            if (onBlack) {
+              //Если включена - делаем полосу настройки затемненности доступной
+              black_curtrain_seekbar.setEnabled(true);
+            } else {
+              //Если нет - делаем не доступной
+              black_curtrain_seekbar.setEnabled(false);
             }
           }
           break;
@@ -501,7 +534,6 @@ public class MyService extends Service implements View.OnClickListener {
     });
 
   }
-
   /**
    * Метод сворачивающий панель при блокировке экрана.
    */
@@ -530,7 +562,6 @@ public class MyService extends Service implements View.OnClickListener {
     inAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.in_animation);
     outAnimation = AnimationUtils.loadAnimation(mcontext, R.anim.out_animation);
   }
-
 
   /**
    * Дейтвие при нажатии Switch автояркость.
@@ -604,10 +635,8 @@ public class MyService extends Service implements View.OnClickListener {
   public void onClick(final View v) {
     switch (v.getId()) {
       case R.id.notesActivity:
-        //OpenActivity.notess(mcontext);
-        //onLock();
-
-        blackCurtain.onCurtain(mcontext);
+        OpenActivity.notess(mcontext);
+        onLock();
         break;
       case R.id.bookActivity:
         OpenActivity.bookk(mcontext);
@@ -748,6 +777,22 @@ public class MyService extends Service implements View.OnClickListener {
           flash.switchFlashLight(mcontext, onFlashh);
         }
         break;
+      case R.id.blackMode:
+        boolean onBlack = ((blackMode).isChecked());
+        int blacint = black_curtrain_seekbar.getProgress();
+        if (onBlack) {
+          //Включаем затемнение экрана
+          blackCurtain.onCurtain(mcontext, blacint);
+          //Делаем доступной полосу настройки затемненности
+          black_curtrain_seekbar.setEnabled(true);
+        } else {
+          //Отключаем затемнение экрана
+          blackCurtain.offCurtain();
+          //Делаем не доступной полосу настройки затемненности
+          black_curtrain_seekbar.setEnabled(false);
+          //Устанавливаем значение полосы затемнения на 0
+          black_curtrain_seekbar.setProgress(0);
+        }
     }
   }
 
@@ -774,10 +819,11 @@ public class MyService extends Service implements View.OnClickListener {
 
   /**
    * Регистрируем колбек для проверки состояния фонарика
+   *
    * @param torchCallback
    */
   private void fireOnTorchModeChanged(CameraManager.TorchCallback torchCallback) {
-    mmCameraManager.registerTorchCallback(torchCallback,null);
+    mmCameraManager.registerTorchCallback(torchCallback, null);
     //mCameraManager.unregisterTorchCallback(torchCallback);
   }
 
@@ -787,4 +833,12 @@ public class MyService extends Service implements View.OnClickListener {
   private void turnOnFlashLight() {
     fireOnTorchModeChanged(enableTorchCallback);
   }
+
+  private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
+    @Override
+    public void onReceive(Context ctxt, Intent intent) {
+      int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+      textView.setText(String.valueOf(level) + "%");
+    }
+  };
 }

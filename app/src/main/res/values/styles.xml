@@ -57,5 +57,12 @@
         <item name="android:textOff">OFF</item>
         <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
     </style>
+    <!-- Black -->
+    <style name="BlackMode" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_blkmode</item>
+        <item name="android:textOn"> </item>
+        <item name="android:textOff"> </item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
 
 </resources>
