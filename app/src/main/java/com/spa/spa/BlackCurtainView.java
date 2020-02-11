@@ -1,6 +1,7 @@
 package com.spa.spa;
 
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
@@ -20,8 +21,8 @@ public class BlackCurtainView {
       WindowManager.LayoutParams.MATCH_PARENT,
       WindowManager.LayoutParams.MATCH_PARENT,
       WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-      WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-      WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+      WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+      PixelFormat.TRANSLUCENT);
 
   private WindowManager windowManager;
   private RelativeLayout ll;

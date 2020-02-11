@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -28,8 +28,15 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="TextView" />
+
+        <TextView
+            android:id="@+id/timme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_gravity="right"/>
 
     </FrameLayout>
 
@@ -264,6 +271,8 @@
         android:layout_width="match_parent"
         android:layout_height="98dp"
         android:fadingEdge="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:scrollbars="none">
 
         <LinearLayout

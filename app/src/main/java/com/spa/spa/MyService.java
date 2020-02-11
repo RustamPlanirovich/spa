@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.camera2.CameraManager;
@@ -36,7 +36,6 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
 
@@ -210,7 +209,15 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем ToggleButton.
    */
   private ToggleButton blackMode;
+  /**
+   * Объявляем TextView уровень заряда батареи
+   */
   private TextView textView;
+  /**
+   * Объявляем TextView текущее время
+   */
+  private TextView time;
+  private timeanddate timeanddate;
 
 
   // События обрабатываемые при старте сервиса
@@ -251,6 +258,8 @@ public class MyService extends Service implements View.OnClickListener {
     flash = new Flash();
     blackCurtain = new BlackCurtainView();
     textView = (TextView) overlayView.findViewById(R.id.textView2);
+    time = (TextView) overlayView.findViewById(R.id.timme);
+    timeanddate = new timeanddate();
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -303,27 +312,26 @@ public class MyService extends Service implements View.OnClickListener {
    * Данный класс, чтобы сервис не умирал, когда закрываем основное окно программы.
    */
   private void startForeground() {
-    String notifId = "1";
-    String notifChannelId = "1234";
-    NotificationChannel chan = new NotificationChannel(
-        notifChannelId, notifId,
-        NotificationManager.IMPORTANCE_NONE);
-    chan.setLightColor(Color.BLUE);
-    chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-    NotificationManager manager = (NotificationManager)
-        getSystemService(Context.NOTIFICATION_SERVICE);
-    assert manager != null;
-    manager.createNotificationChannel(chan);
 
-    NotificationCompat.Builder notificationBuilder = new NotificationCompat
-        .Builder(this, notifChannelId);
-    Notification notification = notificationBuilder.setOngoing(true)
+    Intent intentHide = new Intent(this, StopServiceReceiver.class);
+    PendingIntent hide = PendingIntent.getBroadcast(this, (int) System.currentTimeMillis(), intentHide, PendingIntent.FLAG_CANCEL_CURRENT);
+    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+    String CHANNEL_ID = "MCDANIEL";
+    NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "name", NotificationManager.IMPORTANCE_LOW);
+    PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
+    Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
+        .setContentText("Нажмите здесь, чтобы перейти к приложению")
+        .setContentTitle("Сервис запущен")
+        .setContentIntent(pendingIntent)
+        .addAction(R.drawable.ic_back, "Открыть", pendingIntent)
+        .addAction(R.drawable.ic_back, "Закрыть", hide)
+        .setChannelId(CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher)
-        .setContentTitle("Сервис запущен.")
-        .setPriority(NotificationManager.IMPORTANCE_MIN)
-        .setCategory(Notification.CATEGORY_SERVICE)
         .build();
-    startForeground(2, notification);
+    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    notificationManager.createNotificationChannel(notificationChannel);
+    notificationManager.notify(1, notification);
+
   }
 
   /**
@@ -515,6 +523,7 @@ public class MyService extends Service implements View.OnClickListener {
               //Если нет - делаем не доступной
               black_curtrain_seekbar.setEnabled(false);
             }
+            timeanddate.timeAndDate(time);
           }
           break;
         }
@@ -534,6 +543,7 @@ public class MyService extends Service implements View.OnClickListener {
     });
 
   }
+
   /**
    * Метод сворачивающий панель при блокировке экрана.
    */
@@ -834,11 +844,12 @@ public class MyService extends Service implements View.OnClickListener {
     fireOnTorchModeChanged(enableTorchCallback);
   }
 
-  private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
+  private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context ctxt, Intent intent) {
       int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-      textView.setText(String.valueOf(level) + "%");
+      textView.setText(level + "%");
     }
   };
+
 }
