@@ -49,8 +49,9 @@ public class BlackCurtainView {
     myService = new MyService();
   }
   public void offCurtain() {
-    windowManager.removeView(this.ll);
     ll.findViewById(R.id.ld).setAlpha((float) (0.0));
+    windowManager.removeView(this.ll);
+
   }
 
   /**

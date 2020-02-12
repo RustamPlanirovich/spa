@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS,
             Uri.parse("package:" + getPackageName()));
         startActivityForResult(intent, 200);
-
       }
     }
   }

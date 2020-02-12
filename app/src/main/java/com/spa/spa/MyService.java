@@ -11,6 +11,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.camera2.CameraManager;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
 
@@ -218,6 +220,7 @@ public class MyService extends Service implements View.OnClickListener {
    */
   private TextView time;
   private timeanddate timeanddate;
+  private BlackCurtainView blackCurtainView;
 
 
   // События обрабатываемые при старте сервиса
@@ -260,6 +263,7 @@ public class MyService extends Service implements View.OnClickListener {
     textView = (TextView) overlayView.findViewById(R.id.textView2);
     time = (TextView) overlayView.findViewById(R.id.timme);
     timeanddate = new timeanddate();
+    blackCurtainView = new BlackCurtainView();
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -313,25 +317,29 @@ public class MyService extends Service implements View.OnClickListener {
    */
   private void startForeground() {
 
-    Intent intentHide = new Intent(this, StopServiceReceiver.class);
-    PendingIntent hide = PendingIntent.getBroadcast(this, (int) System.currentTimeMillis(), intentHide, PendingIntent.FLAG_CANCEL_CURRENT);
-    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-    String CHANNEL_ID = "MCDANIEL";
-    NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "name", NotificationManager.IMPORTANCE_LOW);
-    PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
-    Notification notification = new Notification.Builder(getApplicationContext(), CHANNEL_ID)
-        .setContentText("Нажмите здесь, чтобы перейти к приложению")
-        .setContentTitle("Сервис запущен")
-        .setContentIntent(pendingIntent)
-        .addAction(R.drawable.ic_back, "Открыть", pendingIntent)
-        .addAction(R.drawable.ic_back, "Закрыть", hide)
-        .setChannelId(CHANNEL_ID)
-        .setSmallIcon(R.mipmap.ic_launcher)
-        .build();
-    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-    notificationManager.createNotificationChannel(notificationChannel);
-    notificationManager.notify(1, notification);
+    String NOTIF_ID = "1";
+    String NOTIF_CHANNEL_ID = "1234";
+    NotificationChannel chan = new NotificationChannel(NOTIF_CHANNEL_ID, NOTIF_ID, NotificationManager.IMPORTANCE_NONE);
+    chan.setLightColor(Color.BLUE);
+    chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+    NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    assert manager != null;
+    manager.createNotificationChannel(chan);
 
+    Intent intentHide = new Intent(this, StopServiceReceiver.class);
+    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+    PendingIntent pendingIntent1 = PendingIntent.getActivity(getApplicationContext(), 1, intent1, 0);
+    PendingIntent hide = PendingIntent.getBroadcast(this, (int) System.currentTimeMillis(), intentHide, PendingIntent.FLAG_CANCEL_CURRENT);
+    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIF_CHANNEL_ID);
+    Notification notification1 = notificationBuilder.setOngoing(true)
+        .setSmallIcon(R.mipmap.ic_launcher)
+        .setContentTitle("Сервис запущен.")
+        .setPriority(NotificationManager.IMPORTANCE_MIN)
+        .setCategory(Notification.CATEGORY_SERVICE)
+        .addAction(R.drawable.ic_back, "Открыть", pendingIntent1)
+        .addAction(R.drawable.ic_back, "Закрыть", hide)
+        .build();
+    startForeground(2, notification1);
   }
 
   /**
@@ -553,6 +561,7 @@ public class MyService extends Service implements View.OnClickListener {
     MyService.overlayBottom.setVisibility(View.VISIBLE);
   }
 
+
   // Данный класс отвечает за действия при остановке сервиса
   @Override
   public void onDestroy() {
@@ -562,6 +571,7 @@ public class MyService extends Service implements View.OnClickListener {
       wm.removeView(overlayBackground);
       wm.removeView(overlayView);
       wm.removeView(overlayBottom);
+      blackCurtainView.offCurtain();
     }
   }
 
@@ -851,5 +861,4 @@ public class MyService extends Service implements View.OnClickListener {
       textView.setText(level + "%");
     }
   };
-
 }
