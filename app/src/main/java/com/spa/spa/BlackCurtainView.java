@@ -30,28 +30,22 @@ public class BlackCurtainView {
 
   /**
    * Класс создает экземпляры необходим служб и запускает отрисову слоя.
-   *
-   * @param mcontext mcontext.
+   *  @param mcontext mcontext.
    * @param blacint
    */
   public void onCurtain(Context mcontext, int blacint) {
     //Экземпляр windowManager
     windowManager = (WindowManager) mcontext.getSystemService(WINDOW_SERVICE);
     //Инициализируем слой
-    ll = (RelativeLayout) ((LayoutInflater) mcontext.getSystemService(
+    this.ll = (RelativeLayout) ((LayoutInflater) mcontext.getSystemService(
         Context.LAYOUT_INFLATER_SERVICE)).inflate(
         R.layout.black_curtain, null, false);
     //Устанавливаем начальное значение альфа прозрачности
-    ll.findViewById(R.id.ld).setAlpha((float) (blacint));
+    this.ll.findViewById(R.id.ld).setAlpha((float) (blacint));
     backgroundParams.gravity = Gravity.CENTER;
     //Отрисовывем слой
     windowManager.addView(this.ll, backgroundParams);
     myService = new MyService();
-  }
-  public void offCurtain() {
-    ll.findViewById(R.id.ld).setAlpha((float) (0.0));
-    windowManager.removeView(this.ll);
-
   }
 
   /**
@@ -76,5 +70,15 @@ public class BlackCurtainView {
       public void onStopTrackingTouch(SeekBar seekBar) {
       }
     });
+  }
+
+  public void offCurtain() {
+    //Проверка если слой существует тогда производим закрытие
+    if (ll != null) {
+      ll.findViewById(R.id.ld).setAlpha((float) (0.0));
+      windowManager.removeView(this.ll);
+    }else {
+      //Если слоя нет - ничего не происходит
+    }
   }
 }

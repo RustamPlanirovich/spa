@@ -1,36 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
+        android:id="@+id/settservice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="TODO1"
-        android:src="@drawable/ic_del"
-        android:visibility="visible" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/textview"
+        android:textColor="#FFFFFF" />
 
-    <Button
-        android:id="@+id/startService"
-        android:layout_width="wrap_content"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1dp"
+        android:layout_marginStart="@dimen/size10dp"
+        android:layout_marginTop="@dimen/size10dp"
+        android:layout_marginEnd="@dimen/size10dp"
+        android:layout_marginBottom="@dimen/size10dp"
+        android:background="@color/colorView" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:text="startservice" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/stopService"
-        android:layout_width="wrap_content"
+        <ToggleButton
+            android:id="@+id/servisesettingbut"
+            style="@style/Widget.Button.Toggle10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:textOff="ОТКЛ"
+            android:textOn="ВКЛ" />
+
+        <Button
+            android:id="@+id/reloadService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/buttontheme"
+            android:text="Перезапуск"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startService"
-        android:layout_alignLeft="@+id/startService"
-        android:layout_marginTop="39dp"
-        android:text="stopservice" />
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/additisetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/buttontheme"
+            android:text="Дополнительные настройки"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

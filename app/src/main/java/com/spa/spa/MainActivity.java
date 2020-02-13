@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.spa.spa.settings.Settingss;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,45 +23,72 @@ public class MainActivity extends AppCompatActivity {
    */
   private Activity mactivity;
   /**
-   * startService.
-   */
-  Button startService;
-  /**
-   * stopService.
-   */
-  Button stopService;
-  /**
    * notificationManager.
    */
   NotificationManager notificationManager;
   BlackCurtainView blackCurtainView;
+  private ToggleButton servisesettingbut;
+  private Button reloadService;
+  private Button additisetting;
 
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
+    getSupportActionBar().hide();
     notificationManager = (NotificationManager)
         getSystemService(Context.NOTIFICATION_SERVICE);
     dndState(notificationManager);
     mactivity = this;
+    blackCurtainView = new BlackCurtainView();
 
-    startService = (Button) findViewById(R.id.startService);
-    stopService = (Button) findViewById(R.id.stopService);
+    servisesettingbut = (ToggleButton) findViewById(R.id.servisesettingbut);
+    reloadService = (Button) findViewById(R.id.reloadService);
+    additisetting = (Button) findViewById(R.id.additisetting);
 
-    startService.setOnClickListener(new View.OnClickListener() {
+    if (MyService.isServiceCreated()) {
+      //Запущен
+      servisesettingbut.setChecked(true);
+    } else {
+      //Не запущен
+      servisesettingbut.setChecked(false);
+    }
+
+    servisesettingbut.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(final View view) {
-        checkDrawOverlayPermission();
+        boolean onServiceSettingBut = ((servisesettingbut).isChecked());
+        if (onServiceSettingBut) {
+          checkDrawOverlayPermission();
+        } else {
+          blackCurtainView.offCurtain();
+          stopService(new Intent(getApplication(), MyService.class));
+        }
       }
     });
 
-    stopService.setOnClickListener(new View.OnClickListener() {
+    reloadService.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(final View view) {
-        stopService(new Intent(getApplication(), MyService.class));
-        blackCurtainView.offCurtain();
+
+        try {
+          stopService(new Intent(getApplication(), MyService.class));
+          Thread.sleep(4000);
+          checkDrawOverlayPermission();
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+
+      }
+    });
+
+    additisetting.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, Settingss.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
       }
     });
 
@@ -75,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
   /**
    * OVERLAY_REQUEST_CODE.
    */
-  public static final  int OVERLAY_REQUEST_CODE = 251;
+  public static final int OVERLAY_REQUEST_CODE = 251;
 
 
   /**
@@ -129,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * dndState.
+   *
    * @param notificationManager notificationManager.
    */
   public void dndState(final NotificationManager notificationManager) {

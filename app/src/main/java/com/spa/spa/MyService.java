@@ -219,8 +219,37 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем TextView текущее время
    */
   private TextView time;
+  /**
+   * Объявляем timeanddate.
+   */
   private timeanddate timeanddate;
+  /**
+   * Объявляем BlackCurtainView.
+   */
   private BlackCurtainView blackCurtainView;
+  /**
+   * Объявляем MyService
+   */
+  private static MyService mInstance = null;
+
+  public static boolean isServiceCreated() {
+    try {
+      // If instance was not cleared but the service was destroyed an Exception will be thrown
+      return mInstance != null && mInstance.ping();
+    } catch (NullPointerException e) {
+      // destroyed/not-started
+      return false;
+    }
+  }
+
+  /**
+   * Просто возвращает true. Если служба все еще активна, этот метод будет доступен.
+   *
+   * @return
+   */
+  private boolean ping() {
+    return true;
+  }
 
 
   // События обрабатываемые при старте сервиса
@@ -237,6 +266,7 @@ public class MyService extends Service implements View.OnClickListener {
     mmCameraManager = (CameraManager) mcontext
         .getSystemService(CAMERA_SERVICE);
     this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+    mInstance = this;
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -436,7 +466,8 @@ public class MyService extends Service implements View.OnClickListener {
             break;
           case MotionEvent.ACTION_MOVE:
             params.x = initialX - (int) (motionEvent.getRawX() - initialTouchX);
-            params.y = initialY - (int) (motionEvent.getRawY() - initialTouchY);
+            //Если расскоментировать панель будет подниматься выше чем ее размеры
+            //params.y = initialY - (int) (motionEvent.getRawY() - initialTouchY);
             windowManager.updateViewLayout(overlayView, params);
             break;
           default:
@@ -529,7 +560,10 @@ public class MyService extends Service implements View.OnClickListener {
               black_curtrain_seekbar.setEnabled(true);
             } else {
               //Если нет - делаем не доступной
-              black_curtrain_seekbar.setEnabled(false);
+              if (black_curtrain_seekbar != null) {
+                black_curtrain_seekbar.setEnabled(false);
+              } else {
+              }
             }
             timeanddate.timeAndDate(time);
           }
@@ -571,7 +605,10 @@ public class MyService extends Service implements View.OnClickListener {
       wm.removeView(overlayBackground);
       wm.removeView(overlayView);
       wm.removeView(overlayBottom);
+      unregisterReceiver(receiver);
+      unregisterReceiver(mBatInfoReceiver);
       blackCurtainView.offCurtain();
+      mInstance = null;
     }
   }
 

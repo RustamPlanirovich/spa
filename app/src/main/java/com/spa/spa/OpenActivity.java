@@ -2,6 +2,7 @@ package com.spa.spa;
 
 import android.content.Context;
 import android.content.Intent;
+
 import com.spa.spa.book.Book;
 import com.spa.spa.costs.Costs;
 import com.spa.spa.currencyconverter.currencyConverter;
@@ -10,7 +11,6 @@ import com.spa.spa.income.Income;
 import com.spa.spa.links.Links;
 import com.spa.spa.notes.Notes;
 import com.spa.spa.plans.Plans;
-import com.spa.spa.settings.Settings;
 import com.spa.spa.shedule.Shedule;
 import com.spa.spa.todolist.todoList;
 import com.spa.spa.voiceassistant.VoiceAssistant;
@@ -83,7 +83,7 @@ public interface OpenActivity {
    */
   static void settingg(Context mcontext) {
     Intent intent;
-    intent = new Intent(mcontext, Settings.class);
+    intent = new Intent(mcontext, MainActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     mcontext.startActivity(intent);
