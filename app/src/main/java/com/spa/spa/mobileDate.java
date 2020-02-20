@@ -2,8 +2,6 @@ package com.spa.spa;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.widget.ToggleButton;
 
@@ -38,11 +36,9 @@ public class mobileDate {
    */
   public void reData(final Context mcontext,
                             final ToggleButton mobileData) {
-    ConnectivityManager cm =
-        (ConnectivityManager) mcontext.getSystemService(
-            Context.CONNECTIVITY_SERVICE);
-    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+
+    int mobileDatas = Settings.Secure.getInt(mcontext.getContentResolver(), "mobile_data", 0);
+    if (mobileDatas == 1) {
       mobileData.setChecked(true);
     } else {
       mobileData.setChecked(false);

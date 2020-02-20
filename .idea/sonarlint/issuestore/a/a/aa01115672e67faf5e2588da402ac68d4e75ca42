@@ -1,0 +1,10 @@
+
+Ksquid:S1066d"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ
+osquid:S1301“"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8ÇõÈ¬‚.
+Fsquid:S1148S"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ë‡á×ƒ.
+esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(²Ú±
+zsquid:S1450 "\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8â³ûƒ.
+zsquid:S1450"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8ííÜ×ƒ.
+dsquid:S2142R"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ë‡á×ƒ.
+Esquid:S1199”"-Extract this nested code block into a method.(Èï²¼
+esquid:S11265"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8¯º®×ƒ.

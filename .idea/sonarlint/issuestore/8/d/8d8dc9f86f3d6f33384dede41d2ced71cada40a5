@@ -1,0 +1,5 @@
+
+Hsquid:S1068"*Remove this unused "window" private field.(ÈšÊÁ8°‚ä±‚.
+Psquid:S1068"-Remove this unused "mWakeLock" private field.(Øˆ¡§ûÿÿÿÿ8°‚ä±‚.
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥œ—‘8°‚ä±‚.
+esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Ž½×

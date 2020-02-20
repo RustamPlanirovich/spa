@@ -8,38 +8,90 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
-    <FrameLayout
+    <ImageButton
+        android:id="@+id/imgScrollMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_scroll_down_up" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/size10dp">
+        android:layout_marginHorizontal="@dimen/size10dp">
 
-        <ImageButton
-            android:id="@+id/imgScrollMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@null"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_scroll_down_up" />
+        <ImageView
+            android:id="@+id/imageBat"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/bat_100_precent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="TextView" />
+            android:layout_marginStart="8dp"
+            android:text="100%"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageBat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/set"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:text="4G"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/set_100_precent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/timme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="TextView" />
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageBat"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1dp"
+        android:layout_margin="2dp"
+        android:background="@color/colorView" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,123 +165,166 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/size10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
         android:gravity="center">
 
-        <ToggleButton
-            android:id="@+id/wifi"
-            style="@style/Widget.Button.Toggle"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size20dp"
+            android:background="@drawable/pan_bgr">
 
-        <ToggleButton
-            android:id="@+id/airPlane"
-            style="@style/Widget.Button.Toggle1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton1"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ToggleButton
+                android:id="@+id/wifi"
+                style="@style/Widget.Button.Toggle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="@string/togglebutton"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toTopOf="@+id/bluetooth"
+                app:layout_constraintEnd_toStartOf="@+id/airPlane"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ToggleButton
-            android:id="@+id/bluetooth"
-            style="@style/Widget.Button.Toggle2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton2"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ToggleButton
+                android:id="@+id/airPlane"
+                style="@style/Widget.Button.Toggle1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="@string/togglebutton1"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toTopOf="@+id/dnD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/wifi"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ToggleButton
-            android:id="@+id/dnD"
-            style="@style/Widget.Button.Toggle3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton3"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ToggleButton
+                android:id="@+id/bluetooth"
+                style="@style/Widget.Button.Toggle2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/togglebutton2"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dnD"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wifi" />
 
-        <ToggleButton
-            android:id="@+id/mobileData"
-            style="@style/Widget.Button.Toggle4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton4"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ToggleButton
+                android:id="@+id/dnD"
+                style="@style/Widget.Button.Toggle3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/togglebutton3"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bluetooth"
+                app:layout_constraintTop_toBottomOf="@+id/airPlane" />
 
-        <ToggleButton
-            android:id="@+id/autoOrientation"
-            style="@style/Widget.Button.Toggle5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton6"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/settActivit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_settings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ToggleButton
-            android:id="@+id/flashh"
-            style="@style/Widget.Button.Toggle6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/togglebutton6"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size20dp"
+            android:background="@drawable/pan_bgr">
 
+            <ToggleButton
+                android:id="@+id/flashh"
+                style="@style/Widget.Button.Toggle6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:text="@string/togglebutton6"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toTopOf="@+id/mobileData"
+                app:layout_constraintEnd_toStartOf="@+id/settActivit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/settActivit"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/setting_en"
+                app:layout_constraintBottom_toTopOf="@+id/autoOrientation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/flashh"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/autoOrientation"
+                style="@style/Widget.Button.Toggle5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/togglebutton6"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mobileData"
+                app:layout_constraintTop_toBottomOf="@+id/settActivit" />
+
+            <ToggleButton
+                android:id="@+id/mobileData"
+                style="@style/Widget.Button.Toggle4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/togglebutton4"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/autoOrientation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flashh" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
@@ -242,20 +337,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal">
 
         <ToggleButton
             android:id="@+id/blackMode"
             style="@style/BlackMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
             android:id="@+id/black_curtrain_seekbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:progressDrawable="@drawable/seekk"
             android:thumb="@drawable/thumb" />
     </LinearLayout>
@@ -292,7 +391,7 @@
                     android:id="@+id/notesActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_note" />
+                    android:background="@drawable/notes" />
 
                 <TextView
                     android:id="@+id/notesText"
@@ -301,7 +400,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Заметки" />
+                    android:text="Заметки"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -316,14 +416,15 @@
                     android:id="@+id/bookActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_book" />
+                    android:background="@drawable/book" />
 
                 <TextView
                     android:id="@+id/bookText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Книги" />
+                    android:text="Книги"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -338,14 +439,15 @@
                     android:id="@+id/dateActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_date" />
+                    android:background="@drawable/date" />
 
                 <TextView
                     android:id="@+id/dateText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Даты" />
+                    android:text="Даты"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -360,14 +462,15 @@
                     android:id="@+id/plansActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_planning" />
+                    android:background="@drawable/plans" />
 
                 <TextView
                     android:id="@+id/plansText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Планы" />
+                    android:text="Планы"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -383,7 +486,7 @@
                     android:id="@+id/voiceActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_voice" />
+                    android:background="@drawable/voice" />
 
                 <TextView
                     android:id="@+id/voiceText"
@@ -392,13 +495,15 @@
                     android:gravity="center"
                     android:lines="2"
                     android:singleLine="false"
-                    android:text="Ассистент" />
+                    android:text="Ассистент"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Setting"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -407,21 +512,24 @@
                     android:id="@+id/settingActivit"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/setting_off" />
+                    android:background="@drawable/settings" />
 
                 <TextView
                     android:id="@+id/settingText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Настройки" />
+                    android:singleLine="false"
+                    android:text="Настройки"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Converter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -430,21 +538,23 @@
                     android:id="@+id/converterActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_currency" />
+                    android:background="@drawable/currency" />
 
                 <TextView
                     android:id="@+id/converterText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Конвертер" />
+                    android:text="Конвертер"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Links"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -453,21 +563,23 @@
                     android:id="@+id/linksActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_link" />
+                    android:background="@drawable/link" />
 
                 <TextView
                     android:id="@+id/linksText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Ссылки" />
+                    android:text="Ссылки"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Todo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -476,19 +588,22 @@
                     android:id="@+id/todoActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_todo" />
+                    android:background="@drawable/todo" />
 
                 <TextView
                     android:id="@+id/todoText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Дела" />
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Дела"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Shedule"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -497,19 +612,22 @@
                     android:id="@+id/sheduleActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_shedule" />
+                    android:background="@drawable/shedule" />
 
                 <TextView
                     android:id="@+id/sheduleText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="График" />
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="График"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Costs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -518,21 +636,23 @@
                     android:id="@+id/costsActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_costs" />
+                    android:background="@drawable/costs" />
 
                 <TextView
                     android:id="@+id/costsText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Расходы" />
+                    android:text="Расходы"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Income"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipToPadding="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingHorizontal="10dp">
@@ -541,16 +661,17 @@
                     android:id="@+id/incomActivity"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/ic_income"
+                    android:background="@drawable/income"
                     android:onClick="Incom" />
 
                 <TextView
                     android:id="@+id/incomText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="Доходы" />
+                    android:text="Доходы"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </LinearLayout>

@@ -2,13 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_checked="false"
-        android:drawable="@drawable/ic_airplane_unactive"
+        android:drawable="@drawable/airplane_disable"
         android:elevation="10dp"
         android:translationZ="4dp"
          />
     <item
         android:state_checked="true"
-        android:drawable="@drawable/ic_airplane_active"
+        android:drawable="@drawable/airplane_enable"
         android:elevation="50dp"
         android:translationZ="4dp"
          />

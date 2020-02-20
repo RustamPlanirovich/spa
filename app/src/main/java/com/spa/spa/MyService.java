@@ -30,6 +30,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -231,6 +232,10 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем MyService
    */
   private static MyService mInstance = null;
+  private networktype networktype;
+  private TextView netType;
+  private battary battary;
+  private ImageView batt;
 
   public static boolean isServiceCreated() {
     try {
@@ -294,6 +299,10 @@ public class MyService extends Service implements View.OnClickListener {
     time = (TextView) overlayView.findViewById(R.id.timme);
     timeanddate = new timeanddate();
     blackCurtainView = new BlackCurtainView();
+    networktype = new networktype();
+    netType = (TextView) overlayView.findViewById(R.id.set);
+    battary = new battary();
+    batt = (ImageView) overlayView.findViewById(R.id.imageBat);
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -566,6 +575,7 @@ public class MyService extends Service implements View.OnClickListener {
               }
             }
             timeanddate.timeAndDate(time);
+            networktype.speed(mcontext, netType);
           }
           break;
         }
@@ -896,6 +906,7 @@ public class MyService extends Service implements View.OnClickListener {
     public void onReceive(Context ctxt, Intent intent) {
       int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
       textView.setText(level + "%");
+      battary.setimg(mcontext,level,batt);
     }
   };
 }

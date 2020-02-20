@@ -22,7 +22,7 @@ public class timeanddate {
         String dateText = dateFormat.format(currentDate);
 
         // Форматирование времени как "часы:минуты:секунды"
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
         String timaeText = timeFormat.format(currentDate);
         time.setText(timaeText);
         mainLoopHandler.postDelayed(this, 1000);

@@ -1,0 +1,6 @@
+
+jsquid:S00101
+"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(þð”þúÿÿÿÿ
+Vsquid:S1118
+":Add a private constructor to hide the implicit public one.(þð”þúÿÿÿÿ
+Ysquid:S1126-"BReplace this if-then-else statement by a single method invocation.(áÂ¾õ

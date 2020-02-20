@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     mactivity = this;
     blackCurtainView = new BlackCurtainView();
 
+
+
+
     servisesettingbut = (ToggleButton) findViewById(R.id.servisesettingbut);
     reloadService = (Button) findViewById(R.id.reloadService);
     additisetting = (Button) findViewById(R.id.additisetting);
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
       }
     }
   }
+
 
   /**
    * OVERLAY_REQUEST_CODE.
