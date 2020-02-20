@@ -1,53 +1,53 @@
 
-Qsquid:S1481‹"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8Œ½Ýª„.
-osquid:CommentedOutCodeLine¦"<This block of commented-out lines of code should be removed.(Ô í«ÿÿÿÿÿ8Œ½Ýª„.
-jsquid:CommentedOutCodeLine«"<This block of commented-out lines of code should be removed.(í“ñì8Œ½Ýª„.
-Gsquid:S1068¸"(Remove this unused "rect" private field.(æ¶Œ»8Ä÷Â°„.
-Usquid:S2696¦"6Make the enclosing method "static" or remove this set.(£ÇÝÛ8Ä÷Â°„.
-~squid:S1450Á"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8Œ½Ýª„.
-osquid:S1301À"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Œ½Ýª„.
-vsquid:S1450}"SRemove the "book" field and declare it as a local variable in the relevant methods.(Þé²Ûùÿÿÿÿ8Œ½Ýª„.
-squid:S00116Ñ"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8Œ½Ýª„.
-Psquid:S1068´"1Remove this unused "initialTouchY" private field.(¶ü¥™8Ä÷Â°„.
-ssquid:S1450•"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8Œ½Ýª„.
-Qsquid:S1068°"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8Ä÷Â°„.
-Gsquid:S1148‰"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Œ½Ýª„.
-Isquid:S1481‘"*Remove this unused "value" local variable.(‘ØºÕ8Œ½Ýª„.
-vsquid:S00117Þ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8Ä÷Â°„.
-usquid:S1450"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8Œ½Ýª„.
-Ksquid:S1068²",Remove this unused "initialY" private field.(÷Ý»ã8Ä÷Â°„.
-squid:S1450"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8Œ½Ýª„.
-jsquid:CommentedOutCodeLine¨"<This block of commented-out lines of code should be removed.(Œï¡8Œ½Ýª„.
-Qsquid:S1135—"2Complete the task associated to this TODO comment.(©§ðú8Œ½Ýª„.
-qsquid:S3776´"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(à€¥8Œ½Ýª„.
-{squid:S1450´"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8Ä÷Â°„.
-osquid:S1301ë"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
-Zsquid:S2696"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8Ä÷Â°„.
-Isquid:S00108µ")Either remove or fill this block of code.(å¥ž‡8Œ½Ýª„.
-qsquid:S00117ß"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8Ä÷Â°„.
-‚squid:S14509"_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†þüÿÿÿÿ8Œ½Ýª„.
-Zsquid:S2696š"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8Ä÷Â°„.
-ssquid:S1450¡"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8Œ½Ýª„.
-‚squid:S1845µ"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 101.(º£üÏÿÿÿÿÿ8Œ½Ýª„.
-Isquid:S1481œ"*Remove this unused "value" local variable.(‘ØºÕ8Œ½Ýª„.
-vsquid:S1450²"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷Ý»ã8Ä÷Â°„.
-Gsquid:S1148ü"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Œ½Ýª„.
-rsquid:S1450y"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8Œ½Ýª„.
-ssquid:S1450¥"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8Œ½Ýª„.
-Usquid:S2696ã"6Make the enclosing method "static" or remove this set.(šëÃ˜8Œ½Ýª„.
-xsquid:S1450‰"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊþÿúÿÿÿÿ8Œ½Ýª„.
-Qsquid:S1199ï"-Extract this nested code block into a method.(ù°û“ýÿÿÿÿ8Ä÷Â°„.
-vsquid:S3776ý"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘þÿÿÿÿ8Ä÷Â°„.
-jsquid:CommentedOutCodeLineÖ"<This block of commented-out lines of code should be removed.(Æ—™÷8Ä÷Â°„.
-wsquid:S1450‘"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8Œ½Ýª„.
-zsquid:S3923½"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8Œ½Ýª„.
-fsquid:S1126å"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8Œ½Ýª„.
-]"squid:SwitchLastCaseIsDefaultCheckë""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
-]"squid:SwitchLastCaseIsDefaultCheckÀ""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Œ½Ýª„.
-osquid:CommentedOutCodeLineô"<This block of commented-out lines of code should be removed.(½ºåýÿÿÿÿ8Œ½Ýª„.
-ysquid:S14505"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8Œ½Ýª„.
-wsquid:S1450"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëÐÿÿÿÿÿ8Œ½Ýª„.
-ssquid:S1450…"TRemove the "plans" field and declare it as a local variable in the relevant methods.(ÃŽ©ò8Œ½Ýª„.
-]"squid:SwitchLastCaseIsDefaultCheckµ""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Œ½Ýª„.
-wsquid:S1450™"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8Œ½Ýª„.
-Usquid:S2696"6Make the enclosing method "static" or remove this set.(¹‡‘›8Ä÷Â°„.
+ssquid:S1450–"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8Œ½Ýª„.
+usquid:S1450ž"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8Œ½Ýª„.
+squid:S1450Ž"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8Œ½Ýª„.
+]"squid:SwitchLastCaseIsDefaultCheckô""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
+fsquid:S1126ï"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8Œ½Ýª„.
+vsquid:S1450»"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷Ý»ã8Ä÷Â°„.
+qsquid:S3776¾"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(à€¥8Œ½Ýª„.
+‚squid:S1450:"_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†þüÿÿÿÿ8Œ½Ýª„.
+Qsquid:S1135˜"2Complete the task associated to this TODO comment.(©§ðú8Œ½Ýª„.
+]"squid:SwitchLastCaseIsDefaultCheckÊ""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Œ½Ýª„.
+Gsquid:S1148“"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Œ½Ýª„.
+Zsquid:S2696£"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8Ä÷Â°„.
+osquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(Ô í«ÿÿÿÿÿ8Œ½Ýª„.
+{squid:S1450½"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8Ä÷Â°„.
+Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Œ½Ýª„.
+Isquid:S1481¦"*Remove this unused "value" local variable.(‘ØºÕ8Œ½Ýª„.
+jsquid:CommentedOutCodeLineµ"<This block of commented-out lines of code should be removed.(í“ñì8Œ½Ýª„.
+osquid:CommentedOutCodeLineþ"<This block of commented-out lines of code should be removed.(½ºåýÿÿÿÿ8Œ½Ýª„.
+Psquid:S1068½"1Remove this unused "initialTouchY" private field.(¶ü¥™8Ä÷Â°„.
+Ksquid:S1068»",Remove this unused "initialY" private field.(÷Ý»ã8Ä÷Â°„.
+Qsquid:S1481”"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8Œ½Ýª„.
+Usquid:S2696¯"6Make the enclosing method "static" or remove this set.(£ÇÝÛ8Ä÷Â°„.
+jsquid:CommentedOutCodeLine²"<This block of commented-out lines of code should be removed.(Œï¡8Œ½Ýª„.
+Qsquid:S1068¹"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8Ä÷Â°„.
+‚squid:S1845¶"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 102.(º£üÏÿÿÿÿÿ8Œ½Ýª„.
+wsquid:S1450š"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8Œ½Ýª„.
+vsquid:S1450~"SRemove the "book" field and declare it as a local variable in the relevant methods.(Þé²Ûùÿÿÿÿ8Œ½Ýª„.
+qsquid:S00117è"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8Ä÷Â°„.
+xsquid:S1450Š"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊþÿúÿÿÿÿ8Œ½Ýª„.
+Isquid:S1481›"*Remove this unused "value" local variable.(‘ØºÕ8Œ½Ýª„.
+Usquid:S2696í"6Make the enclosing method "static" or remove this set.(šëÃ˜8Œ½Ýª„.
+ssquid:S1450¦"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8Œ½Ýª„.
+osquid:S1301Ê"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
+zsquid:S3923Ç"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8Œ½Ýª„.
+ssquid:S1450†"TRemove the "plans" field and declare it as a local variable in the relevant methods.(ÃŽ©ò8Œ½Ýª„.
+~squid:S1450Â"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8Œ½Ýª„.
+vsquid:S3776†"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘þÿÿÿÿ8Ä÷Â°„.
+Qsquid:S1199ø"-Extract this nested code block into a method.(ù°û“ýÿÿÿÿ8Ä÷Â°„.
+osquid:S1301ô"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Œ½Ýª„.
+Gsquid:S1068Á"(Remove this unused "rect" private field.(æ¶Œ»8Ä÷Â°„.
+wsquid:S1450‚"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëÐÿÿÿÿÿ8Œ½Ýª„.
+]"squid:SwitchLastCaseIsDefaultCheck¿""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Œ½Ýª„.
+Isquid:S00108¾")Either remove or fill this block of code.(å¥ž‡8Œ½Ýª„.
+jsquid:CommentedOutCodeLineß"<This block of commented-out lines of code should be removed.(Æ—™÷8Ä÷Â°„.
+ysquid:S14506"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8Œ½Ýª„.
+rsquid:S1450z"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8Œ½Ýª„.
+Zsquid:S2696’"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8Ä÷Â°„.
+wsquid:S1450’"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8Œ½Ýª„.
+ssquid:S1450¢"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8Œ½Ýª„.
+vsquid:S00117ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8Ä÷Â°„.
+squid:S00116Ò"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8Œ½Ýª„.
+Usquid:S2696˜"6Make the enclosing method "static" or remove this set.(¹‡‘›8Ä÷Â°„.

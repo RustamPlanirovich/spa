@@ -236,6 +236,7 @@ public class MyService extends Service implements View.OnClickListener {
   private TextView netType;
   private battary battary;
   private ImageView batt;
+  private TextView chan;
 
   public static boolean isServiceCreated() {
     try {
@@ -303,6 +304,7 @@ public class MyService extends Service implements View.OnClickListener {
     netType = (TextView) overlayView.findViewById(R.id.set);
     battary = new battary();
     batt = (ImageView) overlayView.findViewById(R.id.imageBat);
+    chan = (TextView) overlayView.findViewById(R.id.textView3);
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -906,7 +908,15 @@ public class MyService extends Service implements View.OnClickListener {
     public void onReceive(Context ctxt, Intent intent) {
       int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
       textView.setText(level + "%");
-      battary.setimg(mcontext,level,batt);
+
+      int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+      boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+          status == BatteryManager.BATTERY_STATUS_FULL;
+      String a = String.valueOf(isCharging);
+
+      chan.setText(a);
+
+      battary.setimg(mcontext,level,batt,a);
     }
   };
 }

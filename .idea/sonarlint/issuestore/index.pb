@@ -572,3 +572,5 @@ Y
 )app/src/main/res/drawable/buttontheme.xml,3/a/3ab7f8bd5285778fcc62ac3bc45f219e3f58f5df
 ^
 .app/src/main/java/com/spa/spa/timeanddate.java,c/9/c9704f41d0090d9f614a8884121e10f330d0133a
+Z
+*app/src/main/java/com/spa/spa/battary.java,1/a/1ad4b6b9fd6d464429802808a437cf6b8752b76f
