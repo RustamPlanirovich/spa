@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_checked="false"
+        android:id="@+id/addNotes"
+        android:drawable="@drawable/add_notes"
+        />
+    <item
+        android:state_checked="true"
+        android:drawable="@color/colorView"
+         />
+</selector>

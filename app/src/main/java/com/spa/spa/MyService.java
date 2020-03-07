@@ -19,6 +19,7 @@ import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -26,11 +27,13 @@ import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -56,6 +59,7 @@ public class MyService extends Service implements View.OnClickListener {
    * Инициализация метода WindowManager.
    */
   private WindowManager.LayoutParams backgroundParams;
+  private WindowManager.LayoutParams backgroundParams1;
   /**
    * Инициализация метода Animation.
    */
@@ -88,6 +92,7 @@ public class MyService extends Service implements View.OnClickListener {
    * Объявляем overlayBackground.
    */
   private static View overlayBackground;
+  private static View overlaySwipFone;
   /**
    * Объявляем wifiManager.
    */
@@ -236,7 +241,30 @@ public class MyService extends Service implements View.OnClickListener {
   private TextView netType;
   private battary battary;
   private ImageView batt;
-  private TextView chan;
+  private MyPhoneStateListener myPhoneStateListener;
+  private TextView signal;
+  private View viewbl;
+  private TextView dateView;
+  private ToggleButton timerbtn;
+  private LinearLayout timpanel;
+  private View blk_seek;
+  private ToggleButton f5minuts;
+  private ToggleButton f10minuts;
+  private ToggleButton f15minuts;
+  private ToggleButton f20minuts;
+  private ToggleButton f25minuts;
+  private ToggleButton uset_minuts;
+  private TextView textTimer;
+  private timers timers;
+  private Vibrator vibrator;
+
+//  private GestureDetectorCompat lSwipeDetector;
+//  private LinearLayout swipefone;
+//  private static final int SWIPE_MIN_DISTANCE = 300;
+//  private static final int SWIPE_MAX_DISTANCE = 150;
+//  private static final int SWIPE_MIN_VELOCITY = 200;
+//
+//  int i = 0;
 
   public static boolean isServiceCreated() {
     try {
@@ -273,6 +301,7 @@ public class MyService extends Service implements View.OnClickListener {
         .getSystemService(CAMERA_SERVICE);
     this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     mInstance = this;
+    vibrator = (Vibrator) mcontext.getSystemService(Context.VIBRATOR_SERVICE);
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -297,14 +326,17 @@ public class MyService extends Service implements View.OnClickListener {
     flash = new Flash();
     blackCurtain = new BlackCurtainView();
     textView = (TextView) overlayView.findViewById(R.id.textView2);
-    time = (TextView) overlayView.findViewById(R.id.timme);
     timeanddate = new timeanddate();
     blackCurtainView = new BlackCurtainView();
     networktype = new networktype();
     netType = (TextView) overlayView.findViewById(R.id.set);
     battary = new battary();
     batt = (ImageView) overlayView.findViewById(R.id.imageBat);
-    chan = (TextView) overlayView.findViewById(R.id.textView3);
+    signal = (TextView) overlayView.findViewById(R.id.signal);
+    viewbl = (View) overlayView.findViewById(R.id.viewbl);
+    myPhoneStateListener = new MyPhoneStateListener();
+    timers = new timers();
+
     //Инициализация кнопок управления основной системой
     notes = (Button) overlayView.findViewById(R.id.notesActivity);
     book = (Button) overlayView.findViewById(R.id.bookActivity);
@@ -327,6 +359,27 @@ public class MyService extends Service implements View.OnClickListener {
     settActivit = (Button) overlayView.findViewById(R.id.settActivit);
     flashh = (ToggleButton) overlayView.findViewById(R.id.flashh);
     blackMode = (ToggleButton) overlayView.findViewById(R.id.blackMode);
+    time = (TextView) overlayView.findViewById(R.id.timme);
+    dateView = (TextView) overlayView.findViewById(R.id.dateview);
+    timerbtn = (ToggleButton) overlayView.findViewById(R.id.timer_tgl);
+    timpanel = (LinearLayout) overlayView.findViewById(R.id.timpanel);
+    f5minuts = (ToggleButton) overlayView.findViewById(R.id.f5minut);
+    f10minuts = (ToggleButton) overlayView.findViewById(R.id.f10minut);
+    f15minuts = (ToggleButton) overlayView.findViewById(R.id.f15minut);
+    f20minuts = (ToggleButton) overlayView.findViewById(R.id.f20minut);
+    f25minuts = (ToggleButton) overlayView.findViewById(R.id.f25minut);
+    uset_minuts = (ToggleButton) overlayView.findViewById(R.id.usetMinut);
+    textTimer = (TextView) overlayView.findViewById(R.id.textTimer);
+
+//    lSwipeDetector = new GestureDetectorCompat(mcontext, new MyGestureListener());
+//
+//    overlaySwipFone.setOnTouchListener(new View.OnTouchListener() {
+//      @Override
+//      public boolean onTouch(View v, MotionEvent event) {
+//        return lSwipeDetector.onTouchEvent(event);
+//      }
+//    });
+
     //Вешаем на все эти кнопки слушателя клика
     notes.setOnClickListener(this);
     book.setOnClickListener(this);
@@ -349,7 +402,13 @@ public class MyService extends Service implements View.OnClickListener {
     settActivit.setOnClickListener(this);
     flashh.setOnClickListener(this);
     blackMode.setOnClickListener(this);
-
+    timerbtn.setOnClickListener(this);
+    f5minuts.setOnClickListener(this);
+    f10minuts.setOnClickListener(this);
+    f15minuts.setOnClickListener(this);
+    f20minuts.setOnClickListener(this);
+    f25minuts.setOnClickListener(this);
+    uset_minuts.setOnClickListener(this);
     return super.onStartCommand(intent, flags, startId);
   }
 
@@ -409,6 +468,8 @@ public class MyService extends Service implements View.OnClickListener {
 
     overlayView = ((LayoutInflater) getSystemService(
         Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.floating_view, null);
+    blk_seek = ((LayoutInflater) getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.blk_seek, null);
 
     //Нижняя часть экрана
     bottomParams = new WindowManager.LayoutParams(
@@ -435,11 +496,28 @@ public class MyService extends Service implements View.OnClickListener {
         R.layout.floating_view3, null);
 
     windowManager.addView(overlayBackground, backgroundParams);
+
+    //Фон для свайпа - открытие панели
+//    backgroundParams1 = new WindowManager.LayoutParams(
+//        WindowManager.LayoutParams.MATCH_PARENT,
+//        WindowManager.LayoutParams.MATCH_PARENT,
+//        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+//        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE|
+//            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
+//            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+//        PixelFormat.TRANSLUCENT);
+//    backgroundParams1.gravity = Gravity.CENTER;
+//    overlaySwipFone = ((LayoutInflater) getSystemService(
+//        Context.LAYOUT_INFLATER_SERVICE)).inflate(
+//            R.layout.swip_fone, null);
+//    windowManager.addView(overlaySwipFone,backgroundParams1);
+
+
     Handler handler = new Handler();
     handler.postDelayed(() -> windowManager.addView(overlayBottom, bottomParams), 300);
     windowManager.addView(overlayView, params);
 
-    overlayView.setOnTouchListener(new View.OnTouchListener() {
+    overlayView.setOnTouchListener(new OnTouchListener() {
       private long startTime = System.currentTimeMillis();
       private int initialX;
       private int initialY;
@@ -492,7 +570,7 @@ public class MyService extends Service implements View.OnClickListener {
 
     });
 
-    overlayBottom.setOnTouchListener(new View.OnTouchListener() {
+    overlayBottom.setOnTouchListener(new OnTouchListener() {
 
       private float starty;
 
@@ -559,10 +637,10 @@ public class MyService extends Service implements View.OnClickListener {
               }
               //При вызове панели проверяе текущее значение автоповорота
               Orientation.reAutoOrientation(mcontext, autoOrientation);
-              //Создаем экземпляр black_curtrain_seekbar
-              black_curtrain_seekbar = (SeekBar) overlayView.findViewById(R.id.black_curtrain_seekbar);
+//              //Создаем экземпляр black_curtrain_seekbar
+              black_curtrain_seekbar = (SeekBar) blk_seek.findViewById(R.id.black_curtrain_seekbar);
               //Вызваем класс включения затемнения и передаем ему экземпляр black_curtrain_seekbar
-              blackCurtain.onBrig3(black_curtrain_seekbar);
+//              blackCurtain.onBrig3();
             }
             //Проверяем включенность кнопки
             boolean onBlack = ((blackMode).isChecked());
@@ -576,8 +654,9 @@ public class MyService extends Service implements View.OnClickListener {
               } else {
               }
             }
-            timeanddate.timeAndDate(time);
+            timeanddate.timeAndDate(time, dateView);
             networktype.speed(mcontext, netType);
+            myPhoneStateListener.onSignal(signal, mcontext);
           }
           break;
         }
@@ -854,16 +933,214 @@ public class MyService extends Service implements View.OnClickListener {
           blackCurtain.onCurtain(mcontext, blacint);
           //Делаем доступной полосу настройки затемненности
           black_curtrain_seekbar.setEnabled(true);
+          black_curtrain_seekbar.setVisibility(View.VISIBLE);
+          viewbl.setVisibility(View.VISIBLE);
+          timerbtn.setEnabled(false);
         } else {
           //Отключаем затемнение экрана
           blackCurtain.offCurtain();
           //Делаем не доступной полосу настройки затемненности
           black_curtrain_seekbar.setEnabled(false);
+          black_curtrain_seekbar.setVisibility(View.GONE);
+          viewbl.setVisibility(View.GONE);
           //Устанавливаем значение полосы затемнения на 0
           black_curtrain_seekbar.setProgress(0);
+          timerbtn.setEnabled(true);
         }
+      case R.id.timer_tgl:
+        boolean onTimer = ((timerbtn).isChecked());
+        if (onTimer) {
+          timpanel.setVisibility(View.VISIBLE);
+          viewbl.setVisibility(View.VISIBLE);
+          blackMode.setEnabled(false);
+        } else {
+          timpanel.setVisibility(View.GONE);
+          viewbl.setVisibility(View.GONE);
+          blackMode.setEnabled(true);
+        }
+
+        f5minuts.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean onTomer5 = ((f5minuts).isChecked());
+            if (onTomer5) {
+              timers.onTimer_5(textTimer,mcontext,vibrator);
+              timers.onStartTimer_5();
+              timerbtn.setEnabled(false);
+              f10minuts.setVisibility(View.GONE);
+              f15minuts.setVisibility(View.GONE);
+              f20minuts.setVisibility(View.GONE);
+              f25minuts.setVisibility(View.GONE);
+              textTimer.setVisibility(View.VISIBLE);
+            } else {
+              timers.offTimer_5(textTimer,vibrator);
+              timerbtn.setEnabled(true);
+              f10minuts.setVisibility(View.VISIBLE);
+              f15minuts.setVisibility(View.VISIBLE);
+              f20minuts.setVisibility(View.VISIBLE);
+              f25minuts.setVisibility(View.VISIBLE);
+              textTimer.setVisibility(View.GONE);
+            }
+          }
+        });
+        f10minuts.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean onTomer10 = ((f10minuts).isChecked());
+            if (onTomer10) {
+              timers.onTimer_10(textTimer,mcontext,vibrator);
+              timers.onStartTimer_10();
+              timerbtn.setEnabled(false);
+              f5minuts.setVisibility(View.GONE);
+              f15minuts.setVisibility(View.GONE);
+              f20minuts.setVisibility(View.GONE);
+              f25minuts.setVisibility(View.GONE);
+              textTimer.setVisibility(View.VISIBLE);
+            } else {
+              timers.offTimer_10(textTimer,vibrator);
+              timerbtn.setEnabled(true);
+              f5minuts.setVisibility(View.VISIBLE);
+              f15minuts.setVisibility(View.VISIBLE);
+              f20minuts.setVisibility(View.VISIBLE);
+              f25minuts.setVisibility(View.VISIBLE);
+              textTimer.setVisibility(View.GONE);
+            }
+          }
+        });
+        f15minuts.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean onTomer15 = ((f15minuts).isChecked());
+            if (onTomer15) {
+              timers.onTimer_15(textTimer,mcontext,vibrator);
+              timers.onStartTimer_15();
+              timerbtn.setEnabled(false);
+              f5minuts.setVisibility(View.GONE);
+              f10minuts.setVisibility(View.GONE);
+              f20minuts.setVisibility(View.GONE);
+              f25minuts.setVisibility(View.GONE);
+              textTimer.setVisibility(View.VISIBLE);
+            } else {
+              timers.offTimer_15(textTimer,vibrator);
+              timerbtn.setEnabled(true);
+              f5minuts.setVisibility(View.VISIBLE);
+              f10minuts.setVisibility(View.VISIBLE);
+              f20minuts.setVisibility(View.VISIBLE);
+              f25minuts.setVisibility(View.VISIBLE);
+              textTimer.setVisibility(View.GONE);
+            }
+          }
+        });
+        f20minuts.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean onTomer20 = ((f20minuts).isChecked());
+            if (onTomer20) {
+              timers.onTimer_20(textTimer,mcontext,vibrator);
+              timers.onStartTimer_20();
+              timerbtn.setEnabled(false);
+              f5minuts.setVisibility(View.GONE);
+              f10minuts.setVisibility(View.GONE);
+              f15minuts.setVisibility(View.GONE);
+              f25minuts.setVisibility(View.GONE);
+              textTimer.setVisibility(View.VISIBLE);
+            } else {
+              timers.offTimer_20(textTimer,vibrator);
+              timerbtn.setEnabled(true);
+              f5minuts.setVisibility(View.VISIBLE);
+              f10minuts.setVisibility(View.VISIBLE);
+              f15minuts.setVisibility(View.VISIBLE);
+              f25minuts.setVisibility(View.VISIBLE);
+              textTimer.setVisibility(View.GONE);
+            }
+          }
+        });
+        f25minuts.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean onTomer25 = ((f25minuts).isChecked());
+            if (onTomer25) {
+              timers.onTimer_25(textTimer,mcontext,vibrator);
+              timers.onStartTimer_25();
+              timerbtn.setEnabled(false);
+              f5minuts.setVisibility(View.GONE);
+              f10minuts.setVisibility(View.GONE);
+              f15minuts.setVisibility(View.GONE);
+              f20minuts.setVisibility(View.GONE);
+              textTimer.setVisibility(View.VISIBLE);
+            } else {
+              timers.offTimer_25(textTimer,vibrator,dateView);
+              timerbtn.setEnabled(true);
+              f5minuts.setVisibility(View.VISIBLE);
+              f10minuts.setVisibility(View.VISIBLE);
+              f15minuts.setVisibility(View.VISIBLE);
+              f20minuts.setVisibility(View.VISIBLE);
+              textTimer.setVisibility(View.GONE);
+            }
+          }
+        });
+        textTimer.setOnClickListener(new View.OnClickListener() {
+          boolean tick = false;
+          int click = 0;
+          @Override
+          public void onClick(View v) {
+            if (f5minuts.isChecked()){
+              if (click == 0) {
+                tick=true;
+                timers.setTimer5(tick, textTimer, mcontext, vibrator);
+                click++;
+              } else {
+                click--;
+                tick = false;
+                timers.setTimer5(tick, textTimer, mcontext, vibrator);
+              }
+            }else if (f10minuts.isChecked()){
+              if (click == 0) {
+                tick=true;
+                timers.setTimer10(tick, textTimer, mcontext, vibrator);
+                click++;
+              } else {
+                click--;
+                tick = false;
+                timers.setTimer10(tick, textTimer, mcontext, vibrator);
+              }
+            }else if (f15minuts.isChecked()){
+              if (click == 0) {
+                tick=true;
+                timers.setTimer15(tick, textTimer, mcontext, vibrator);
+                click++;
+              } else {
+                click--;
+                tick = false;
+                timers.setTimer15(tick, textTimer, mcontext, vibrator);
+              }
+            }else if (f20minuts.isChecked()){
+              if (click == 0) {
+                tick=true;
+                timers.setTimer20(tick, textTimer, mcontext, vibrator);
+                click++;
+              } else {
+                click--;
+                tick = false;
+                timers.setTimer20(tick, textTimer, mcontext, vibrator);
+              }
+            }else if (f25minuts.isChecked()){
+              if (click == 0) {
+                tick=true;
+                timers.setTimer25(tick, textTimer, mcontext, vibrator);
+                click++;
+              } else {
+                click--;
+                tick = false;
+                timers.setTimer25(tick, textTimer, mcontext, vibrator);
+              }
+            }
+
+          }
+        });
     }
   }
+
 
   @Override
   public IBinder onBind(final Intent intent) {
@@ -913,10 +1190,25 @@ public class MyService extends Service implements View.OnClickListener {
       boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
           status == BatteryManager.BATTERY_STATUS_FULL;
       String a = String.valueOf(isCharging);
-
-      chan.setText(a);
-
-      battary.setimg(mcontext,level,batt,a);
+      battary.setimg(mcontext, level, batt, a);
     }
   };
+
+//  private class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
+//    @Override
+//    public boolean onDown(MotionEvent e) {
+//      return true;
+//    }
+//    @Override
+//    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
+//      if (Math.abs(e1.getX() - e2.getX()) > SWIPE_MAX_DISTANCE)
+//       return false;
+//      if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_MIN_VELOCITY) {
+//        MyService.overlayView.setVisibility(View.VISIBLE);
+//        MyService.overlayBackground.setVisibility(View.GONE);
+//        MyService.overlayBottom.setVisibility(View.GONE);
+//      }
+//      return false;
+//    }
+//  }
 }

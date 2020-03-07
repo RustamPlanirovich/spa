@@ -1,6 +1,7 @@
 package com.spa.spa;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 public class battary {
@@ -20,21 +21,12 @@ public class battary {
 //    Drawable z75 = mcontext.getDrawable(foren[2]);
 //    Drawable z100 = mcontext.getDrawable(foren[3]);
 
-    if (a == "true" ) {
+    if (a.equals("true")) {
+      batt.setVisibility(View.VISIBLE);
       batt.setImageResource(foren[4]);
     } else {
-      if (level <= 25) {
-        batt.setImageResource(foren[0]);
-      }
-      if (level >= 27 || level <= 50) {
-        batt.setImageResource(foren[1]);
-      }
-      if (level >= 51 || level <= 75) {
-        batt.setImageResource(foren[2]);
-      }
-      if (level >= 76 || level == 100) {
-        batt.setImageResource(foren[3]);
-      }
+      batt.setVisibility(View.GONE);
     }
   }
 }
+

@@ -23,14 +23,23 @@ public class BlackCurtainView {
       WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
       WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
       PixelFormat.TRANSLUCENT);
+  private WindowManager.LayoutParams backgroundParams1 = new WindowManager.LayoutParams(
+      WindowManager.LayoutParams.MATCH_PARENT,
+      WindowManager.LayoutParams.WRAP_CONTENT,
+      WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+      WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+      PixelFormat.TRANSLUCENT);
 
   private WindowManager windowManager;
   private RelativeLayout ll;
+  private RelativeLayout blkseek;
   private MyService myService;
+  private SeekBar black_curtrain_seekbar;
 
   /**
    * Класс создает экземпляры необходим служб и запускает отрисову слоя.
-   *  @param mcontext mcontext.
+   *
+   * @param mcontext mcontext.
    * @param blacint
    */
   public void onCurtain(Context mcontext, int blacint) {
@@ -43,40 +52,50 @@ public class BlackCurtainView {
     //Устанавливаем начальное значение альфа прозрачности
     this.ll.findViewById(R.id.ld).setAlpha((float) (blacint));
     backgroundParams.gravity = Gravity.CENTER;
+
+    this.blkseek = (RelativeLayout) ((LayoutInflater) mcontext.getSystemService(
+        Context.LAYOUT_INFLATER_SERVICE)).inflate(
+        R.layout.blk_seek, null, false);
+    backgroundParams1.gravity = Gravity.BOTTOM;
+
     //Отрисовывем слой
     windowManager.addView(this.ll, backgroundParams);
+    windowManager.addView(this.blkseek, backgroundParams1);
     myService = new MyService();
-  }
+    black_curtrain_seekbar = (SeekBar) blkseek.findViewById(R.id.black_curtrain_seekbar);
+
 
   /**
    * Слой управляет прозрачностью слоя через seekbar.
    *
-   * @param black_curtrain_seekbar
    */
-  public void onBrig3(SeekBar black_curtrain_seekbar) {
 
-    black_curtrain_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-      @Override
-      public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-        //Устанавливаем значение альфа считывая seekbar
-        ll.findViewById(R.id.ld).setAlpha((float) (value / 100.0));
-      }
 
-      @Override
-      public void onStartTrackingTouch(SeekBar seekBar) {
-      }
+    black_curtrain_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
 
-      @Override
-      public void onStopTrackingTouch(SeekBar seekBar) {
-      }
-    });
+  {
+    @Override
+    public void onProgressChanged (SeekBar seekBar,int value, boolean fromUser){
+    //Устанавливаем значение альфа считывая seekbar
+    ll.findViewById(R.id.ld).setAlpha((float) (value / 100.0));
   }
+
+    @Override
+    public void onStartTrackingTouch (SeekBar seekBar){
+  }
+
+    @Override
+    public void onStopTrackingTouch (SeekBar seekBar){
+  }
+  });
+}
 
   public void offCurtain() {
     //Проверка если слой существует тогда производим закрытие
     if (ll != null) {
       ll.findViewById(R.id.ld).setAlpha((float) (0.0));
       windowManager.removeView(this.ll);
+      windowManager.removeView(blkseek);
     }else {
       //Если слоя нет - ничего не происходит
     }

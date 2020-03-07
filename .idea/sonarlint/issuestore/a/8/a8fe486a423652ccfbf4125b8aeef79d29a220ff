@@ -1,6 +1,6 @@
 
-Ksquid:S1068"/Remove this unused "overlayView" private field.(ãä­òúÿÿÿÿ
-Isquid:S1481-"-Remove this unused "wifiInfo" local variable.(«¤¥¢þÿÿÿÿ
-bsquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(ÞÎÂÚ
-Xsquid:S1854-"<Remove this useless assignment to local variable "wifiInfo".(«¤¥¢þÿÿÿÿ
-bsquid:CommentedOutCodeLine/"<This block of commented-out lines of code should be removed.(©­ý–
+esquid:S1126+"BReplace this if-then-else statement by a single method invocation.(¬‰Æîþÿÿÿÿ8Ôéú‘ˆ.
+isquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(žÔì˜8Ôéú‘ˆ.
+Ksquid:S1068"/Remove this unused "overlayView" private field.(ãä­òúÿÿÿÿ
+bsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(©­ý–
+bsquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(ÞÎÂÚ

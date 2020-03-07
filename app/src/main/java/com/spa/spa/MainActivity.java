@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
   private Button additisetting;
 
 
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     dndState(notificationManager);
     mactivity = this;
     blackCurtainView = new BlackCurtainView();
-
 
 
 

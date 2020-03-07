@@ -16,19 +16,5 @@ public class Notes extends AppCompatActivity {
     getSupportActionBar().hide();
   }
 
-  /**
-   * active.
-   */
-  private static boolean active = false;
 
-  @Override
-  public void onStart() {
-    super.onStart();
-    active = true;
-  }
-  @Override
-  public void onStop() {
-    super.onStop();
-    active = false;
-  }
 }

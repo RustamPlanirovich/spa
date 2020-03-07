@@ -71,5 +71,61 @@
         <item name="android:textOff">ОТКЛ</item>
         <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
     </style>
+    <!-- Add notes Style -->
+    <style name="Widget.Button.Toggle11" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_add_notes</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- Add notes Style -->
+    <style name="Widget.Button.Toggle12" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer 5 -->
+    <style name="Widget.Button.Toggle13" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_5</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer 10 -->
+    <style name="Widget.Button.Toggle14" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_10</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer 15 -->
+    <style name="Widget.Button.Toggle15" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_15</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer 20 -->
+    <style name="Widget.Button.Toggle16" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_20</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer 25 -->
+    <style name="Widget.Button.Toggle17" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_25</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
+    <!-- timer user -->
+    <style name="Widget.Button.Toggle18" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_timer_user</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
 
 </resources>

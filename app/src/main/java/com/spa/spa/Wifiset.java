@@ -17,16 +17,18 @@ public class Wifiset extends Activity {
    * Отрабатываем включение Wifi - - параметром получаем экземпляр WifiManager.
    * @param wifiManager
    */
-  public void wifienable(final WifiManager wifiManager) {
-    wifiManager.setWifiEnabled(true);
+  public void wifienable(WifiManager wifiManager) {
+      wifiManager.setWifiEnabled(true);
   }
 
   /**
    * Отрабатываем выключение Wifi - - параметром получаем экземпляр WifiManager.
    * @param wifiManager
    */
-  public void wifidisable(final WifiManager wifiManager) {
-    wifiManager.setWifiEnabled(false);
+  public void wifidisable(WifiManager wifiManager) {
+      wifiManager.setWifiEnabled(false);
+
+
   }
 
   /**

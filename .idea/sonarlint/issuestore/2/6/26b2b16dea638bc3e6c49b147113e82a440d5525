@@ -1,53 +1,121 @@
 
-ssquid:S1450–"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8Œ½İª„.
-usquid:S1450"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8Œ½İª„.
-squid:S1450"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8Œ½İª„.
-]"squid:SwitchLastCaseIsDefaultCheckô""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
-fsquid:S1126ï"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8Œ½İª„.
-vsquid:S1450»"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷İ»ã8Ä÷Â°„.
-qsquid:S3776¾"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(à€¥8Œ½İª„.
-‚squid:S1450:"_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†şüÿÿÿÿ8Œ½İª„.
-Qsquid:S1135˜"2Complete the task associated to this TODO comment.(©§ğú8Œ½İª„.
-]"squid:SwitchLastCaseIsDefaultCheckÊ""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8Œ½İª„.
-Gsquid:S1148“"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Œ½İª„.
-Zsquid:S2696£"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8Ä÷Â°„.
-osquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(Ô í«ÿÿÿÿÿ8Œ½İª„.
-{squid:S1450½"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8Ä÷Â°„.
-Gsquid:S1148†"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Œ½İª„.
-Isquid:S1481¦"*Remove this unused "value" local variable.(‘ØºÕ8Œ½İª„.
-jsquid:CommentedOutCodeLineµ"<This block of commented-out lines of code should be removed.(í“ñì8Œ½İª„.
-osquid:CommentedOutCodeLineş"<This block of commented-out lines of code should be removed.(½ºåıÿÿÿÿ8Œ½İª„.
-Psquid:S1068½"1Remove this unused "initialTouchY" private field.(¶ü¥™8Ä÷Â°„.
-Ksquid:S1068»",Remove this unused "initialY" private field.(÷İ»ã8Ä÷Â°„.
-Qsquid:S1481”"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8Œ½İª„.
-Usquid:S2696¯"6Make the enclosing method "static" or remove this set.(£ÇİÛ8Ä÷Â°„.
-jsquid:CommentedOutCodeLine²"<This block of commented-out lines of code should be removed.(Œï¡8Œ½İª„.
-Qsquid:S1068¹"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8Ä÷Â°„.
-‚squid:S1845¶"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 102.(º£üÏÿÿÿÿÿ8Œ½İª„.
-wsquid:S1450š"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8Œ½İª„.
-vsquid:S1450~"SRemove the "book" field and declare it as a local variable in the relevant methods.(Şé²Ûùÿÿÿÿ8Œ½İª„.
-qsquid:S00117è"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8Ä÷Â°„.
-xsquid:S1450Š"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊşÿúÿÿÿÿ8Œ½İª„.
-Isquid:S1481›"*Remove this unused "value" local variable.(‘ØºÕ8Œ½İª„.
-Usquid:S2696í"6Make the enclosing method "static" or remove this set.(šëÃ˜8Œ½İª„.
-ssquid:S1450¦"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8Œ½İª„.
-osquid:S1301Ê"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Ä÷Â°„.
-zsquid:S3923Ç"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8Œ½İª„.
-ssquid:S1450†"TRemove the "plans" field and declare it as a local variable in the relevant methods.(Ã©ò8Œ½İª„.
-~squid:S1450Â"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8Œ½İª„.
-vsquid:S3776†"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘şÿÿÿÿ8Ä÷Â°„.
-Qsquid:S1199ø"-Extract this nested code block into a method.(ù°û“ıÿÿÿÿ8Ä÷Â°„.
-osquid:S1301ô"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8Œ½İª„.
-Gsquid:S1068Á"(Remove this unused "rect" private field.(æ¶Œ»8Ä÷Â°„.
-wsquid:S1450‚"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëĞÿÿÿÿÿ8Œ½İª„.
-]"squid:SwitchLastCaseIsDefaultCheck¿""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Œ½İª„.
-Isquid:S00108¾")Either remove or fill this block of code.(å¥‡8Œ½İª„.
-jsquid:CommentedOutCodeLineß"<This block of commented-out lines of code should be removed.(Æ—™÷8Ä÷Â°„.
-ysquid:S14506"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8Œ½İª„.
-rsquid:S1450z"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8Œ½İª„.
-Zsquid:S2696’"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8Ä÷Â°„.
-wsquid:S1450’"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8Œ½İª„.
-ssquid:S1450¢"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8Œ½İª„.
-vsquid:S00117ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8Ä÷Â°„.
-squid:S00116Ò"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8Œ½İª„.
-Usquid:S2696˜"6Make the enclosing method "static" or remove this set.(¹‡‘›8Ä÷Â°„.
+X
+java:S2209†"5Change this instance-reference to a static reference.(ûŞ˜øşÿÿÿÿ8Õ¦ş‰‹.
+n	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8ŞïõÖˆ.
+^	java:S125†"<This block of commented-out lines of code should be removed.(Ô í«ÿÿÿÿÿ8ŞïõÖˆ.
+v
+java:S1450Ÿ"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8ºÑ£ˆŠ.
+K	java:S108·")Either remove or fill this block of code.(»éòÿıÿÿÿÿ8Õ¦ş‰‹.
+P
+java:S1068‰"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8«¨‡Š.
+n	java:S128¥"LEnd this switch case with an unconditional break, return or throw statement.(ÒŸşÿÿÿÿÿ8Õ¦ş‰‹.
+^	java:S125ƒ"<This block of commented-out lines of code should be removed.(Ş•áúÿÿÿÿ8«¨‡Š.
+}
+java:S1450Ç"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8ºÑ£ˆŠ.
+Y	java:S125…	"<This block of commented-out lines of code should be removed.(âŠÊ8ãñûˆ‹.
+^	java:S125…"<This block of commented-out lines of code should be removed.(•Å‡µùÿÿÿÿ8¸ÒÖˆ.
+r
+java:S1450‹"TRemove the "plans" field and declare it as a local variable in the relevant methods.(Ã©ò8ºÑ£ˆŠ.
+s	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8ı£¢Öˆ.
+T
+java:S2696Õ"6Make the enclosing method "static" or remove this set.(¹‡‘›8«¨‡Š.
+P
+java:S1135"2Complete the task associated to this TODO comment.(©§ğú8¸ÒÖˆ.
+e
+java:S1126Ü"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8ãñûˆ‹.
+P
+java:S1068_"3Remove this unused "overlaySwipFone" private field.(ø“å8¸ÒÖˆ.
+w
+java:S1450"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊşÿúÿÿÿÿ8ºÑ£ˆŠ.
+T
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(šëÃ˜8ŞïõÖˆ.
+u
+java:S1450‹"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷İ»ã8«¨‡Š.
+r
+java:S1450«"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8ºÑ£ˆŠ.
+
+java:S1450="_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†şüÿÿÿÿ8«¨‡Š.
+v
+java:S1450—"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8ºÑ£ˆŠ.
+R
+java:S1068>"5Remove this unused "backgroundParams1" private field.(”«ëÒ8¸ÒÖˆ.
+x
+java:S14509"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8«¨‡Š.
+J
+java:S1068‹",Remove this unused "initialY" private field.(÷İ»ã8«¨‡Š.
+Y	java:S125ƒ	"<This block of commented-out lines of code should be removed.(œú‰8ãñûˆ‹.
+Y
+java:S2696â"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8«¨‡Š.
+Y	java:S125‹"<This block of commented-out lines of code should be removed.(§«Ï‹8¸ÒÖˆ.
+r
+java:S1450›"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8ºÑ£ˆŠ.
+s	java:S116€"VRename this field "uset_minuts" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìôè—8×®å‰.
+^	java:S125ú"<This block of commented-out lines of code should be removed.(Ÿ‡Ğ¡úÿÿÿÿ8ºÑ£ˆŠ.
+Y	java:S125€"<This block of commented-out lines of code should be removed.(Œæ«Ò8«¨‡Š.
+O
+java:S1068"1Remove this unused "initialTouchY" private field.(¶ü¥™8«¨‡Š.
+€
+java:S1450“"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8ºÑ£ˆŠ.
+~	java:S116×"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8ı£¢Öˆ.
+F
+java:S1068‘"(Remove this unused "rect" private field.(æ¶Œ»8«¨‡Š.
+v
+java:S1450ƒ"SRemove the "book" field and declare it as a local variable in the relevant methods.(Şé²Ûùÿÿÿÿ8ºÑ£ˆŠ.
+D	java:S131•""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Õ¦ş‰‹.
+S
+java:S2209„"5Change this instance-reference to a static reference.(ÔßÏÌ8Õ¦ş‰‹.
+K	java:S108»")Either remove or fill this block of code.(­œøÙùÿÿÿÿ8Õ¦ş‰‹.
+y
+java:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8Õ¦ş‰‹.
+P
+java:S1481ä"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8«¨‡Š.
+H
+java:S1481ü"*Remove this unused "value" local variable.(‘ØºÕ8ŞïõÖˆ.
+p
+java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 76 to the 15 allowed.(à€¥8Õ¦ş‰‹.
+
+java:S1845»"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 107.(º£üÏÿÿÿÿÿ8ı£¢Öˆ.
+n
+java:S1301Ä"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8«¨‡Š.
+u
+java:S3776Ã"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘şÿÿÿÿ8«¨‡Š.
+D	java:S131 ""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8«¨‡Š.
+Y	java:S125ö"<This block of commented-out lines of code should be removed.(ƒŞò¥8ºÑ£ˆŠ.
+z
+java:S1450"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8«¨‡Š.
+D	java:S131Ä""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8«¨‡Š.
+x
+java:S1450€"ZRemove the "uset_minuts" field and declare it as a local variable in the relevant methods.(Ìôè—8ºÑ£ˆŠ.
+Y
+java:S2696¯"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8×¤‡Š.
+t
+java:S1450£"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8ºÑ£ˆŠ.
+v
+java:S1450‡"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëĞÿÿÿÿÿ8ºÑ£ˆŠ.
+T
+java:S2696î"6Make the enclosing method "static" or remove this set.(£ÇİÛ8«¨‡Š.
+F
+java:S1148é"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Õ¦ş‰‹.
+F	java:S108")Either remove or fill this block of code.(å¥‡8«¨‡Š.
+K	java:S108µ")Either remove or fill this block of code.(·ÉÎ†úÿÿÿÿ8Õ¦ş‰‹.
+r
+java:S1450§"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8ºÑ£ˆŠ.
+P
+java:S1199È"-Extract this nested code block into a method.(ù°û“ıÿÿÿÿ8«¨‡Š.
+q
+java:S1450"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8ºÑ£ˆŠ.
+Y	java:S125ø"<This block of commented-out lines of code should be removed.(ã¿œ·8ºÑ£ˆŠ.
+^	java:S125‰	"<This block of commented-out lines of code should be removed.(ƒ—šÆûÿÿÿÿ8ãñûˆ‹.
+p	java:S116ú"SRename this field "blk_seek" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ñ’Œ8×®å‰.
+K	java:S108¹")Either remove or fill this block of code.( Üö¥ùÿÿÿÿ8Õ¦ş‰‹.
+n
+java:S1301 "KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8«¨‡Š.
+H
+java:S1481ñ"*Remove this unused "value" local variable.(‘ØºÕ8ŞïõÖˆ.
+Y	java:S125‹"<This block of commented-out lines of code should be removed.(í“ñì8ŞïõÖˆ.
+X	java:S125ü"<This block of commented-out lines of code should be removed.(¿°³N8«¨‡Š.
+^	java:S125ë"<This block of commented-out lines of code should be removed.(½ºåıÿÿÿÿ8ãñûˆ‹.
+Y	java:S125ˆ"<This block of commented-out lines of code should be removed.(Œï¡8ŞïõÖˆ.
+F
+java:S1148Ü"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Õ¦ş‰‹.
+Y	java:S125¯"<This block of commented-out lines of code should be removed.(Æ—™÷8«¨‡Š.

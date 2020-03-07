@@ -331,22 +331,12 @@ Y
 )app/src/main/res/layout/activity_book.xml,9/c/9c319ed3d9fc00ac9b270795f2194e59fe850644
 Y
 )app/src/main/res/layout/activity_date.xml,0/2/02e2bdada521b168e7cf80894c0ceb5d9759f24b
-Y
-)app/src/main/res/layout/activity_main.xml,7/6/76b07e40f24cce093536731477540f12e7da3cb6
-Y
-)app/src/main/res/layout/floating_view.xml,9/5/953f054e7095158e7a5706598d92c3c91cbcd7ac
 Z
 *app/src/main/res/layout/activity_costs.xml,0/b/0b176bc7f456f0ec242e95912ce904487c09c5b3
 Z
 *app/src/main/res/layout/activity_links.xml,5/2/52c7d6ac4abe170fdfc34317acf76e3fc881617e
 Z
-*app/src/main/res/layout/activity_notes.xml,8/c/8c57265a350894f079602ac0815b48a11371bce0
-Z
 *app/src/main/res/layout/activity_plans.xml,d/c/dc3ef9b7113b4412a6676287d65795a2f693f99c
-Z
-*app/src/main/res/layout/floating_view2.xml,b/1/b139541ddadf72045e95c57dda6b88809a938fe2
-Z
-*app/src/main/res/layout/floating_view3.xml,f/0/f0ab0fae841618ff86dd1945662f813e8078c3e4
 [
 +app/src/main/res/layout/activity_income.xml,f/4/f4454424d9ece1c2973f49f7b125e0423e650523
 \
@@ -363,8 +353,6 @@ Q
 !app/src/main/res/values/dimen.xml,0/e/0eb47b9fe42323c2f5c068c3140ad82892755766
 R
 "app/src/main/res/values/colors.xml,9/6/969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
-R
-"app/src/main/res/values/styles.xml,f/7/f79cc2688e29fcbc286fda14ae07b27c9e83690f
 S
 #app/src/main/res/values/strings.xml,d/2/d2281fbb3027de2722081a53408dd77628bf080e
 S
@@ -552,8 +540,6 @@ L
 .idea/dictionaries/nauka.xml,b/0/b031ebfc2aae9a27390a51a4e7e21df463e17f62
 c
 3app/src/main/java/com/spa/spa/BlackCurtainView.java,2/4/246c8136b20c2b427a1fc8e2259ceddfcf4a0078
-Y
-)app/src/main/res/layout/black_curtain.xml,6/8/6842c49ee788a340a5f5f526df4a9e400d5490bd
 _
 /app/src/main/res/drawable/ic_off_black_24dp.xml,0/3/036de9e4d5024ea084fb0218e608ea7dc25846ea
 ^
@@ -574,3 +560,11 @@ Y
 .app/src/main/java/com/spa/spa/timeanddate.java,c/9/c9704f41d0090d9f614a8884121e10f330d0133a
 Z
 *app/src/main/java/com/spa/spa/battary.java,1/a/1ad4b6b9fd6d464429802808a437cf6b8752b76f
+g
+7app/src/main/java/com/spa/spa/MyPhoneStateListener.java,a/5/a501947f1d9ff958d2178335798e7d78af388948
+^
+.app/src/main/java/com/spa/spa/networktype.java,0/2/02be4eab12bb4b723a68e4705ccd408452c56337
+\
+,app/src/main/java/com/spa/spa/AutoStart.java,4/6/46f271bba8ae9de123b3c914b0bc60a1f3f39b92
+Y
+)app/src/main/java/com/spa/spa/timers.java,7/7/77848949bd66fc8881ab3f09f07828e9c3780286
