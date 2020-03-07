@@ -959,6 +959,7 @@ public class MyService extends Service implements View.OnClickListener {
           blackMode.setEnabled(true);
         }
 
+
         f5minuts.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {

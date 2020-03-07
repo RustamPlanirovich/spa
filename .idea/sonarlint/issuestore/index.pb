@@ -341,8 +341,6 @@ Z
 +app/src/main/res/layout/activity_income.xml,f/4/f4454424d9ece1c2973f49f7b125e0423e650523
 \
 ,app/src/main/res/layout/activity_shedule.xml,1/f/1f1fb11e91ed8ed7e54571b9248df7538f3da2e3
-]
--app/src/main/res/layout/activity_settings.xml,8/6/863a9a048ab5cf80439b30a73a719f47f13c462e
 ^
 .app/src/main/res/layout/activity_todo_list.xml,8/6/86795abf6f51904ca053dfcf723215e6095fc50f
 d

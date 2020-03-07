@@ -7,6 +7,8 @@ import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -25,6 +27,7 @@ public class timers {
   private Thread thread25;
   private int pausedMillis;
   private static final String TAG = "MyApp";
+  private Animation animation;
 
   public void onStartTimer_5() {
     timer.start();
@@ -267,10 +270,13 @@ public class timers {
     if (tick) {
       timer.cancel();
       Log.i(TAG, String.valueOf(pausedMillis));
+      animation = AnimationUtils.loadAnimation(mcontext, R.anim.blink);
+      textTimer.startAnimation(animation);
       textTimer.setTextColor(Color.RED);
       textTimer.setTypeface(textTimer.getTypeface(), Typeface.BOLD);
       textTimer.setTextSize(40);
     } else {
+      textTimer.clearAnimation();
       textTimer.setTextColor(Color.WHITE);
       textTimer.setTypeface(Typeface.DEFAULT);
       textTimer.setTextSize(36);
