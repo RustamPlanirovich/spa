@@ -69,4 +69,17 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/appSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="8sp" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

@@ -1,6 +1,8 @@
 
-esquid:S1126+"BReplace this if-then-else statement by a single method invocation.(¬‰Æîþÿÿÿÿ8Ôéú‘ˆ.
-isquid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(žÔì˜8Ôéú‘ˆ.
-Ksquid:S1068"/Remove this unused "overlayView" private field.(ãä­òúÿÿÿÿ
-bsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(©­ý–
-bsquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(ÞÎÂÚ
+d
+java:S1126+"BReplace this if-then-else statement by a single method invocation.(¬‰Æîþÿÿÿÿ8ÃÆñ¦‹.
+Q
+java:S1068"/Remove this unused "overlayView" private field.(ãä­òúÿÿÿÿ8ÃÆñ¦‹.
+X	java:S125."<This block of commented-out lines of code should be removed.(žÔì˜8ÃÆñ¦‹.
+X	java:S1250"<This block of commented-out lines of code should be removed.(©­ý–8ÃÆñ¦‹.
+X	java:S1255"<This block of commented-out lines of code should be removed.(ÞÎÂÚ8ÃÆñ¦‹.

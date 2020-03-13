@@ -38,4 +38,6 @@ dependencies {
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'jp.wasabeef:blurry:3.0.0'
     implementation 'com.fivehundredpx:blurringview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
