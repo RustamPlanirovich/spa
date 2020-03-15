@@ -1,49 +1,27 @@
 
-o
-java:S3776@"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÉüÊ·8¡€Íã‹.
-p
-java:S3776ö"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(½¬óª8§—ñƒŒ.
-G
-java:S3398ö")Move this method into "LoadApplications".(½¬óª8²é¹Œ.
 n
-java:S1301Ä"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8©»û»ˆ.
-p
-java:S14506"SRemove the "load" field and declare it as a local variable in the relevant methods.(¨®Ø8â½¯«Œ.
-F
-java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ô«Úâ‹.
-`
-java:S1155Y">Use isEmpty() to check whether the collection is empty or not.(³Ç„Ûûÿÿÿÿ8¡€Íã‹.
-x
-java:S1450<"VRemove the "appList" field and declare it as a local variable in the relevant methods.(Ó¯òõşÿÿÿÿ8÷š¦«Œ.
-y
-java:S1450/"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8©»û»ˆ.
+java:S1301½"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8±›ª.
+E
+java:S1148m"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8±›ª.
 v
-java:S2293X"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î§–é8¡€Íã‹.
-M
-java:S1481ş"*Remove this unused "part1" local variable.(¶Øš½ûÿÿÿÿ8ú†®«Œ.
-y
-java:S14500"\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8©»û»ˆ.
-w
-java:S14504"URemove the "appsav" field and declare it as a local variable in the relevant methods.(‡ã‰‹úÿÿÿÿ8Ÿ½ÕÙ‹.
-K
-java:S1199Å"-Extract this nested code block into a method.(Èï²¼8©»û»ˆ.
-v
-java:S2293V"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ìô—8¡€Íã‹.
-d
-java:S1126c"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ú£Àã‹.
-F
-java:S1148Š"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8â½¯«Œ.
+java:S1450("YRemove the "appManager" field and declare it as a local variable in the relevant methods.(şœƒø8”­Ÿª.
 ‡
-java:S1845<"eRename field "appList" to prevent any misunderstanding/clash with field "applist" defined on line 57.(Ó¯òõşÿÿÿÿ8æŸâªŒ.
-X
-java:S10683"6Remove this unused "appPreferencesName" private field.(í­¼Áùÿÿÿÿ8ú£Àã‹.
-d
-java:S2142€"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ú£Àã‹.
-a
-java:S1155ú">Use isEmpty() to check whether the collection is empty or not.(³Ç„Ûûÿÿÿÿ8ú¨×ƒŒ.
+java:S41654"eRemove this useless assignment; "context" already holds the assigned value along all execution paths.(ÕÜ–ıÿÿÿÿ8‚úİ¬.
+}
+java:S1450)"[Remove the "recyclerView" field and declare it as a local variable in the relevant methods.(¿á© ıÿÿÿÿ8 ù×¬.
 c
-java:S2147ñ"ECombine this catch with the one at line 239, which has the same body.(”ı¾8 »ÁŒ.
-R
-java:S1066’"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8ô«Úâ‹.
-p
-java:S1450;"SRemove the "file" field and declare it as a local variable in the relevant methods.(ïÛú8÷š¦«Œ.
+java:S2142l"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8±›ª.
+y
+java:S1450%"\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8¸æ˜ª.
+Q
+java:S1066~"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8±›ª.
+z
+java:S1450+"]Remove the "packageManager" field and declare it as a local variable in the relevant methods.(†¢õ„8ÃÏ¢¯.
+y
+java:S1450$"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8¸æ˜ª.
+d
+java:S1126O"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8±›ª.
+K
+java:S1199¾"-Extract this nested code block into a method.(Èï²¼8±›ª.
+O
+java:S1068+"2Remove this unused "packageManager" private field.(†¢õ„8ÃÏ¢¯.

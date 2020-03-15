@@ -127,5 +127,12 @@
         <item name="android:textOff">ОТКЛ</item>
         <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
     </style>
+    <!-- Select app -->
+    <style name="Widget.Button.Toggle19" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/btn_select_app</item>
+        <item name="android:textOn">ВКЛ</item>
+        <item name="android:textOff">ОТКЛ</item>
+        <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+    </style>
 
 </resources>

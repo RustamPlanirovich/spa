@@ -69,17 +69,12 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/appSave"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/apps_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="8sp" />
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:foregroundTintMode="multiply" />
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>
