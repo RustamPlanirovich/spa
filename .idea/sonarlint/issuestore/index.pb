@@ -352,8 +352,6 @@ Q
 R
 "app/src/main/res/values/colors.xml,9/6/969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
 S
-#app/src/main/res/values/strings.xml,d/2/d2281fbb3027de2722081a53408dd77628bf080e
-S
 #app/src/main/res/drawable/thumb.xml,1/8/186a7d620530e8deb0a5cf6398922f9725bf6b43
 W
 'app/src/main/res/drawable/btn_flash.xml,6/4/64be68dcb1a13391134bfeeccbad25918e3aadb9
@@ -385,8 +383,6 @@ Y
 ,app/src/main/res/drawable-v24/btn_toggle.xml,e/1/e1a9eb29e1560a02d502981adf51e3fff73bc619
 ^
 .app/src/main/res/drawable-v24/checked_brig.xml,3/c/3cdc099e56723b8697e89884dec5d2cbab6343b3
-`
-0app/src/main/res/drawable-v24/backgroud_main.xml,5/5/557d0208a0814cec28f7f9187e3ad991ea39755e
 `
 0app/src/main/res/drawable-v24/btn_toggle_air.xml,0/0/002422f190285da95adf6296d7a39e75a9551972
 a
@@ -590,8 +586,6 @@ U
 %app/src/main/res/layout/swip_fone.xml,f/4/f4e305ec26ef2fd10e169af821effb6c844eac7c
 O
 app/src/main/res/anim/blink.xml,f/2/f28388e69eec121fc32f8cb78e874ac3b41dd6fb
-]
--app/src/main/res/layout/activity_settings.xml,8/6/863a9a048ab5cf80439b30a73a719f47f13c462e
 Z
 *app/src/main/java/com/spa/spa/AppInfo.java,5/9/59b26a9617c1ce2783973f05a7a41bb80b130a2a
 ]
@@ -600,3 +594,19 @@ Z
 .app/src/main/java/com/spa/spa/AppsAdapter.java,2/e/2e0fc1dbec507e6c3a79d4c516d7b7fcf40d47d3
 l
 <app/src/main/java/com/spa/spa/RecyclerItemClickListener.java,5/8/5833c169f6912847d8fa1b6c738db2fb2134f189
+\
+,app/src/main/res/drawable/btn_select_app.xml,6/f/6f91896d0abc515910e4bb9bc6eff8ed1be0c568
+T
+$app/src/main/res/drawable/ic_add.xml,6/9/699c3d6616ccc6ddf6bb7357bbf7c0f43d8ba9b8
+W
+'app/src/main/res/drawable/ic_remove.xml,2/7/270c622f93b07d0c97d39d4d112b4e8b8148e284
+N
+app/src/main/res/menu/main.xml,2/2/22209de88391c01e1ce3911e9b7305487116d1a1
+W
+'app/src/main/java/com/spa/spa/Apps.java,6/a/6ad3f0501952d87c3087fa9a38a6adb5fec13709
+X
+(app/src/main/java/com/spa/spa/About.java,8/7/87b09e5f08cb61680e168f904d69a5319325084b
+d
+4app/src/main/java/com/spa/spa/AppsAdapterShared.java,f/6/f667041d339535ffe765d7c6a0922f91e43f5f85
+c
+3app/src/main/java/com/spa/spa/AppManagerShared.java,d/e/dec2d471680f88b390740f2ce189a16686fa8f01

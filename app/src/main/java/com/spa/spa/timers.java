@@ -308,10 +308,13 @@ public class timers {
     if (tick) {
       timer10.cancel();
       Log.i(TAG, String.valueOf(pausedMillis));
+      animation = AnimationUtils.loadAnimation(mcontext, R.anim.blink);
+      textTimer.startAnimation(animation);
       textTimer.setTextColor(Color.RED);
       textTimer.setTypeface(textTimer.getTypeface(), Typeface.BOLD);
       textTimer.setTextSize(40);
     } else {
+      textTimer.clearAnimation();
       textTimer.setTextColor(Color.WHITE);
       textTimer.setTypeface(Typeface.DEFAULT);
       textTimer.setTextSize(36);
@@ -343,10 +346,13 @@ public class timers {
     if (tick) {
       timer15.cancel();
       Log.i(TAG, String.valueOf(pausedMillis));
+      animation = AnimationUtils.loadAnimation(mcontext, R.anim.blink);
+      textTimer.startAnimation(animation);
       textTimer.setTextColor(Color.RED);
       textTimer.setTypeface(textTimer.getTypeface(), Typeface.BOLD);
       textTimer.setTextSize(40);
     } else {
+      textTimer.clearAnimation();
       textTimer.setTextColor(Color.WHITE);
       textTimer.setTypeface(Typeface.DEFAULT);
       textTimer.setTextSize(36);
@@ -378,10 +384,13 @@ public class timers {
     if (tick) {
       timer20.cancel();
       Log.i(TAG, String.valueOf(pausedMillis));
+      animation = AnimationUtils.loadAnimation(mcontext, R.anim.blink);
+      textTimer.startAnimation(animation);
       textTimer.setTextColor(Color.RED);
       textTimer.setTypeface(textTimer.getTypeface(), Typeface.BOLD);
       textTimer.setTextSize(40);
     } else {
+      textTimer.clearAnimation();
       textTimer.setTextColor(Color.WHITE);
       textTimer.setTypeface(Typeface.DEFAULT);
       textTimer.setTextSize(36);
@@ -413,10 +422,13 @@ public class timers {
     if (tick) {
       timer25.cancel();
       Log.i(TAG, String.valueOf(pausedMillis));
+      animation = AnimationUtils.loadAnimation(mcontext, R.anim.blink);
+      textTimer.startAnimation(animation);
       textTimer.setTextColor(Color.RED);
       textTimer.setTypeface(textTimer.getTypeface(), Typeface.BOLD);
       textTimer.setTextSize(40);
     } else {
+      textTimer.clearAnimation();
       textTimer.setTextColor(Color.WHITE);
       textTimer.setTypeface(Typeface.DEFAULT);
       textTimer.setTextSize(36);

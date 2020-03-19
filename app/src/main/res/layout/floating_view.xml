@@ -7,8 +7,11 @@
     android:layout_margin="@dimen/size1dp"
     android:animateLayoutChanges="true"
     android:background="@drawable/backgroud_main"
+    android:gravity="center"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="visible"
+    app:layout_anchorGravity="center"
+    app:layout_gravity="center">
 
     <ImageButton
         android:id="@+id/imgScrollMain"
@@ -406,7 +409,7 @@
             android:background="@drawable/btn_timer_10"
             android:text="ToggleButton"
             android:textOff=" "
-            android:textOn=" "/>
+            android:textOn=" " />
 
         <ToggleButton
             android:id="@+id/f15minut"
@@ -416,7 +419,7 @@
             android:background="@drawable/btn_timer_15"
             android:text="ToggleButton"
             android:textOff=" "
-            android:textOn=" "/>
+            android:textOn=" " />
 
         <ToggleButton
             android:id="@+id/f20minut"
@@ -426,7 +429,7 @@
             android:background="@drawable/btn_timer_20"
             android:text="ToggleButton"
             android:textOff=" "
-            android:textOn=" "/>
+            android:textOn=" " />
 
         <ToggleButton
             android:id="@+id/f25minut"
@@ -436,7 +439,7 @@
             android:background="@drawable/btn_timer_25"
             android:text="ToggleButton"
             android:textOff=" "
-            android:textOn=" "/>
+            android:textOn=" " />
 
         <ToggleButton
             android:id="@+id/usetMinut"
@@ -788,6 +791,13 @@
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/apps_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foregroundGravity="center" />
 
 
 </LinearLayout>

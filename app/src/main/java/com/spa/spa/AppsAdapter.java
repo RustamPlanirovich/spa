@@ -1,12 +1,16 @@
 package com.spa.spa;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -24,7 +28,7 @@ import java.util.Set;
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
 
   private List<AppInfo> apps = new ArrayList<>();
-  private Context mContext;
+  private Context context;
 
   private SharedPreferences sp;
   public static final String APP_PREFERENCES = "mysettings";
@@ -33,6 +37,13 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
   private File file;
   private ArrayList arr1;
   private ArrayList sample;
+  private AppsAdapterShared appsAdapter;
+  int maxCount;
+  AlertDialog alertDialog;
+  View view;
+  ViewHolder viewHolder;
+  LinearLayout view1;
+  Button button;
 
   public void setApps(List<AppInfo> apps) {
     this.apps = apps;
@@ -41,14 +52,16 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
   // В этом методе мы создаем новую ячейку
   @Override
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    Context context = parent.getContext();
-    mContext = context;
-    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    context = parent.getContext();
 
-    View view = layoutInflater.from(parent.getContext()).inflate(R.layout.view_item_app, parent, false);
-    ViewHolder viewHolder = new ViewHolder(view);
+    LayoutInflater layoutInflater = LayoutInflater.from(context);
+    appsAdapter = new AppsAdapterShared();
+
+    view = layoutInflater.from(parent.getContext()).inflate(R.layout.view_item_app, parent, false);
+    viewHolder = new ViewHolder(view);
 
     arr1 = new ArrayList<>();
+    alertDialog = new AlertDialog.Builder(context).create();
     file = new File(APP_PREFERENCES1);
     sp = context.getSharedPreferences(APP_PREFERENCES,
         Context.MODE_PRIVATE);
@@ -79,8 +92,10 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
         String string = (String) sample.get(a);
         String[] parts = string.split("-");
         String part1 = parts[0];
-        if (part1.contains(appInfo.getName())) {
+        if (part1.equals(appInfo.getName())) {
           holder.potg.setChecked(true);
+          maxCount++;
+          Log.d("Array Value", "MAX" + maxCount);
         }
       }
     }
@@ -92,7 +107,34 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
         boolean isChecked = holder.potg.isChecked();
         if (isChecked) {
           arr1.add(appInfo.getName() + "-" + appInfo.getPackageName());
-          addApps();
+          if (maxCount < 6) {
+            addApps();
+            appsAdapter.notifyDataSetChanged();
+            maxCount++;
+          } else {
+            // Указываем Title
+            //alertDialog.setTitle("Внимание");
+            // создаем view из dialog.xml
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view1 = (LinearLayout) inflater
+                .inflate(R.layout.dialog, null);
+            // устанавливаем ее, как содержимое тела диалога
+            alertDialog.setView(view1);
+            // Указываем текст сообщение
+            //alertDialog.setMessage("Нельзя добавить более 6 приложений");
+            // задаем иконку
+            //alertDialog.setIcon(R.drawable.add);
+            // Обработчик на нажатие OK
+            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int which) {
+                // Код который выполнится после закрытия окна
+                alertDialog.dismiss();
+                holder.potg.setChecked(false);
+              }
+            });
+            // показываем Alert
+            alertDialog.show();
+          }
         } else {
           String appdel = (String) appInfo.getName() + "-" + appInfo.getPackageName();
           int a = sample.indexOf(appdel);
@@ -102,6 +144,8 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
           editor.putString("Apps", String.valueOf(set));
           editor.commit();
           addApps();
+          appsAdapter.notifyDataSetChanged();
+          maxCount--;
         }
       }
     });

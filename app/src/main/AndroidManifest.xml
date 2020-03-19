@@ -54,6 +54,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="ExtraText,GoogleAppIndexingWarning">
+        <activity android:name=".About"></activity>
+        <activity android:name=".Apps" />
 
         <receiver
             android:name=".AutoStart"

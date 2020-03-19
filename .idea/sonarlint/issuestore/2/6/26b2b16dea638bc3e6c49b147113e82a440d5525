@@ -1,101 +1,103 @@
 
-€
-java:S1450“"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8Ğú­‹.
-w
-java:S1450"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊşÿúÿÿÿÿ8Ğú­‹.
-x
-java:S1450€"ZRemove the "uset_minuts" field and declare it as a local variable in the relevant methods.(Ìôè—8Ğú­‹.
-O
-java:S1068"1Remove this unused "initialTouchY" private field.(¶ü¥™8«¨‡Š.
-n	java:S128 "LEnd this switch case with an unconditional break, return or throw statement.(ÒŸşÿÿÿÿÿ8á‘‘±‹.
-u
-java:S1450‹"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷İ»ã8«¨‡Š.
-S
-java:S2209ÿ"5Change this instance-reference to a static reference.(ÔßÏÌ8á‘‘±‹.
-r
-java:S1450›"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8Ğú­‹.
-H
-java:S1481÷"*Remove this unused "value" local variable.(‘ØºÕ8ŞïõÖˆ.
-F
-java:S1068‘"(Remove this unused "rect" private field.(æ¶Œ»8«¨‡Š.
-v
-java:S1450ƒ"SRemove the "book" field and declare it as a local variable in the relevant methods.(Şé²Ûùÿÿÿÿ8Ğú­‹.
-Y
-java:S2696â"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8«¨‡Š.
-t
-java:S1450£"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8Ğú­‹.
-r
-java:S1450§"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8Ğú­‹.
-T
-java:S2696Õ"6Make the enclosing method "static" or remove this set.(¹‡‘›8«¨‡Š.
-s	java:S117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8ı£¢Öˆ.
-r
-java:S1450‹"TRemove the "plans" field and declare it as a local variable in the relevant methods.(Ã©ò8Ğú­‹.
-T
-java:S2696î"6Make the enclosing method "static" or remove this set.(£ÇİÛ8«¨‡Š.
-y
-java:S3923˜"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8á‘‘±‹.
-s	java:S116€"VRename this field "uset_minuts" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìôè—8×®å‰.
-
-java:S1450="_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†şüÿÿÿÿ8«¨‡Š.
-X
-java:S2209"5Change this instance-reference to a static reference.(ûŞ˜øşÿÿÿÿ8á‘‘±‹.
 P
-java:S1068_"3Remove this unused "overlaySwipFone" private field.(ø“å8¸ÒÖˆ.
-D	java:S131""Add a default case to this switch.(×“¾ñùÿÿÿÿ8á‘‘±‹.
-r
-java:S1450«"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8Ğú­‹.
-P
-java:S1068‰"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8«¨‡Š.
-R
-java:S1068>"5Remove this unused "backgroundParams1" private field.(”«ëÒ8¸ÒÖˆ.
-T
-java:S2696¾"6Make the enclosing method "static" or remove this set.(šëÃ˜8ŞïõÖˆ.
-n	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8ŞïõÖˆ.
-p	java:S116ú"SRename this field "blk_seek" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ñ’Œ8×®å‰.
-H
-java:S1481ì"*Remove this unused "value" local variable.(‘ØºÕ8ŞïõÖˆ.
-F
-java:S1148ä"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8á‘‘±‹.
-v
-java:S1450‡"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëĞÿÿÿÿÿ8Ğú­‹.
-}
-java:S1450Ç"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8Ğú­‹.
-q
-java:S1450"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8Ğú­‹.
-v
-java:S1450Ÿ"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8Ğú­‹.
-p
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 96 to the 15 allowed.(à€¥8á‘‘±‹.
-F
-java:S1148×"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8á‘‘±‹.
-e
-java:S1126‡	"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8âí˜ ‹.
-~	java:S116×"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8ı£¢Öˆ.
-P
-java:S1199È"-Extract this nested code block into a method.(ù°û“ıÿÿÿÿ8«¨‡Š.
-
-java:S1845»"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 107.(º£üÏÿÿÿÿÿ8ı£¢Öˆ.
-u
-java:S3776Ã"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘şÿÿÿÿ8«¨‡Š.
-n
-java:S1301Ä"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8«¨‡Š.
-n
-java:S1301›"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8«¨‡Š.
-P
-java:S1135"2Complete the task associated to this TODO comment.(©§ğú8¸ÒÖˆ.
-F	java:S108")Either remove or fill this block of code.(å¥‡8«¨‡Š.
+java:S1481˜"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8üáè¬.
 J
-java:S1068‹",Remove this unused "initialY" private field.(÷İ»ã8«¨‡Š.
+java:S1068š",Remove this unused "initialY" private field.(÷İ»ã8üáè¬.
+D
+java:S1068‘"&Remove this unused "sp" private field.(è¥úá8ƒÈö×.
+T
+java:S2696ò"6Make the enclosing method "static" or remove this set.(šëÃ˜8Øìî©.
+p	java:S116"SRename this field "blk_seek" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ñ’Œ8×®å‰.
+r
+java:S1450²"TRemove the "incom" field and declare it as a local variable in the relevant methods.(æ¯ÂŒ8Ğú­‹.
+
+java:S1450D"_Remove the "backgroundParams" field and declare it as a local variable in the relevant methods.(æå†şüÿÿÿÿ8üáè¬.
 v
-java:S1450—"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8Ğú­‹.
-D	java:S131Ä""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8«¨‡Š.
-D	java:S131›""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8«¨‡Š.
-z
-java:S1450"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8«¨‡Š.
+java:S1450"SRemove the "date" field and declare it as a local variable in the relevant methods.(™²ëĞÿÿÿÿÿ8Ğú­‹.
+u
+java:S1450š"WRemove the "initialY" field and declare it as a local variable in the relevant methods.(÷İ»ã8üáè¬.
+S
+java:S2209³"5Change this instance-reference to a static reference.(ÔßÏÌ8Øìî©.
+n	java:S117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÔù¯8ŞïõÖˆ.
+r
+java:S1450¢"TRemove the "links" field and declare it as a local variable in the relevant methods.(Û¢¸à8Ğú­‹.
 P
-java:S1481ä"2Remove this unused "imgAutoBright" local variable.(¸¤¯‹8«¨‡Š.
-Y
-java:S2696¯"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8×¤‡Š.
+java:S1135¤"2Complete the task associated to this TODO comment.(©§ğú8¸ÒÖˆ.
+R
+java:S1068E"5Remove this unused "backgroundParams1" private field.(”«ëÒ8¸ÒÖˆ.
+P
+java:S1068f"3Remove this unused "overlaySwipFone" private field.(ø“å8¸ÒÖˆ.
+v
+java:S1450"XRemove the "converter" field and declare it as a local variable in the relevant methods.(íÇ¹Ã8Ğú­‹.
+r
+java:S1450®"TRemove the "costs" field and declare it as a local variable in the relevant methods.(ì±×ø8Ğú­‹.
 x
-java:S14509"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8«¨‡Š.
+java:S1450‡"ZRemove the "uset_minuts" field and declare it as a local variable in the relevant methods.(Ìôè—8Ğú­‹.
+s	java:S116‡"VRename this field "uset_minuts" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ìôè—8×®å‰.
+O
+java:S1068œ"1Remove this unused "initialTouchY" private field.(¶ü¥™8üáè¬.
+n
+java:S1301Ó"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8 ×˜Ö.
+X
+java:S2209µ"5Change this instance-reference to a static reference.(ûŞ˜øşÿÿÿÿ8Øìî©.
+P
+java:S1199×"-Extract this nested code block into a method.(ù°û“ıÿÿÿÿ8üáè¬.
+z
+java:S1450œ"\Remove the "initialTouchY" field and declare it as a local variable in the relevant methods.(¶ü¥™8üáè¬.
+x
+java:S1450@"[Remove the "bottomParams" field and declare it as a local variable in the relevant methods.(‚ä‡˜8üáè¬.
+v
+java:S1450Š"SRemove the "book" field and declare it as a local variable in the relevant methods.(Şé²Ûùÿÿÿÿ8Ğú­‹.
+p
+java:S3776Ã"RRefactor this method to reduce its Cognitive Complexity from 96 to the 15 allowed.(à€¥8Øìî©.
+€
+java:S1450š"]Remove the "settingActivit" field and declare it as a local variable in the relevant methods.(°ÈïŸùÿÿÿÿ8Ğú­‹.
+v
+java:S1450¦"SRemove the "todo" field and declare it as a local variable in the relevant methods.(Ÿ¡ÍÅÿÿÿÿÿ8Ğú­‹.
+F
+java:S1148˜"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8×ìî©.
+Y
+java:S2696½"6Make the enclosing method "static" or remove this set.(û€Ì›ùÿÿÿÿ8×¤‡Š.
+Y
+java:S2696ñ"6Make the enclosing method "static" or remove this set.(¹‰…åÿÿÿÿÿ8üáè¬.
+D	java:S131Ó""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8 ×˜Ö.
+P
+java:S1068˜"-Remove this unused "startTime" private field.(º¡ü€üÿÿÿÿ8üáè¬.
+r
+java:S1450’"TRemove the "plans" field and declare it as a local variable in the relevant methods.(Ã©ò8Ğú­‹.
+u
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(òæË‘şÿÿÿÿ8üáè¬.
+~	java:S116Ş"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8ı£¢Öˆ.
+}
+java:S1450Î"ZRemove the "settActivit" field and declare it as a local variable in the relevant methods.(â°òÉøÿÿÿÿ8Ğú­‹.
+n	java:S128Ô"LEnd this switch case with an unconditional break, return or throw statement.(ÒŸşÿÿÿÿÿ8Øìî©.
+s	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—À¹úÿÿÿÿ8¶’å©.
+D	java:S131Ï""Add a default case to this switch.(•Œ¥ùÿÿÿÿ8üáè¬.
+n
+java:S1301Ï"KReplace this "switch" statement by "if" statements to increase readability.(•Œ¥ùÿÿÿÿ8üáè¬.
+e
+java:S1126»	"BReplace this if-then-else statement by a single method invocation.(è¢ûÈúÿÿÿÿ8Øìî©.
+w
+java:S1450–"TRemove the "voice" field and declare it as a local variable in the relevant methods.(µÊşÿúÿÿÿÿ8Ğú­‹.
+
+java:S1845Â"^Rename field "dnD" to prevent any misunderstanding/clash with field "dnd" defined on line 114.(º£üÏÿÿÿÿÿ8ı£¢Öˆ.
+D	java:S131Ä""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Øìî©.
+T
+java:S2696ı"6Make the enclosing method "static" or remove this set.(£ÇİÛ8üáè¬.
+H
+java:S1481«"*Remove this unused "value" local variable.(‘ØºÕ8Øìî©.
+F
+java:S1068 "(Remove this unused "rect" private field.(æ¶Œ»8üáè¬.
+r
+java:S1450†"TRemove the "notes" field and declare it as a local variable in the relevant methods.(ªÍ­Š8Ğú­‹.
+H
+java:S1481 "*Remove this unused "value" local variable.(‘ØºÕ8Øìî©.
+t
+java:S1450ª"VRemove the "shedule" field and declare it as a local variable in the relevant methods.(µ‡ˆß8Ğú­‹.
+F
+java:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8×ìî©.
+y
+java:S3923Ì"[Remove this conditional structure or edit its code blocks so that they're not all the same.(¡ªˆ™8Øìî©.
+F	java:S108Â")Either remove or fill this block of code.(å¥‡8üáè¬.
+T
+java:S2696ä"6Make the enclosing method "static" or remove this set.(¹‡‘›8üáè¬.

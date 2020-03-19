@@ -69,12 +69,5 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/apps_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusable="false"
-        android:foregroundTintMode="multiply" />
-
 
 </LinearLayout>

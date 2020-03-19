@@ -11,6 +11,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -22,6 +24,7 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -42,8 +45,12 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class MyService extends Service implements View.OnClickListener {
@@ -258,6 +265,13 @@ public class MyService extends Service implements View.OnClickListener {
   private timers timers;
   private Vibrator vibrator;
 
+  private AppManagerShared appManager;
+  private RecyclerView recyclerView;
+  private Context context;
+  private PackageManager packageManager;
+
+  private SharedPreferences sp;
+  public static final String APP_PREFERENCES = "mysettings";
 //  private GestureDetectorCompat lSwipeDetector;
 //  private LinearLayout swipefone;
 //  private static final int SWIPE_MIN_DISTANCE = 300;
@@ -302,6 +316,7 @@ public class MyService extends Service implements View.OnClickListener {
     this.registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     mInstance = this;
     vibrator = (Vibrator) mcontext.getSystemService(Context.VIBRATOR_SERVICE);
+    context = this;
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -589,6 +604,43 @@ public class MyService extends Service implements View.OnClickListener {
               overlayView.setVisibility(View.VISIBLE);
               overlayBackground.setVisibility(View.VISIBLE);
               overlayBottom.setVisibility(View.GONE);
+
+              sp = context.getSharedPreferences(APP_PREFERENCES,
+                  Context.MODE_PRIVATE);
+              appManager = new AppManagerShared(context);
+              packageManager = getPackageManager();
+              List<AppInfo> installedApps = appManager.getInstalledApps();
+
+              AppsAdapterShared appsAdapter = new AppsAdapterShared();
+
+              recyclerView = overlayView.findViewById(R.id.apps_rv);
+              recyclerView.setLayoutManager(new LinearLayoutManager(context));
+              recyclerView.setAdapter(appsAdapter);
+              recyclerView.setLayoutManager(new GridLayoutManager(context,6));
+
+              appsAdapter.setApps(installedApps);
+
+
+              recyclerView.addOnItemTouchListener(new RecyclerItemClickListener
+                  (context, recyclerView, new RecyclerItemClickListener.OnItemMotionEventListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+                      String string = String.valueOf(installedApps.get(position));
+                      String[] parts = string.split(",");
+                      String part1 = parts[0]; // 004
+                      Intent intent = packageManager.getLaunchIntentForPackage(part1);
+                      startActivity(intent);
+                      onLock();
+                      appsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                      Log.d("Array Value", "PAC" + "not checked"+installedApps.get(position));
+                    }
+                  }));
+
               //Обновление состояния wifi
               wifiset.wifiRe(wifi, wifiManager);
               //Обновление состояния DND

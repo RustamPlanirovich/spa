@@ -1,27 +1,17 @@
 
-n
-java:S1301½"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8±›ª.
-E
-java:S1148m"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8±›ª.
-v
-java:S1450("YRemove the "appManager" field and declare it as a local variable in the relevant methods.(şœƒø8”­Ÿª.
-‡
-java:S41654"eRemove this useless assignment; "context" already holds the assigned value along all execution paths.(ÕÜ–ıÿÿÿÿ8‚úİ¬.
-}
-java:S1450)"[Remove the "recyclerView" field and declare it as a local variable in the relevant methods.(¿á© ıÿÿÿÿ8 ù×¬.
-c
-java:S2142l"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8±›ª.
 y
-java:S1450%"\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8¸æ˜ª.
-Q
-java:S1066~"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8±›ª.
-z
-java:S1450+"]Remove the "packageManager" field and declare it as a local variable in the relevant methods.(†¢õ„8ÃÏ¢¯.
-y
-java:S1450$"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8¸æ˜ª.
-d
-java:S1126O"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8±›ª.
+java:S1450"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8ğâ€ô.
 K
-java:S1199¾"-Extract this nested code block into a method.(Èï²¼8±›ª.
-O
-java:S1068+"2Remove this unused "packageManager" private field.(†¢õ„8ÃÏ¢¯.
+java:S1199•"-Extract this nested code block into a method.(Èï²¼8Åå¶­.
+d
+java:S11266"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8Åå¶­.
+c
+java:S2142S"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Åå¶­.
+n
+java:S1301”"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8Åå¶­.
+Q
+java:S1066e"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8Åå¶­.
+E
+java:S1148T"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Åå¶­.
+y
+java:S1450 "\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8ğâ€ô.

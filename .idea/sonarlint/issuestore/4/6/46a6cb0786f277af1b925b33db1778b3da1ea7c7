@@ -1,5 +1,5 @@
 
-p
-java:S1450"SRemove the "appp" field and declare it as a local variable in the relevant methods.(ä©¤„8Œ»ä²‹.
-
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¡é††8úÚ¥¨.
+u
+java:S1450"SRemove the "appp" field and declare it as a local variable in the relevant methods.(ª¬Ö¶ùÿÿÿÿ8Œ»ä²‹.
+q
+java:S1450"TRemove the "about" field and declare it as a local variable in the relevant methods.(ïÓ›‘8¡–“È.
