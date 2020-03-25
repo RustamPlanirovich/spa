@@ -156,8 +156,6 @@ public class MainActivity extends AppCompatActivity {
           }
           break;
         }
-        default:
-          throw new IllegalStateException("Unexpected value: " + requestCode);
       }
 
     }
@@ -174,4 +172,30 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
       }
     }
+  @Override
+  protected void onStart() {
+    super.onStart();
+    if (MyService.isServiceCreated()) {
+      //Запущен
+      servisesettingbut.setChecked(true);
+    } else {
+      //Не запущен
+      servisesettingbut.setChecked(false);
+    }
+
   }
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (MyService.isServiceCreated()) {
+      //Запущен
+      servisesettingbut.setChecked(true);
+    } else {
+      //Не запущен
+      servisesettingbut.setChecked(false);
+    }
+
+  }
+  }
+
+

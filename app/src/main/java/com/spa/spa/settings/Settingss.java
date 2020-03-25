@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.spa.spa.About;
 import com.spa.spa.Apps;
@@ -14,6 +15,8 @@ import com.spa.spa.R;
 public class Settingss extends AppCompatActivity {
   private TextView appp;
   private TextView about;
+  private CardView favapp;
+  private CardView aboutapp;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -22,8 +25,10 @@ public class Settingss extends AppCompatActivity {
     getSupportActionBar().hide();
     appp = (TextView) findViewById(R.id.appp);
     about = (TextView) findViewById(R.id.about);
+    favapp = (CardView) findViewById(R.id.favapp);
+    aboutapp = (CardView) findViewById(R.id.aboutapp);
 
-    appp.setOnClickListener(new View.OnClickListener() {
+    favapp.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent;
@@ -34,7 +39,7 @@ public class Settingss extends AppCompatActivity {
       }
     });
 
-    about.setOnClickListener(new View.OnClickListener() {
+    aboutapp.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent;

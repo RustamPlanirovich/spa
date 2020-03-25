@@ -1,8 +1,10 @@
 package com.spa.spa;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ public class Apps extends AppCompatActivity {
   private RecyclerView recyclerView;
   private Context context;
   private PackageManager packageManager;
+  Activity Apps;
 
 
   @Override
@@ -28,8 +31,8 @@ public class Apps extends AppCompatActivity {
     packageManager = getPackageManager();
     appManager = new AppManager(this);
     List<AppInfo> installedApps = appManager.getInstalledApps();
-
     AppsAdapter appsAdapter = new AppsAdapter();
+
 
     recyclerView = findViewById(R.id.apps_rv);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,8 +56,24 @@ public class Apps extends AppCompatActivity {
 
           @Override
           public void onItemLongClick(View view, int position) {
-            Log.d("Array Value", "PAC" + "not checked"+installedApps.get(position));
+            String string = String.valueOf(installedApps.get(position));
+            String[] parts = string.split(",");
+            String part1 = parts[0]; // 004
+
+            Intent intent = new Intent(Intent.ACTION_DELETE);
+            intent.setData(Uri.parse("package:" + part1));
+            startActivity(intent);
+            Log.d("Array Value", "PAC" + "not checked" + installedApps.get(position) + intent);
           }
         }));
   }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    startService(new Intent(getApplication(), MyService.class));
+
+  }
 }
+
+

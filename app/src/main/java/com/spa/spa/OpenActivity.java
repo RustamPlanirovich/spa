@@ -87,6 +87,8 @@ public interface OpenActivity {
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     mcontext.startActivity(intent);
+    Intent serviceIntent = new Intent(mcontext, MyService.class);
+    mcontext.stopService(serviceIntent);
   }
 
   /**

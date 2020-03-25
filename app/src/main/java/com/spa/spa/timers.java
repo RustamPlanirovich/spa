@@ -62,6 +62,7 @@ public class timers {
         int five = (int) (millisUntilFinished / 60000);
         int fiveSec = (int) (millisUntilFinished - (five * 60000)) / 1000;
         pausedMillis = (int) millisUntilFinished;
+        Log.i("Array Value", "Yess" + " " + Thread.currentThread().getName());
         String timeletfFormated = String.format(Locale.getDefault(), "%02d:%02d", five, fiveSec);
         textTimer.setText(timeletfFormated);
         Log.i(TAG, timeletfFormated);

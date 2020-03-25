@@ -25,14 +25,14 @@ import java.util.Set;
 /**
  * Адаптер
  */
-public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
+public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> implements View.OnClickListener {
 
   private List<AppInfo> apps = new ArrayList<>();
   private Context context;
 
   private SharedPreferences sp;
-  public static final String APP_PREFERENCES = "mysettings";
-  public static final String APP_PREFERENCES1 = "/data/data/com.spa.spa/shared_prefs/mysettings.xml";
+  public static final String APP_PREFERENCES = "favoriteapp";
+  public static final String APP_PREFERENCES1 = "/data/data/com.spa.spa/shared_prefs/favoriteapp.xml";
   private Set<String> set;
   private File file;
   private ArrayList arr1;
@@ -56,7 +56,6 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
 
     LayoutInflater layoutInflater = LayoutInflater.from(context);
     appsAdapter = new AppsAdapterShared();
-
     view = layoutInflater.from(parent.getContext()).inflate(R.layout.view_item_app, parent, false);
     viewHolder = new ViewHolder(view);
 
@@ -115,7 +114,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
             // Указываем Title
             //alertDialog.setTitle("Внимание");
             // создаем view из dialog.xml
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view1 = (LinearLayout) inflater
                 .inflate(R.layout.dialog, null);
             // устанавливаем ее, как содержимое тела диалога
@@ -149,7 +148,6 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
         }
       }
     });
-
   }
 
   // В этом методе мы возвращаем количество элементов списка
@@ -166,6 +164,11 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> {
   @Override
   public int getItemViewType(int position) {
     return position;
+  }
+
+  @Override
+  public void onClick(View v) {
+
   }
 
   /**

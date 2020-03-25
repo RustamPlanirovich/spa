@@ -21,6 +21,7 @@ import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -49,6 +50,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -266,12 +268,17 @@ public class MyService extends Service implements View.OnClickListener {
   private Vibrator vibrator;
 
   private AppManagerShared appManager;
-  private RecyclerView recyclerView;
+  RecyclerView recyclerView;
   private Context context;
   private PackageManager packageManager;
 
   private SharedPreferences sp;
-  public static final String APP_PREFERENCES = "mysettings";
+  public static final String APP_PREFERENCES = "favoriteapp";
+  List<AppInfo> installedApps;
+  AppsAdapterShared appsAdapter;
+  Thread sun;
+  private File file;
+  public static final String APP_PREFERENCES1 = "/data/data/com.spa.spa/shared_prefs/favoriteapp.xml";
 //  private GestureDetectorCompat lSwipeDetector;
 //  private LinearLayout swipefone;
 //  private static final int SWIPE_MIN_DISTANCE = 300;
@@ -317,6 +324,7 @@ public class MyService extends Service implements View.OnClickListener {
     mInstance = this;
     vibrator = (Vibrator) mcontext.getSystemService(Context.VIBRATOR_SERVICE);
     context = this;
+
   }
 
   // Класс отвечает за команды перед обработкой команд управления панелью
@@ -394,6 +402,8 @@ public class MyService extends Service implements View.OnClickListener {
 //        return lSwipeDetector.onTouchEvent(event);
 //      }
 //    });
+
+    Appl();
 
     //Вешаем на все эти кнопки слушателя клика
     notes.setOnClickListener(this);
@@ -574,9 +584,6 @@ public class MyService extends Service implements View.OnClickListener {
             //params.y = initialY - (int) (motionEvent.getRawY() - initialTouchY);
             windowManager.updateViewLayout(overlayView, params);
             break;
-          default:
-            throw new IllegalStateException(
-                "Unexpected value: " + motionEvent.getAction());
         }
         params.x = 0;
         windowManager.updateViewLayout(overlayView, params);
@@ -607,39 +614,7 @@ public class MyService extends Service implements View.OnClickListener {
 
               sp = context.getSharedPreferences(APP_PREFERENCES,
                   Context.MODE_PRIVATE);
-              appManager = new AppManagerShared(context);
-              packageManager = getPackageManager();
-              List<AppInfo> installedApps = appManager.getInstalledApps();
 
-              AppsAdapterShared appsAdapter = new AppsAdapterShared();
-
-              recyclerView = overlayView.findViewById(R.id.apps_rv);
-              recyclerView.setLayoutManager(new LinearLayoutManager(context));
-              recyclerView.setAdapter(appsAdapter);
-              recyclerView.setLayoutManager(new GridLayoutManager(context,6));
-
-              appsAdapter.setApps(installedApps);
-
-
-              recyclerView.addOnItemTouchListener(new RecyclerItemClickListener
-                  (context, recyclerView, new RecyclerItemClickListener.OnItemMotionEventListener() {
-
-                    @Override
-                    public void onItemClick(View view, int position) {
-                      String string = String.valueOf(installedApps.get(position));
-                      String[] parts = string.split(",");
-                      String part1 = parts[0]; // 004
-                      Intent intent = packageManager.getLaunchIntentForPackage(part1);
-                      startActivity(intent);
-                      onLock();
-                      appsAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, int position) {
-                      Log.d("Array Value", "PAC" + "not checked"+installedApps.get(position));
-                    }
-                  }));
 
               //Обновление состояния wifi
               wifiset.wifiRe(wifi, wifiManager);
@@ -708,6 +683,7 @@ public class MyService extends Service implements View.OnClickListener {
             }
             timeanddate.timeAndDate(time, dateView);
             networktype.speed(mcontext, netType);
+
             myPhoneStateListener.onSignal(signal, mcontext);
           }
           break;
@@ -1017,7 +993,7 @@ public class MyService extends Service implements View.OnClickListener {
           public void onClick(View v) {
             boolean onTomer5 = ((f5minuts).isChecked());
             if (onTomer5) {
-              timers.onTimer_5(textTimer,mcontext,vibrator);
+              timers.onTimer_5(textTimer, mcontext, vibrator);
               timers.onStartTimer_5();
               timerbtn.setEnabled(false);
               f10minuts.setVisibility(View.GONE);
@@ -1026,7 +1002,7 @@ public class MyService extends Service implements View.OnClickListener {
               f25minuts.setVisibility(View.GONE);
               textTimer.setVisibility(View.VISIBLE);
             } else {
-              timers.offTimer_5(textTimer,vibrator);
+              timers.offTimer_5(textTimer, vibrator);
               timerbtn.setEnabled(true);
               f10minuts.setVisibility(View.VISIBLE);
               f15minuts.setVisibility(View.VISIBLE);
@@ -1041,7 +1017,7 @@ public class MyService extends Service implements View.OnClickListener {
           public void onClick(View v) {
             boolean onTomer10 = ((f10minuts).isChecked());
             if (onTomer10) {
-              timers.onTimer_10(textTimer,mcontext,vibrator);
+              timers.onTimer_10(textTimer, mcontext, vibrator);
               timers.onStartTimer_10();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
@@ -1050,7 +1026,7 @@ public class MyService extends Service implements View.OnClickListener {
               f25minuts.setVisibility(View.GONE);
               textTimer.setVisibility(View.VISIBLE);
             } else {
-              timers.offTimer_10(textTimer,vibrator);
+              timers.offTimer_10(textTimer, vibrator);
               timerbtn.setEnabled(true);
               f5minuts.setVisibility(View.VISIBLE);
               f15minuts.setVisibility(View.VISIBLE);
@@ -1065,7 +1041,7 @@ public class MyService extends Service implements View.OnClickListener {
           public void onClick(View v) {
             boolean onTomer15 = ((f15minuts).isChecked());
             if (onTomer15) {
-              timers.onTimer_15(textTimer,mcontext,vibrator);
+              timers.onTimer_15(textTimer, mcontext, vibrator);
               timers.onStartTimer_15();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
@@ -1074,7 +1050,7 @@ public class MyService extends Service implements View.OnClickListener {
               f25minuts.setVisibility(View.GONE);
               textTimer.setVisibility(View.VISIBLE);
             } else {
-              timers.offTimer_15(textTimer,vibrator);
+              timers.offTimer_15(textTimer, vibrator);
               timerbtn.setEnabled(true);
               f5minuts.setVisibility(View.VISIBLE);
               f10minuts.setVisibility(View.VISIBLE);
@@ -1089,7 +1065,7 @@ public class MyService extends Service implements View.OnClickListener {
           public void onClick(View v) {
             boolean onTomer20 = ((f20minuts).isChecked());
             if (onTomer20) {
-              timers.onTimer_20(textTimer,mcontext,vibrator);
+              timers.onTimer_20(textTimer, mcontext, vibrator);
               timers.onStartTimer_20();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
@@ -1098,7 +1074,7 @@ public class MyService extends Service implements View.OnClickListener {
               f25minuts.setVisibility(View.GONE);
               textTimer.setVisibility(View.VISIBLE);
             } else {
-              timers.offTimer_20(textTimer,vibrator);
+              timers.offTimer_20(textTimer, vibrator);
               timerbtn.setEnabled(true);
               f5minuts.setVisibility(View.VISIBLE);
               f10minuts.setVisibility(View.VISIBLE);
@@ -1113,7 +1089,7 @@ public class MyService extends Service implements View.OnClickListener {
           public void onClick(View v) {
             boolean onTomer25 = ((f25minuts).isChecked());
             if (onTomer25) {
-              timers.onTimer_25(textTimer,mcontext,vibrator);
+              timers.onTimer_25(textTimer, mcontext, vibrator);
               timers.onStartTimer_25();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
@@ -1122,7 +1098,7 @@ public class MyService extends Service implements View.OnClickListener {
               f20minuts.setVisibility(View.GONE);
               textTimer.setVisibility(View.VISIBLE);
             } else {
-              timers.offTimer_25(textTimer,vibrator,dateView);
+              timers.offTimer_25(textTimer, vibrator, dateView);
               timerbtn.setEnabled(true);
               f5minuts.setVisibility(View.VISIBLE);
               f10minuts.setVisibility(View.VISIBLE);
@@ -1135,11 +1111,12 @@ public class MyService extends Service implements View.OnClickListener {
         textTimer.setOnClickListener(new View.OnClickListener() {
           boolean tick = false;
           int click = 0;
+
           @Override
           public void onClick(View v) {
-            if (f5minuts.isChecked()){
+            if (f5minuts.isChecked()) {
               if (click == 0) {
-                tick=true;
+                tick = true;
                 timers.setTimer5(tick, textTimer, mcontext, vibrator);
                 click++;
               } else {
@@ -1147,9 +1124,9 @@ public class MyService extends Service implements View.OnClickListener {
                 tick = false;
                 timers.setTimer5(tick, textTimer, mcontext, vibrator);
               }
-            }else if (f10minuts.isChecked()){
+            } else if (f10minuts.isChecked()) {
               if (click == 0) {
-                tick=true;
+                tick = true;
                 timers.setTimer10(tick, textTimer, mcontext, vibrator);
                 click++;
               } else {
@@ -1157,9 +1134,9 @@ public class MyService extends Service implements View.OnClickListener {
                 tick = false;
                 timers.setTimer10(tick, textTimer, mcontext, vibrator);
               }
-            }else if (f15minuts.isChecked()){
+            } else if (f15minuts.isChecked()) {
               if (click == 0) {
-                tick=true;
+                tick = true;
                 timers.setTimer15(tick, textTimer, mcontext, vibrator);
                 click++;
               } else {
@@ -1167,9 +1144,9 @@ public class MyService extends Service implements View.OnClickListener {
                 tick = false;
                 timers.setTimer15(tick, textTimer, mcontext, vibrator);
               }
-            }else if (f20minuts.isChecked()){
+            } else if (f20minuts.isChecked()) {
               if (click == 0) {
-                tick=true;
+                tick = true;
                 timers.setTimer20(tick, textTimer, mcontext, vibrator);
                 click++;
               } else {
@@ -1177,9 +1154,9 @@ public class MyService extends Service implements View.OnClickListener {
                 tick = false;
                 timers.setTimer20(tick, textTimer, mcontext, vibrator);
               }
-            }else if (f25minuts.isChecked()){
+            } else if (f25minuts.isChecked()) {
               if (click == 0) {
-                tick=true;
+                tick = true;
                 timers.setTimer25(tick, textTimer, mcontext, vibrator);
                 click++;
               } else {
@@ -1246,6 +1223,62 @@ public class MyService extends Service implements View.OnClickListener {
       battary.setimg(mcontext, level, batt, a);
     }
   };
+
+  public void Appl() {
+    file = new File(APP_PREFERENCES1);
+    Thread thread = new Thread() {
+      @Override
+      public void run() {
+        while (true) {
+          try {
+            if (file.exists()) {
+              appManager = new AppManagerShared(context);
+              packageManager = getPackageManager();
+              List<AppInfo> installedApps = appManager.getInstalledApps();
+              Log.i("Array Value", "THE" + " " + Thread.currentThread().getName());
+              appsAdapter = new AppsAdapterShared();
+              appsAdapter.setApps(installedApps);
+
+
+              new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                  recyclerView = overlayView.findViewById(R.id.apps_rv);
+                  recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                  recyclerView.setAdapter(appsAdapter);
+                  recyclerView.setLayoutManager(new GridLayoutManager(context, installedApps.size()));
+                  Log.i("Array Value", "THE" + " " + Thread.currentThread().getName());
+
+                  recyclerView.addOnItemTouchListener(new RecyclerItemClickListener
+                      (context, recyclerView, new RecyclerItemClickListener.OnItemMotionEventListener() {
+
+                        @Override
+                        public void onItemClick(View view, int position) {
+                          String string = String.valueOf(installedApps.get(position));
+                          String[] parts = string.split(",");
+                          String part1 = parts[0]; // 004
+                          Intent intent = packageManager.getLaunchIntentForPackage(part1);
+                          startActivity(intent);
+                          onLock();
+                        }
+
+                        @Override
+                        public void onItemLongClick(View view, int position) {
+                          Log.d("Array Value", "PAC" + "not checked" + installedApps.get(position));
+                        }
+                      }));
+                }
+              });
+              Thread.sleep(2500);
+            }
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    };
+    thread.start();
+  }
 
 //  private class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
 //    @Override

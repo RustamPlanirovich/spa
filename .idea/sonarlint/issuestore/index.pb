@@ -600,8 +600,6 @@ T
 $app/src/main/res/drawable/ic_add.xml,6/9/699c3d6616ccc6ddf6bb7357bbf7c0f43d8ba9b8
 W
 'app/src/main/res/drawable/ic_remove.xml,2/7/270c622f93b07d0c97d39d4d112b4e8b8148e284
-N
-app/src/main/res/menu/main.xml,2/2/22209de88391c01e1ce3911e9b7305487116d1a1
 W
 'app/src/main/java/com/spa/spa/Apps.java,6/a/6ad3f0501952d87c3087fa9a38a6adb5fec13709
 X
@@ -610,3 +608,7 @@ d
 4app/src/main/java/com/spa/spa/AppsAdapterShared.java,f/6/f667041d339535ffe765d7c6a0922f91e43f5f85
 c
 3app/src/main/java/com/spa/spa/AppManagerShared.java,d/e/dec2d471680f88b390740f2ce189a16686fa8f01
+D
+google-services.json,f/7/f761570c4ae90a5577cea77748c77672342c8041
+H
+app/google-services.json,f/d/fd8d34b142d02ec743a8efefefd2c097961666e9

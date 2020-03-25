@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "37298616179",
+    "firebase_url": "https://smart-personal-assistent.firebaseio.com",
+    "project_id": "smart-personal-assistent",
+    "storage_bucket": "smart-personal-assistent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37298616179:android:024162ea2fee9b553fb706",
+        "android_client_info": {
+          "package_name": "com.spa.spa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37298616179-o6md3hnu3dvbfnkg1lhud208aephk2tk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-lCOiyseoF4sNoFr3VKAJFLgjcwQXKXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37298616179-o6md3hnu3dvbfnkg1lhud208aephk2tk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
