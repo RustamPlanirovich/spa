@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     mactivity = this;
     blackCurtainView = new BlackCurtainView();
 
+    Intent intentaut = new Intent(MainActivity.this, PhoneAuthActivity.class);
+    intentaut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intentaut);
 
     servisesettingbut = (ToggleButton) findViewById(R.id.servisesettingbut);
     reloadService = (Button) findViewById(R.id.reloadService);

@@ -347,10 +347,6 @@ d
 4app/src/main/res/layout/activity_voice_assistant.xml,d/1/d156f941677bd417fbc60e9fcd3ed9ff58f4faba
 g
 7app/src/main/res/layout/activity_currency_converter.xml,3/c/3c71e8e42c912183e223a322f39c511fed4992f9
-Q
-!app/src/main/res/values/dimen.xml,0/e/0eb47b9fe42323c2f5c068c3140ad82892755766
-R
-"app/src/main/res/values/colors.xml,9/6/969faa2a5d9f5e8390e958d2c07f2cfd54676e6b
 S
 #app/src/main/res/drawable/thumb.xml,1/8/186a7d620530e8deb0a5cf6398922f9725bf6b43
 W
