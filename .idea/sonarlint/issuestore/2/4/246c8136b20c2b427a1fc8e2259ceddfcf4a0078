@@ -1,11 +1,11 @@
 
-‚
-java:S1450%"eRemove the "black_curtrain_seekbar" field and declare it as a local variable in the relevant methods.(ó²“Á8ÀãŠ.
 z
 java:S1450$"XRemove the "myService" field and declare it as a local variable in the relevant methods.(µä£Ñûÿÿÿÿ8ÀãŠ.
 }	java:S116%"aRename this field "black_curtrain_seekbar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó²“Á8ÀãŠ.
 £
 java:S1186T"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ®çâùÿÿÿÿ8ÀãŠ.
+‚
+java:S1450%"eRemove the "black_curtrain_seekbar" field and declare it as a local variable in the relevant methods.(ó²“Á8ÀãŠ.
 
 java:S1186X"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‰ÁÕ–8ÀãŠ.
 O

@@ -1,22 +1,22 @@
 
+D	java:S131—""Add a default case to this switch.(×ö³–úÿÿÿÿ8¦—ğº.
+K
+java:S1199˜"-Extract this nested code block into a method.(Èï²¼8¥Ã¾Š.
+d
+java:S11269"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ëíÏ.
 y
 java:S1450"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8ñØ‹¹.
-d
-java:S11266"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ëíÏ.
-n
-java:S1301”"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8¥Ã¾Š.
-E
-java:S1148T"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ñØ‹¹.
-e
-java:S1126¾"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ØãÄâ.
-D	java:S131”""Add a default case to this switch.(×ö³–úÿÿÿÿ8¦—ğº.
-c
-java:S2142S"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ñØ‹¹.
-e
-java:S1126²"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ˆù£â.
 Q
-java:S1066e"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8¥Ã¾Š.
+java:S1066h"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8¥Ã¾Š.
+e
+java:S1126µ"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ˆù£â.
+c
+java:S2142V"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ñØ‹¹.
+e
+java:S1126Á"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ØãÄâ.
 y
 java:S1450 "\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8ñØ‹¹.
-K
-java:S1199•"-Extract this nested code block into a method.(Èï²¼8¥Ã¾Š.
+E
+java:S1148W"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ñØ‹¹.
+n
+java:S1301—"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8¥Ã¾Š.

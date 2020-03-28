@@ -961,9 +961,11 @@ public class MyService extends Service implements View.OnClickListener {
           blackCurtain.onCurtain(mcontext, blacint);
           //Делаем доступной полосу настройки затемненности
           black_curtrain_seekbar.setEnabled(true);
+          float a = (float) 270.0;
           black_curtrain_seekbar.setVisibility(View.VISIBLE);
           viewbl.setVisibility(View.VISIBLE);
           timerbtn.setEnabled(false);
+          onLock();
         } else {
           //Отключаем затемнение экрана
           blackCurtain.offCurtain();
