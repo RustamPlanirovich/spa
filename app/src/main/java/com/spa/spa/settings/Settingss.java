@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 
 import com.spa.spa.About;
 import com.spa.spa.Apps;
+import com.spa.spa.PhoneAuthActivity;
 import com.spa.spa.R;
 
 public class Settingss extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class Settingss extends AppCompatActivity {
   private TextView about;
   private CardView favapp;
   private CardView aboutapp;
+  private CardView autapp;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class Settingss extends AppCompatActivity {
     about = (TextView) findViewById(R.id.about);
     favapp = (CardView) findViewById(R.id.favapp);
     aboutapp = (CardView) findViewById(R.id.aboutapp);
+    autapp = (CardView) findViewById(R.id.autapp);
 
     favapp.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -47,6 +50,15 @@ public class Settingss extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+      }
+    });
+
+    autapp.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intentaut = new Intent(Settingss.this, PhoneAuthActivity.class);
+        intentaut.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intentaut);
       }
     });
   }

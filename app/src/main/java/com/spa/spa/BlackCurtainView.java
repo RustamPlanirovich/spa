@@ -1,5 +1,6 @@
 package com.spa.spa;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
@@ -24,7 +25,7 @@ public class BlackCurtainView {
       WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
       PixelFormat.TRANSLUCENT);
   private WindowManager.LayoutParams backgroundParams1 = new WindowManager.LayoutParams(
-      WindowManager.LayoutParams.MATCH_PARENT,
+      WindowManager.LayoutParams.WRAP_CONTENT,
       WindowManager.LayoutParams.WRAP_CONTENT,
       WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
       WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
@@ -42,6 +43,7 @@ public class BlackCurtainView {
    * @param mcontext mcontext.
    * @param blacint
    */
+  @SuppressLint("RtlHardcoded")
   public void onCurtain(Context mcontext, int blacint) {
     //Экземпляр windowManager
     windowManager = (WindowManager) mcontext.getSystemService(WINDOW_SERVICE);
@@ -57,6 +59,7 @@ public class BlackCurtainView {
         Context.LAYOUT_INFLATER_SERVICE)).inflate(
         R.layout.blk_seek, null, false);
     backgroundParams1.gravity = Gravity.BOTTOM;
+    backgroundParams1.gravity = Gravity.RIGHT;
 
     //Отрисовывем слой
     windowManager.addView(this.ll, backgroundParams);

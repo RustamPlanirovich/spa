@@ -111,7 +111,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         // 2 - Auto-retrieval. On some devices Google Play services can automatically
         //     detect the incoming verification SMS and perform verification without
         //     user action.
-        Log.d(TAG, "onVerificationCompleted:" + credential);
+        Log.d(TAG, "Проверка пройдена:" + credential);
         // [START_EXCLUDE silent]
         mVerificationInProgress = false;
         // [END_EXCLUDE]
@@ -127,7 +127,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
       public void onVerificationFailed(FirebaseException e) {
         // This callback is invoked in an invalid request for verification is made,
         // for instance if the the phone number format is not valid.
-        Log.w(TAG, "onVerificationFailed", e);
+        Log.w(TAG, "Проверка не пройдена", e);
         // [START_EXCLUDE silent]
         mVerificationInProgress = false;
         // [END_EXCLUDE]
@@ -135,12 +135,12 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         if (e instanceof FirebaseAuthInvalidCredentialsException) {
           // Invalid request
           // [START_EXCLUDE]
-          mPhoneNumberField.setError("Invalid phone number.");
+          mPhoneNumberField.setError("Неверный номер телефона.");
           // [END_EXCLUDE]
         } else if (e instanceof FirebaseTooManyRequestsException) {
           // The SMS quota for the project has been exceeded
           // [START_EXCLUDE]
-          Snackbar.make(findViewById(android.R.id.content), "Quota exceeded.",
+          Snackbar.make(findViewById(android.R.id.content), "Квота превышена.",
               Snackbar.LENGTH_SHORT).show();
           // [END_EXCLUDE]
         }
@@ -157,7 +157,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         // The SMS verification code has been sent to the provided phone number, we
         // now need to ask the user to enter the code and then construct a credential
         // by combining the code with a verification ID.
-        Log.d(TAG, "onCodeSent:" + verificationId);
+        Log.d(TAG, "Код отправлен:" + verificationId);
 
         // Save verification ID and resending token so we can use them later
         mVerificationId = verificationId;
@@ -242,7 +242,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
           public void onComplete(@NonNull Task<AuthResult> task) {
             if (task.isSuccessful()) {
               // Sign in success, update UI with the signed-in user's information
-              Log.d(TAG, "signInWithCredential:success");
+              Log.d(TAG, "signInWithCredential:Успешно");
 
               FirebaseUser user = task.getResult().getUser();
               // [START_EXCLUDE]
@@ -250,11 +250,11 @@ public class PhoneAuthActivity extends AppCompatActivity implements
               // [END_EXCLUDE]
             } else {
               // Sign in failed, display a message and update the UI
-              Log.w(TAG, "signInWithCredential:failure", task.getException());
+              Log.w(TAG, "signInWithCredential:Не успещно", task.getException());
               if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                 // The verification code entered was invalid
                 // [START_EXCLUDE silent]
-                mVerificationField.setError("Invalid code.");
+                mVerificationField.setError("Неверный код.");
                 // [END_EXCLUDE]
               }
               // [START_EXCLUDE silent]
@@ -360,7 +360,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
   private boolean validatePhoneNumber() {
     String phoneNumber = mPhoneNumberField.getText().toString();
     if (TextUtils.isEmpty(phoneNumber)) {
-      mPhoneNumberField.setError("Invalid phone number.");
+      mPhoneNumberField.setError("Неверный номер телефона.");
       return false;
     }
 
@@ -392,7 +392,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
       case R.id.buttonVerifyPhone:
         String code = mVerificationField.getText().toString();
         if (TextUtils.isEmpty(code)) {
-          mVerificationField.setError("Cannot be empty.");
+          mVerificationField.setError("Не может быть пустым.");
           return;
         }
 

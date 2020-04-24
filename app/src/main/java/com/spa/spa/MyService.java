@@ -279,7 +279,9 @@ public class MyService extends Service implements View.OnClickListener {
   Thread sun;
   private File file;
   public static final String APP_PREFERENCES1 = "/data/data/com.spa.spa/shared_prefs/favoriteapp.xml";
-//  private GestureDetectorCompat lSwipeDetector;
+  String timerTime;
+  String timerNot;
+  //  private GestureDetectorCompat lSwipeDetector;
 //  private LinearLayout swipefone;
 //  private static final int SWIPE_MIN_DISTANCE = 300;
 //  private static final int SWIPE_MAX_DISTANCE = 150;
@@ -348,7 +350,7 @@ public class MyService extends Service implements View.OnClickListener {
     mobileDate = new mobileDate();
     flash = new Flash();
     blackCurtain = new BlackCurtainView();
-    textView = (TextView) overlayView.findViewById(R.id.textView2);
+    //textView = (TextView) overlayView.findViewById(R.id.textView2);
     timeanddate = new timeanddate();
     blackCurtainView = new BlackCurtainView();
     networktype = new networktype();
@@ -393,8 +395,13 @@ public class MyService extends Service implements View.OnClickListener {
     f25minuts = (ToggleButton) overlayView.findViewById(R.id.f25minut);
     uset_minuts = (ToggleButton) overlayView.findViewById(R.id.usetMinut);
     textTimer = (TextView) overlayView.findViewById(R.id.textTimer);
-
-//    lSwipeDetector = new GestureDetectorCompat(mcontext, new MyGestureListener());
+    timerTime = timers.timeletfFormated;
+    if (timerTime != null) {
+      timerNot = timerTime;
+    } else {
+      timerNot = " ";
+    }
+    //    lSwipeDetector = new GestureDetectorCompat(mcontext, new MyGestureListener());
 //
 //    overlaySwipFone.setOnTouchListener(new View.OnTouchListener() {
 //      @Override
@@ -440,8 +447,7 @@ public class MyService extends Service implements View.OnClickListener {
   /**
    * Данный класс, чтобы сервис не умирал, когда закрываем основное окно программы.
    */
-  private void startForeground() {
-
+  public void startForeground() {
     String NOTIF_ID = "1";
     String NOTIF_CHANNEL_ID = "1234";
     NotificationChannel chan = new NotificationChannel(NOTIF_CHANNEL_ID, NOTIF_ID, NotificationManager.IMPORTANCE_NONE);
@@ -459,6 +465,7 @@ public class MyService extends Service implements View.OnClickListener {
     Notification notification1 = notificationBuilder.setOngoing(true)
         .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle("Сервис запущен.")
+        .setContentText(timerNot)
         .setPriority(NotificationManager.IMPORTANCE_MIN)
         .setCategory(Notification.CATEGORY_SERVICE)
         .addAction(R.drawable.ic_back, "Открыть", pendingIntent1)
@@ -685,6 +692,7 @@ public class MyService extends Service implements View.OnClickListener {
             networktype.speed(mcontext, netType);
 
             myPhoneStateListener.onSignal(signal, mcontext);
+
           }
           break;
         }
@@ -712,6 +720,10 @@ public class MyService extends Service implements View.OnClickListener {
     MyService.overlayView.setVisibility(View.GONE);
     MyService.overlayBackground.setVisibility(View.GONE);
     MyService.overlayBottom.setVisibility(View.VISIBLE);
+  }
+
+  public void hidePanel() {
+    MyService.overlayBottom.setVisibility(View.GONE);
   }
 
 
@@ -989,14 +1001,12 @@ public class MyService extends Service implements View.OnClickListener {
           blackMode.setEnabled(true);
         }
 
-
         f5minuts.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
             boolean onTomer5 = ((f5minuts).isChecked());
             if (onTomer5) {
               timers.onTimer_5(textTimer, mcontext, vibrator);
-              timers.onStartTimer_5();
               timerbtn.setEnabled(false);
               f10minuts.setVisibility(View.GONE);
               f15minuts.setVisibility(View.GONE);
@@ -1020,7 +1030,6 @@ public class MyService extends Service implements View.OnClickListener {
             boolean onTomer10 = ((f10minuts).isChecked());
             if (onTomer10) {
               timers.onTimer_10(textTimer, mcontext, vibrator);
-              timers.onStartTimer_10();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
               f15minuts.setVisibility(View.GONE);
@@ -1044,7 +1053,6 @@ public class MyService extends Service implements View.OnClickListener {
             boolean onTomer15 = ((f15minuts).isChecked());
             if (onTomer15) {
               timers.onTimer_15(textTimer, mcontext, vibrator);
-              timers.onStartTimer_15();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
               f10minuts.setVisibility(View.GONE);
@@ -1068,7 +1076,6 @@ public class MyService extends Service implements View.OnClickListener {
             boolean onTomer20 = ((f20minuts).isChecked());
             if (onTomer20) {
               timers.onTimer_20(textTimer, mcontext, vibrator);
-              timers.onStartTimer_20();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
               f10minuts.setVisibility(View.GONE);
@@ -1092,7 +1099,6 @@ public class MyService extends Service implements View.OnClickListener {
             boolean onTomer25 = ((f25minuts).isChecked());
             if (onTomer25) {
               timers.onTimer_25(textTimer, mcontext, vibrator);
-              timers.onStartTimer_25();
               timerbtn.setEnabled(false);
               f5minuts.setVisibility(View.GONE);
               f10minuts.setVisibility(View.GONE);
@@ -1112,57 +1118,46 @@ public class MyService extends Service implements View.OnClickListener {
         });
         textTimer.setOnClickListener(new View.OnClickListener() {
           boolean tick = false;
-          int click = 0;
 
           @Override
           public void onClick(View v) {
             if (f5minuts.isChecked()) {
-              if (click == 0) {
+              if (f5minuts.isChecked()) {
                 tick = true;
                 timers.setTimer5(tick, textTimer, mcontext, vibrator);
-                click++;
               } else {
-                click--;
                 tick = false;
                 timers.setTimer5(tick, textTimer, mcontext, vibrator);
               }
             } else if (f10minuts.isChecked()) {
-              if (click == 0) {
+              if (f10minuts.isChecked()) {
                 tick = true;
                 timers.setTimer10(tick, textTimer, mcontext, vibrator);
-                click++;
               } else {
-                click--;
                 tick = false;
                 timers.setTimer10(tick, textTimer, mcontext, vibrator);
               }
             } else if (f15minuts.isChecked()) {
-              if (click == 0) {
+              if (f15minuts.isChecked()) {
                 tick = true;
                 timers.setTimer15(tick, textTimer, mcontext, vibrator);
-                click++;
               } else {
-                click--;
                 tick = false;
                 timers.setTimer15(tick, textTimer, mcontext, vibrator);
               }
             } else if (f20minuts.isChecked()) {
-              if (click == 0) {
+              if (f20minuts.isChecked()) {
                 tick = true;
                 timers.setTimer20(tick, textTimer, mcontext, vibrator);
-                click++;
               } else {
-                click--;
                 tick = false;
                 timers.setTimer20(tick, textTimer, mcontext, vibrator);
               }
             } else if (f25minuts.isChecked()) {
-              if (click == 0) {
+              if (f25minuts.isChecked()) {
                 tick = true;
                 timers.setTimer25(tick, textTimer, mcontext, vibrator);
-                click++;
               } else {
-                click--;
                 tick = false;
                 timers.setTimer25(tick, textTimer, mcontext, vibrator);
               }
@@ -1213,9 +1208,11 @@ public class MyService extends Service implements View.OnClickListener {
   }
 
   private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+    @SuppressLint("SetTextI18n")
     @Override
     public void onReceive(Context ctxt, Intent intent) {
       int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+      textView = (TextView) overlayView.findViewById(R.id.textView2);
       textView.setText(level + "%");
 
       int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
@@ -1281,6 +1278,7 @@ public class MyService extends Service implements View.OnClickListener {
     };
     thread.start();
   }
+
 
 //  private class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
 //    @Override

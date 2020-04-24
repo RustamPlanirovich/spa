@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ld"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
-    android:background="#050505"
-    android:orientation="horizontal">
+    android:layout_gravity="right|fill_vertical"
+    android:background="#00050505"
+    android:orientation="vertical">
 
 
-    <SeekBar
+    <com.spa.spa.VerticalSeekBar
         android:id="@+id/black_curtrain_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
         android:progressDrawable="@drawable/seekk"
         android:thumb="@drawable/thumb"
         android:visibility="visible" />

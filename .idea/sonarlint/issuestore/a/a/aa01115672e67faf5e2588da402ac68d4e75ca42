@@ -1,22 +1,25 @@
 
-D	java:S131—""Add a default case to this switch.(×ö³–úÿÿÿÿ8¦—ğº.
-K
-java:S1199˜"-Extract this nested code block into a method.(Èï²¼8¥Ã¾Š.
-d
-java:S11269"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ëíÏ.
 y
-java:S1450"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8ñØ‹¹.
-Q
-java:S1066h"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8¥Ã¾Š.
-e
-java:S1126µ"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ˆù£â.
-c
-java:S2142V"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ñØ‹¹.
-e
-java:S1126Á"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ØãÄâ.
-y
-java:S1450 "\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8ñØ‹¹.
-E
-java:S1148W"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ñØ‹¹.
+java:S1450#"\Remove the "reloadService" field and declare it as a local variable in the relevant methods.(ÓÇ¶ö8ñØ‹¹.
 n
-java:S1301—"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8¥Ã¾Š.
+java:S1301ª"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8¥Ã¾Š.
+e
+java:S1126×"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ØãÄâ.
+K
+java:S1199«"-Extract this nested code block into a method.(Èï²¼8¥Ã¾Š.
+Q
+java:S1066A"/Merge this if statement with the enclosing one.(ÂÔÊäûÿÿÿÿ8÷Óµ“.
+d
+java:S1126H"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ëíÏ.
+y
+java:S1450$"\Remove the "additisetting" field and declare it as a local variable in the relevant methods.(œ­”É8ñØ‹¹.
+E	java:S108:")Either remove or fill this block of code.(ãñ¡×8­üÍµ“.
+D	java:S131ª""Add a default case to this switch.(×ö³–úÿÿÿÿ8¦—ğº.
+e
+java:S1126Ê"BReplace this if-then-else statement by a single method invocation.(®‹ğÉşÿÿÿÿ8ˆù£â.
+N
+java:S1481‡"+Remove this unused "target" local variable.(‰‘Ï»úÿÿÿÿ8ÔÏ»…’.
+E
+java:S1148h"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ØÄ…’.
+c
+java:S2142g"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ØÄ…’.

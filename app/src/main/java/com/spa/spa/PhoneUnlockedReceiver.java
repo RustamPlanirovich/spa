@@ -26,7 +26,7 @@ public class PhoneUnlockedReceiver extends BroadcastReceiver {
   public void onReceive(final Context context, final Intent intent) {
     if (intent.getAction().equals(Intent.ACTION_USER_PRESENT)) {
       //Запускаем таймер на отработку каждые
-      // 300 миллисекунд на обнаружение действия
+      // 1000 миллисекунд на обнаружение действия
       //разблокировки
       Handler handler = new Handler();
       handler.postDelayed(new Runnable() {
@@ -44,7 +44,7 @@ public class PhoneUnlockedReceiver extends BroadcastReceiver {
               Settings.System.SCREEN_BRIGHTNESS, brig1);
           //Задержка в миллисекундах между интерациями таймера
         }
-      }, 300);
+      }, 1000);
 
     } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
       //Вызываем метод скрытия панели

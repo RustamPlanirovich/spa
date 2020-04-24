@@ -2,7 +2,6 @@ package com.spa.spa;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -117,6 +116,15 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> im
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view1 = (LinearLayout) inflater
                 .inflate(R.layout.dialog, null);
+            Button ok = view1.findViewById(R.id.okk);
+
+            ok.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                alertDialog.dismiss();
+                holder.potg.setChecked(false);
+              }
+            });
             // устанавливаем ее, как содержимое тела диалога
             alertDialog.setView(view1);
             // Указываем текст сообщение
@@ -124,13 +132,13 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ViewHolder> im
             // задаем иконку
             //alertDialog.setIcon(R.drawable.add);
             // Обработчик на нажатие OK
-            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int which) {
-                // Код который выполнится после закрытия окна
-                alertDialog.dismiss();
-                holder.potg.setChecked(false);
-              }
-            });
+//            alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//              public void onClick(DialogInterface dialog, int which) {
+//                // Код который выполнится после закрытия окна
+//                alertDialog.dismiss();
+//                holder.potg.setChecked(false);
+//              }
+//            });
             // показываем Alert
             alertDialog.show();
           }
